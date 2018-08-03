@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>EZshare - Car Hire on the Go</title>
-	
+
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
         Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/
-       
+
           Always set the map height explicitly to define the size of the div
            element that contains the map. -->
-	<style>    
+	<style>
 	#map {
            height: 100%;
          }
@@ -65,7 +65,7 @@
          function initMap() {
            map = new google.maps.Map(document.getElementById('map'), {
              center: {lat: -34.397, lng: 150.644},
-             zoom: 6
+             zoom: 17
            });
            infoWindow = new google.maps.InfoWindow;
 
@@ -78,7 +78,8 @@
                };
 
                infoWindow.setPosition(pos);
-               infoWindow.setContent('Location found.');
+               infoWindow.setContent('You are here!.');
+               var marker = new google.maps.Marker({position: pos, map: map});
                infoWindow.open(map);
                map.setCenter(pos);
              }, function() {
