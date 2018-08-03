@@ -10,6 +10,9 @@
 
 <<<<<<< HEAD
     <title>Noshare</title>
+=======
+    <title>Test</title>
+>>>>>>> fbb6ff5d16194f3a5b96072af0070ed3e0ba528b
     <style>
       /*  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
           Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation
