@@ -70,6 +70,64 @@
            });
            infoWindow = new google.maps.InfoWindow;
 
+          // Icons
+          var iconBase = '/resources/assets/icons/';
+          var icons = {
+          whitecar: {
+            name: 'whitecar',
+            icon: iconBase + 'small-car-icon-top-view-white-car-1.png'
+          }
+          }
+          
+          var features = [
+          {
+            position: new google.maps.LatLng(-37.806989, 144.963865),
+            type: 'whitecar'
+          }, 
+          ];
+
+
+          // Create markers.
+          features.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+          position: feature.position,
+          icon: icons[feature.type].icon,
+          map: map
+          });
+          });
+
+
+
+        // Attempt at changing icon size depending on zoom
+
+        /*
+        google.maps.event.addListener(map, 'zoom_changed', function() {
+
+        var pixelSizeAtZoom0 = 8; //the size of the icon at zoom level 0
+        var maxPixelSize = 350; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
+
+        var zoom = map.getZoom();
+        var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(2,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
+
+        if(relativePixelSize > maxPixelSize) //restrict the maximum size of the icon
+        relativePixelSize = maxPixelSize;
+
+        //change the size of the icon
+        var marker = {
+            url: icons.whitecar, //marker's same icon graphic
+            size: null,//size
+            origin: null,//origin
+            anchor: null, //anchor
+            scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
+              
+        }
+        });
+        */
+
+
+
+
+
            // Try HTML5 geolocation.
            if (navigator.geolocation) {
              navigator.geolocation.getCurrentPosition(function(position) {
