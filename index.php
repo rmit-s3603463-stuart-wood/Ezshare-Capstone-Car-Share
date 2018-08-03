@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>EZshare - Car Hire on the Go</title>
-
-      /*  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
-          Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation
-       */
-         /* Always set the map height explicitly to define the size of the div
-          * element that contains the map. */
-         #map {
+	
+     <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
+        Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/
+       
+          Always set the map height explicitly to define the size of the div
+           element that contains the map. -->
+	<style>    
+	#map {
            height: 100%;
          }
          /* Optional: Makes the sample page fill the window. */
