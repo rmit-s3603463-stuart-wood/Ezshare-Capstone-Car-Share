@@ -73,7 +73,7 @@
            infoWindow = new google.maps.InfoWindow;
 
           // Icons
-          var whitecar = '/resources/assets/icons/small-car-icon-top-view-white-car-1.png';
+          var whitecar = 'resources/assets/icons/small-car-icon-top-view-white-car-1.png';
 
 
           //Content
