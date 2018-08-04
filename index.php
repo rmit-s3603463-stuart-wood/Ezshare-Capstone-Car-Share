@@ -85,7 +85,7 @@
             '<div id="bodyContent">'+
             '<p>2012 Toyota Corolla Sedan <br> Licence Plate: RJ5 631</p>'+
             '<p>This car is ready to be used</p>'+
-            '<p>Click <a href="link to booking page">'+'here</a> to book it now</p>'+
+            '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
             '</div>'+
             '</div>';
 
