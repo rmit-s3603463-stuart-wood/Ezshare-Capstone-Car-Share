@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
     <title>EZshare - Car Hire on the Go</title>
 
@@ -57,6 +58,7 @@
     </nav>
     <div id="map"></div>
        <script>
+
          // Note: This example requires that you consent to location sharing when
          // prompted by your browser. If you see the error "The Geolocation service
          // failed.", it means you probably did not give permission for the browser to
@@ -71,31 +73,37 @@
            infoWindow = new google.maps.InfoWindow;
 
           // Icons
-          var iconBase = '/resources/assets/icons/';
-          var icons = {
-          whitecar: {
-            name: 'whitecar',
-            icon: iconBase + 'small-car-icon-top-view-white-car-1.png'
-          }
-          }
-          
-          var features = [
-          {
-            position: new google.maps.LatLng(-37.806989, 144.963865),
-            type: 'whitecar'
-          }, 
-          ];
+          var whitecar = '/resources/assets/icons/small-car-icon-top-view-white-car-1.png';
 
 
-          // Create markers.
-          features.forEach(function(feature) {
-          var marker = new google.maps.Marker({
-          position: feature.position,
-          icon: icons[feature.type].icon,
+          //Content
+          var fakecarinfo = 
+            '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Car 1</h1>'+
+            '<div id="bodyContent">'+
+            '<p>2012 Toyota Corolla Sedan <br> Licence Plate: RJ5 631</p>'+
+            '<p>This car is ready to be used</p>'+
+            '<p>Click <a href="link to booking page">'+'here</a> to book it now</p>'+
+            '</div>'+
+            '</div>';
+
+        var fakecarinfowindow = new google.maps.InfoWindow({
+          content: fakecarinfo
+        });
+
+          // Create markers
+          var fakemarker = new google.maps.Marker({
+          position: {lat: -37.806989, lng: 144.963865},
+          icon: whitecar,
           map: map
           });
+          fakemarker.addListener('click', function() {
+            fakecarinfowindow.open(map ,fakemarker);
           });
 
+         
 
 
         // Attempt at changing icon size depending on zoom
@@ -137,7 +145,7 @@
                };
 
                infoWindow.setPosition(pos);
-               infoWindow.setContent('You are here!.');
+               infoWindow.setContent('You are here!');
                var marker = new google.maps.Marker({position: pos, map: map});
                infoWindow.open(map);
                map.setCenter(pos);
@@ -157,6 +165,8 @@
                                  'Error: Your browser doesn\'t support geolocation.');
            infoWindow.open(map);
          }
+
+         setTimeout(function() {infoWindow.close();}, 10000);
        </script>
        <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
