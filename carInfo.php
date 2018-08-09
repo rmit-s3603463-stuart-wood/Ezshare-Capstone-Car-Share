@@ -49,7 +49,7 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
         </thead>
         <tbody>
           <tr>
-            <td rowspan="8">  <img src="resources\assets\img\sedan.jpg"  class="rounded img-fluid"  alt="sedan" width="600" height="500"> </td>
+            <td rowspan="8">  <img src="resources\assets\icons\sedan.jpg"  class="rounded img-fluid"  alt="sedan" width="600" height="500"> </td>
 
             <th>Registration Number:</th>
             <td>SED123</td>
@@ -103,7 +103,7 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
         </thead>
         <tbody>
           <tr>
-            <td rowspan="8"><img src="resources\assets\img\4wd.jpg"  class="rounded img-fluid"  alt="4wd" width="600" height="500"></td>
+            <td rowspan="8"><img src="resources\assets\icons\4wd.jpg"  class="rounded img-fluid"  alt="4wd" width="600" height="500"></td>
 
             <th>Registration Number:</th>
             <td>BIG123</td>
@@ -159,7 +159,7 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
 
 
           <tr>
-            <td rowspan="8"><img src="resources\assets\img\luxury.jpg"  class="rounded img-fluid"  alt="luxury" width="600" height="500"></td>
+            <td rowspan="8"><img src="resources\assets\icons\luxury.jpg"  class="rounded img-fluid"  alt="luxury" width="600" height="500"></td>
 
             <th>Registration Number:</th>
             <td>LUX123</td>
