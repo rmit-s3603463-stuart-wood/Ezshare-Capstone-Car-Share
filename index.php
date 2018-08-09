@@ -57,6 +57,9 @@
             <a class="nav-link" href="#">Make a Booking</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="logIn.php">log in</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">

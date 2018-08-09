@@ -42,7 +42,8 @@
         //if query is successful refirst to our home page
         if($mysqli->query($sql) === true){
           $_SESSION['message'] = "You have succesfully registered $firstName !";
-          header("location: location.php");
+          mysqli_query($mysqli, $sql) or die(mysqli_error($db));
+          header("location: index.php");
         }
         else{
           $_SESSION['message'] ="You have not registered succesfully.";
@@ -76,6 +77,9 @@
             <a class="nav-link" href="#">FAQS</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="logIn.php">log in</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#">Contact Us</a>
           </li>
         </ul>
@@ -96,7 +100,7 @@
         <div class="row">
            <div class="col-md-4 mx-auto">
               <div class="myform form ">
-                 <form action="form.php" method="post" name="login" role="form">
+                 <form action="signUpProcess.php" method="post" name="login" role="form">
                     <div class="form-group">
                       <input type="text" name="firstName" class="form-control my-input"  id="firstName" tabindex="1" class="formControl" placeholder="First name" value="" required  pattern="[-a-z A-Z]+">
                     </div>
