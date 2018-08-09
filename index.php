@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
     <title>EZshare - Car Hire on the Go</title>
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
@@ -39,7 +51,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login\SignUp</a>
+            <a class="nav-link" href="signUp.php">Login\SignUp</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Make a Booking</a>
@@ -77,7 +89,7 @@
 
 
           //Content
-          var fakecarinfo = 
+          var fakecarinfo =
             '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
@@ -103,7 +115,7 @@
             fakecarinfowindow.open(map ,fakemarker);
           });
 
-         
+
 
 
         // Attempt at changing icon size depending on zoom
@@ -127,7 +139,7 @@
             origin: null,//origin
             anchor: null, //anchor
             scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
-              
+
         }
         });
         */
