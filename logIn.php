@@ -2,14 +2,27 @@
 <html lang="en">
   <head>
     <?php  include_once('head.php');  ?>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="cssLogIn.css">
 <script src="logInScript.js"></script>
+=======
+    <script src="logInScript.js"></script>
+>>>>>>> Development
     <title>EZshare - Car Hire on the Go</title>
-
   </head>
   <body>
+<<<<<<< HEAD
     <?php  include_once('navbar.php')    ?>
 
+=======
+    <?php  include_once('navbar.php');  ?>
+
+
+    <!--
+        you can substitue the span of reauth email for a input with the email and
+        include the remember me checkbox
+        -->
+>>>>>>> Development
         <div class="container">
             <div class="card card-container">
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
