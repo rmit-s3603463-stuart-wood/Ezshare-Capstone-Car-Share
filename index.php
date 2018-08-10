@@ -3,15 +3,21 @@
   <head>
 <<<<<<< HEAD
     <?php include_once('head.php');?>
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
     <?php include_once('head.php');?>
+=======
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
 
 Development
 =======
     <?php include_once('head.php'); ?>
 >>>>>>> Development
+<<<<<<< HEAD
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
+=======
 >>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <title>EZshare - Car Hire on the Go</title>
 
@@ -45,6 +51,9 @@ Development
 =======
     <?php  include_once('navbar.php');?>
 >>>>>>> Development
+<<<<<<< HEAD
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
+=======
 >>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <div id="map"></div>
        <script>
@@ -163,6 +172,12 @@ Development
   </body>
   <?php  include_once('footer.php');  ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+  <?phpinclude_once('footer.php');?>
+>>>>>>> Development
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
 =======
 =======
   <?phpinclude_once('footer.php');?>

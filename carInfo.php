@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php
     include_once('head.php');
     ?>
+=======
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
 =======
 >>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <?php  include_once('head.php');  ?>
@@ -24,9 +27,12 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
   </head>
   <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php
     include_once('navbar.php');
     ?>
+=======
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
 =======
 >>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <?php  include_once('navbar.php');  ?>
@@ -222,9 +228,12 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
 
     </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php
     include_once('footer.php');
     ?>
+=======
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
 =======
 >>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <?php  include_once('footer.php');?>
