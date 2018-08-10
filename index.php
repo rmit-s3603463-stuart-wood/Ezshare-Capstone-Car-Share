@@ -4,6 +4,7 @@
     <?php
     include_once('head.php');
     ?>
+    <?php include_once('head.php');?>
 
 Development
     <title>EZshare - Car Hire on the Go</title>
@@ -32,6 +33,7 @@ Development
     <?php
     include_once('navbar.php');
     ?>
+    <?php  include_once('navbar.php');  ?>
 Development
     <div id="map"></div>
        <script>
@@ -155,4 +157,5 @@ Development
   <?php
   include_once('footer.php');
   ?>
+  <?php  include_once('footer.php');  ?>
 </html>

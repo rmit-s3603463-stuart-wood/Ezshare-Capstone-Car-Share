@@ -4,6 +4,8 @@
     <?php
     include_once('head.php');
     ?>
+    <?php  include_once('head.php');  ?>
+    <link rel="stylesheet" type="text/css" href="cssLogIn.css">
 <script src="logInScript.js"></script>
     <title>EZshare - Car Hire on the Go</title>
 
@@ -44,6 +46,7 @@
         you can substitue the span of reauth email for a input with the email and
         include the remember me checkbox
         -->
+    <?php  include_once('navbar.php')    ?>
         <div class="container">
             <div class="card card-container">
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->

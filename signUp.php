@@ -5,6 +5,7 @@
     <?php
     include_once('head.php');
     ?>
+    <?php  include_once('head.php');  ?>
 
     <link rel="stylesheet" type="text/css" href="cssSignUp1.css">
     <?php
@@ -78,6 +79,7 @@
         </ul>
       </div>
     </nav>
+    <?php  include_once('navbar.php');  ?>
 
      <div class="container">
         <div class="col-md-6 mx-auto text-center">
