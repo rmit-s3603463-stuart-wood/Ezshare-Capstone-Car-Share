@@ -2,20 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <?php
+    include_once('head.php');
+    ?>
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="cssSignUp1.css">
     <?php
     session_start();
@@ -56,6 +46,9 @@
      ?>
   </head>
   <body>
+    <?php
+    include_once('navbar.php');
+    ?>
     <!-- Optional JavaScript -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <a class="navbar-brand" href="#">EZshare</a>
@@ -148,4 +141,5 @@
         </div>
      </div>
   </body>
+  <?php include_once('footer.php');?>
 </html>
