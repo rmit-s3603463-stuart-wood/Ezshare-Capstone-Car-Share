@@ -40,9 +40,6 @@
         </ul>
       </div>
     </nav>
-
-    <!------ Include the above in your HEAD tag ---------->
-
     <!--
         you can substitue the span of reauth email for a input with the email and
         include the remember me checkbox

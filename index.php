@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    
     <?php
     include_once('head.php');
     ?>
-    
+
 Development
     <title>EZshare - Car Hire on the Go</title>
 
