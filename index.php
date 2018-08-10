@@ -136,5 +136,5 @@
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
        </script>
 </body>
-  <?phpinclude_once('footer.php');?>
+  <?php include_once('footer.php');?>
 </html>
