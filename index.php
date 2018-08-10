@@ -45,13 +45,13 @@
             <a class="nav-link" href="#">Make a Booking</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FAQS</a>
+            <a class="nav-link" href="faqs.html">FAQS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="contacts.html">Contact Us</a>
           </li>
         </ul>
       </div>
