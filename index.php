@@ -1,9 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
+    
     <?php
     include_once('head.php');
     ?>
+    
+Development
     <title>EZshare - Car Hire on the Go</title>
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
@@ -25,9 +28,12 @@
 
   </head>
   <body>
+
+
     <?php
     include_once('navbar.php');
     ?>
+Development
     <div id="map"></div>
        <script>
 
