@@ -1,12 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php
-    include_once('head.php');
-    ?>
+<<<<<<< HEAD
+    <?php include_once('head.php');?>
+
+=======
+<<<<<<< HEAD
     <?php include_once('head.php');?>
 
 Development
+=======
+    <?php include_once('head.php'); ?>
+>>>>>>> Development
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <title>EZshare - Car Hire on the Go</title>
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
@@ -28,13 +34,18 @@ Development
 
   </head>
   <body>
+<<<<<<< HEAD
 
+<<<<<<< HEAD
+    <?php  include_once('navbar.php');  ?>
+=======
 
-    <?php
-    include_once('navbar.php');
-    ?>
     <?php  include_once('navbar.php');  ?>
 Development
+=======
+    <?php  include_once('navbar.php');?>
+>>>>>>> Development
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
     <div id="map"></div>
        <script>
 
@@ -110,11 +121,6 @@ Development
         }
         });
         */
-
-
-
-
-
            // Try HTML5 geolocation.
            if (navigator.geolocation) {
              navigator.geolocation.getCurrentPosition(function(position) {
@@ -150,12 +156,16 @@ Development
        <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
        </script>
+<<<<<<< HEAD
 
 
 
   </body>
-  <?php
-  include_once('footer.php');
-  ?>
   <?php  include_once('footer.php');  ?>
+<<<<<<< HEAD
+=======
+=======
+  <?phpinclude_once('footer.php');?>
+>>>>>>> Development
+>>>>>>> 149d6161759bb63a33e05a290410d540c0685769
 </html>
