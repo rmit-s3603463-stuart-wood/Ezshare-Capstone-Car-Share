@@ -21,7 +21,7 @@
       <a class="nav-link" href="index.php">Home</a>
     </li>
         <li class="nav-item">
-          <a class="nav-link" href="booking.php">Make a Booking</a>
+          <a class="nav-link" href="bookinginfo.php">Make a Booking</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="carInfo.php">Fleet</a>
@@ -30,7 +30,7 @@
           <a class="nav-link" href="faqs.php">FAQS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.php">Contact Us</a>
+          <a class="nav-link" href="contacts.php">Contact Us</a>
         </li>
       </ul>
     </div>

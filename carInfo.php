@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php
-    include_once('head.php');
-    ?>
+    <?php  include_once('head.php');  ?>
         <title>EZshare - Car  Information</title>
 
 
