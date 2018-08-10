@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php
-    include_once('head.php');
-    ?>
+    <?php include_once('head.php');?>
 
 Development
     <title>EZshare - Car Hire on the Go</title>
@@ -29,9 +27,7 @@ Development
   <body>
 
 
-    <?php
-    include_once('navbar.php');
-    ?>
+    <?php  include_once('navbar.php');  ?>
 Development
     <div id="map"></div>
        <script>
@@ -152,7 +148,5 @@ Development
 
 
   </body>
-  <?php
-  include_once('footer.php');
-  ?>
+  <?php  include_once('footer.php');  ?>
 </html>
