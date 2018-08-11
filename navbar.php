@@ -13,8 +13,8 @@
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="myAccount.php">My Account</a>
-        <a class="dropdown-item" href="Signup.php">Sign Up</a>
-        <a class="dropdown-item" href="login.php">Login</a>
+        <a class="dropdown-item" href="signUp.php">Sign Up</a>
+        <a class="dropdown-item" href="logIn.php">Login</a>
       </div>
     </li>
     <li class="nav-item">
