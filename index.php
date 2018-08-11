@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <head>
   <?php include_once('head.php'); ?>
   <script src="calcdistance.js"></script>
@@ -15,6 +16,11 @@
 
     <title>EZshare - Car Hire on the Go</title>
 >>>>>>> Feature-Chris
+=======
+  <head>
+    <?php include_once('head.php'); ?>
+    <title>EZshare - Car Hire on the Go</title>
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 =======
   <head>
     <?php include_once('head.php'); ?>
@@ -48,6 +54,7 @@
          }
        </style>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -111,6 +118,8 @@
 >>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 =======
 >>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
+=======
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
   </head>
   <body>
     <?php  include_once('navbar.php');?>
@@ -118,6 +127,9 @@
        <script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
+=======
 >>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 =======
 >>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
@@ -234,6 +246,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
      </script>
      <?php include_once('footer.php');?>
@@ -244,6 +257,11 @@
   <?php include_once('footer.php');?>
 </html>
 >>>>>>> Feature-Chris
+=======
+       </script>
+  <?phpinclude_once('footer.php');?>
+</html>
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 =======
        </script>
   <?phpinclude_once('footer.php');?>
