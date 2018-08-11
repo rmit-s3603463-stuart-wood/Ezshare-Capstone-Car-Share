@@ -95,6 +95,8 @@
 
           var redcar = 'resources/assets/icons/red-car.png';
 
+          var greycar = 'resources/assets/icons/grey-car.png';
+
 
           //Content
           var rmitcarinfo =
@@ -130,6 +132,23 @@
             content: airportcarinfo
           });
 
+
+          var chadstonecarinfo =
+          '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Car 3</h1>'+
+          '<div id="bodyContent">'+
+          '<p>2015 Mercedes C300 Sedan <br> Licence Plate: BLN 832</p>'+
+          '<p>This car is ready to be used</p>'+
+          '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
+          '</div>'+
+          '</div>';
+
+          var chadstonecarinfowindow = new google.maps.InfoWindow({
+            content: chadstonecarinfo
+          });
+
           // Create markers
           var rmitmarker = new google.maps.Marker({
             position: {lat: -37.806989, lng: 144.963865},
@@ -149,6 +168,15 @@
           });
           airportcarmarker.addListener('click', function() {
             airportcarinfowindow.open(map ,airportcarmarker);
+          });
+
+          var chadstonecarmarker = new google.maps.Marker({
+            position: {lat: -37.885222, lng: 145.086158},
+            icon: greycar,
+            map: map
+          });
+          chadstonecarmarker.addListener('click', function() {
+            chadstonecarinfowindow.open(map ,chadstonecarmarker);
           });
 
 
