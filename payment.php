@@ -1,33 +1,8 @@
 <!doctype html>
 <html lang="en">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<head>
-  <title>Payment</title>
-  <meta name="viewport" content="initial-scale=1">
-=======
   <head>
     <title>Payment</title>
     <meta name="viewport" content="initial-scale=1">
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-  <head>
-    <title>Payment</title>
-    <meta name="viewport" content="initial-scale=1">
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-  <head>
-    <title>Payment</title>
-    <meta name="viewport" content="initial-scale=1">
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-  <head>
-    <title>Payment</title>
-    <meta name="viewport" content="initial-scale=1">
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
         Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
 
@@ -37,41 +12,6 @@
 
 
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  <head>
-    <?php  include_once('head.php');  ?>
-    <title>Payment</title>
-    <link rel="stylesheet" href="css/creditly.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="css/creditly.js"></script>
-    <script type="text/javascript">
-    $(function() {
-      var creditly = Creditly.initialize(
-          '.creditly-wrapper .expiration-month-and-year',
-          '.creditly-wrapper .credit-card-number',
-          '.creditly-wrapper .security-code',
-          '.creditly-wrapper .card-type');
-
-      $(".creditly-card-form .submit").click(function(e) {
-        e.preventDefault();
-        var output = creditly.validate();
-        if (output) {
-          // Your validated credit card output
-          console.log(output);
-        }
-      });
-    });
-  </script>
->>>>>>> Feature-Chris
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 
     <link rel="stylesheet" href="css/card.css">
 
@@ -170,13 +110,6 @@
             <label for="city"><i class="fa fa-institution"></i> City</label>
             <input type="text" id="city" name="city" placeholder="Melbourne">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
             
               
                 <label for="state">State</label>
@@ -187,24 +120,6 @@
                 <input type="text" id="zip" name="zip" placeholder="3000">
               
             
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            
-              
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="VIC">
-              
-              
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="3000">
-              
-            
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
           </div>
 
           <div class="col-50">

@@ -1,41 +1,8 @@
 <!doctype html>
 <html lang="en">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<head>
-  <?php include_once('head.php'); ?>
-  <script src="calcdistance.js"></script>
-  <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>-->
-  <title>EZshare - Car Hire on the Go</title>
-=======
-  <head>
-    <?php include_once('head.php');?>
-
-    <title>EZshare - Car Hire on the Go</title>
->>>>>>> Feature-Chris
-=======
   <head>
     <?php include_once('head.php'); ?>
     <title>EZshare - Car Hire on the Go</title>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-  <head>
-    <?php include_once('head.php'); ?>
-    <title>EZshare - Car Hire on the Go</title>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-  <head>
-    <?php include_once('head.php'); ?>
-    <title>EZshare - Car Hire on the Go</title>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-  <head>
-    <?php include_once('head.php'); ?>
-    <title>EZshare - Car Hire on the Go</title>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
         Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/
@@ -54,87 +21,11 @@
          }
        </style>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-     </head>
-     <body>
-      <?php  include_once('navbar.php');?>
-      <div id="map"></div>
-      <script>
-        var map;
-
-      /**
-       * The CenterControl adds a control to the map that recenters the map on
-       * Chicago.
-       * This constructor takes the control DIV as an argument.
-       * @constructor
-       */
-
-      //Custom Button
-      function CenterControl(controlDiv) {
-
-        // Set CSS for the control border.
-        var controlUI = document.createElement('div');
-        controlUI.style.backgroundColor = '#fff';
-        controlUI.style.border = '2px solid #fff';
-        controlUI.style.borderRadius = '3px';
-        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-        controlUI.style.cursor = 'pointer';
-        controlUI.style.marginBottom = '22px';
-        controlUI.style.textAlign = 'center';
-        controlUI.title = 'Click to locate the nearest car';
-        controlDiv.appendChild(controlUI);
-
-        // Set CSS for the control interior.
-        var controlText = document.createElement('div');
-        controlText.style.color = 'rgb(25,25,25)';
-        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-        controlText.style.fontSize = '16px';
-        controlText.style.lineHeight = '38px';
-        controlText.style.paddingLeft = '5px';
-        controlText.style.paddingRight = '5px';
-        controlText.innerHTML = 'Click to locate the nearest car';
-        controlUI.appendChild(controlText);
-
-        // Setup the click event listeners: simply set the map to Chicago.
-        controlUI.addEventListener('click', function() {
-          alert("Test");
-          calcdistance();
-        });
-
-      }   
-=======
-  </head>
-  <body>
-    <?php  include_once('navbar.php');  ?>
-    <div id="map"></div>
-       <script>
->>>>>>> Feature-Chris
-=======
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
   </head>
   <body>
     <?php  include_once('navbar.php');?>
     <div id="map"></div>
        <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 
          // Note: This example requires that you consent to location sharing when
          // prompted by your browser. If you see the error "The Geolocation service
@@ -242,38 +133,6 @@
        </script>
        <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-     </script>
-     <?php include_once('footer.php');?>
-     </html>
-=======
-       </script>
-</body>
-  <?php include_once('footer.php');?>
-</html>
->>>>>>> Feature-Chris
-=======
        </script>
   <?phpinclude_once('footer.php');?>
 </html>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-       </script>
-  <?phpinclude_once('footer.php');?>
-</html>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-       </script>
-  <?phpinclude_once('footer.php');?>
-</html>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
-=======
-       </script>
-  <?phpinclude_once('footer.php');?>
-</html>
->>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
