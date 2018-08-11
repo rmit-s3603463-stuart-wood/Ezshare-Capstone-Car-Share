@@ -2,9 +2,15 @@
 <html lang="en">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <head>
   <title>Payment</title>
   <meta name="viewport" content="initial-scale=1">
+=======
+  <head>
+    <title>Payment</title>
+    <meta name="viewport" content="initial-scale=1">
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 =======
   <head>
     <title>Payment</title>
@@ -19,6 +25,7 @@
 
 
     
+<<<<<<< HEAD
 =======
   <head>
     <?php  include_once('head.php');  ?>
@@ -45,6 +52,8 @@
     });
   </script>
 >>>>>>> Feature-Chris
+=======
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
 
     <link rel="stylesheet" href="css/card.css">
 
@@ -143,6 +152,7 @@
             <label for="city"><i class="fa fa-institution"></i> City</label>
             <input type="text" id="city" name="city" placeholder="Melbourne">
 
+<<<<<<< HEAD
             
               
                 <label for="state">State</label>
@@ -153,6 +163,18 @@
                 <input type="text" id="zip" name="zip" placeholder="3000">
               
             
+=======
+            
+              
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="VIC">
+              
+              
+                <label for="zip">Zip</label>
+                <input type="text" id="zip" name="zip" placeholder="3000">
+              
+            
+>>>>>>> parent of ee411b7... Added another car, added a button which will be used to find the closest car, started on a function to locate the nearest car
           </div>
 
           <div class="col-50">
