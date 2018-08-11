@@ -1,10 +1,17 @@
 <!doctype html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
   <?php include_once('head.php'); ?>
   <script src="calcdistance.js"></script>
   <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>-->
   <title>EZshare - Car Hire on the Go</title>
+=======
+  <head>
+    <?php include_once('head.php');?>
+
+    <title>EZshare - Car Hire on the Go</title>
+>>>>>>> Feature-Chris
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
         Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/
@@ -23,6 +30,7 @@
          }
        </style>
 
+<<<<<<< HEAD
      </head>
      <body>
       <?php  include_once('navbar.php');?>
@@ -70,6 +78,13 @@
         });
 
       }   
+=======
+  </head>
+  <body>
+    <?php  include_once('navbar.php');  ?>
+    <div id="map"></div>
+       <script>
+>>>>>>> Feature-Chris
 
          // Note: This example requires that you consent to location sharing when
          // prompted by your browser. If you see the error "The Geolocation service
@@ -213,7 +228,14 @@
        </script>
        <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
+<<<<<<< HEAD
 
      </script>
      <?php include_once('footer.php');?>
      </html>
+=======
+       </script>
+</body>
+  <?php include_once('footer.php');?>
+</html>
+>>>>>>> Feature-Chris

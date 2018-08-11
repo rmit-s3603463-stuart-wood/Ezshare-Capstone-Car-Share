@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
   <title>Payment</title>
   <meta name="viewport" content="initial-scale=1">
@@ -28,6 +29,32 @@
       }
     </style>
     
+=======
+  <head>
+    <?php  include_once('head.php');  ?>
+    <title>Payment</title>
+    <link rel="stylesheet" href="css/creditly.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="css/creditly.js"></script>
+    <script type="text/javascript">
+    $(function() {
+      var creditly = Creditly.initialize(
+          '.creditly-wrapper .expiration-month-and-year',
+          '.creditly-wrapper .credit-card-number',
+          '.creditly-wrapper .security-code',
+          '.creditly-wrapper .card-type');
+
+      $(".creditly-card-form .submit").click(function(e) {
+        e.preventDefault();
+        var output = creditly.validate();
+        if (output) {
+          // Your validated credit card output
+          console.log(output);
+        }
+      });
+    });
+  </script>
+>>>>>>> Feature-Chris
 
   </head>
 

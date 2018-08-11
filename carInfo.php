@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+  <head>
     <?php  include_once('head.php');  ?>
         <title>EZshare - Car  Information</title>
 
@@ -10,10 +11,15 @@
 https://www.carsales.com.au/demo/details/Nissan-Patrol-2018/OAG-AD-15431504/?gts=OAG-AD-15431504&gtssaleid=OAG-AD-15431504&rankingType=Showcase
 https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
  -->
+	<style>
+
+       </style>
 
   </head>
   <body>
-    <?php  include_once('navbar.php');  ?>
+    <?php
+    include_once('navbar.php');
+    ?>
 
     <div class="container table-responsive-sm">
       <h1 class = "text-center"> Our Fleet</h1>
@@ -205,5 +211,7 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
 
 
     </body>
-    <?php  include_once('footer.php');?>
+    <?php
+    include_once('footer.php');
+    ?>
 </html>
