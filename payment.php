@@ -3,10 +3,6 @@
   <head>
     <?php  include_once('head.php');  ?>
     <title>Payment</title>
-
-     <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
-        Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
-
     <link rel="stylesheet" href="css/creditly.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="css/creditly.js"></script>

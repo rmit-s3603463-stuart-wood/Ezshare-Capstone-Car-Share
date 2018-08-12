@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php include_once('head.php'); ?>
+    <?php include_once('head.php');?>
+
     <title>EZshare - Car Hire on the Go</title>
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
@@ -23,7 +24,7 @@
 
   </head>
   <body>
-    <?php  include_once('navbar.php');?>
+    <?php  include_once('navbar.php');  ?>
     <div id="map"></div>
        <script>
 
@@ -134,5 +135,6 @@
        <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
        </script>
-  <?phpinclude_once('footer.php');?>
+</body>
+  <?php include_once('footer.php');?>
 </html>
