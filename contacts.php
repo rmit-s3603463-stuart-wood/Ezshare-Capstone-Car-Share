@@ -5,8 +5,8 @@
 		<title>Contacts</title>
 	</head>
 	<body>
+		<?php include_once('navbar.php'); ?>
 		<div class="container">
-			<?php include_once('navbar.php'); ?>
 			<h1 class = "text-center">Contact US</h1>
 			<p>Have a question? Please get in touch by calling the number below.</p>
 			<p>Our dedicated customer care team will get back to you as soon as possible.</p>
