@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<?php include_once('head.php'); ?>
+		<link rel="stylesheet" type="text/css" href="cssContacts.css">
 		<title>Contacts</title>
 	</head>
 	<body>
