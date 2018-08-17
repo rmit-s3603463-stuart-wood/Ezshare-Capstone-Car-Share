@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<?php include_once('head.php'); ?>
+		<link rel="stylesheet" type="text/css" href="cssFaqs.css">
 		<title>FAQS</title>
 	</head>
 	<body>
