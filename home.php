@@ -26,7 +26,7 @@
 			#info h2{
 				color: white;
 				display: inline-block;
-				margin-left: 30px;
+				margin-left: 10px;
 			}
 			.column {
 				position: relative;
@@ -52,7 +52,7 @@
 				position: absolute;
 				text-align: center;
 				color: white;
-				text-shadow: 0 1px 0 black;
+				text-shadow: 0 2px 0 black;
 				display: inline-block;
 				bottom: 60px;
 				margin-left: 165px;
@@ -82,6 +82,7 @@
 			.column .btn:hover {
 				background-color: black;
 			}
+			
 		</style>
 	</head>
 	<body>
@@ -145,11 +146,6 @@
 			  <a href="signUp.php" class="btn">JOIN NOW</a>
 			</div>
 		</div>
-	  
-		</div>
-			<div class="jumbotron text-center" style="margin-bottom:0">
-				<p>Footer</p>
-			</div>
 	</body>
 	<?php include_once('footer.php'); ?>
 	</html>
