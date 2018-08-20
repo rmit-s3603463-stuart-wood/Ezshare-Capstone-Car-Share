@@ -46,48 +46,50 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td rowspan="8">  <img src="resources\assets\icons\sedan.jpg"  class="rounded img-fluid"  alt="sedan" width="600" height="500"> </td>
+          <!--          <tr>
+                      <td rowspan="8">  <img src="resources\assets\icons\sedan.jpg"  class="rounded img-fluid"  alt="sedan" width="600" height="500"> </td>
 
-            <th>Registration Number:</th>
-            <td>SED123</td>
+                      <th>Registration Number:</th>
+                      <td>SED123</td>
 
-          </tr>
-          <tr>
-            <th>Model:</th>
-            <td>Pulsar ST B17 Series</td>
+                    </tr>
+                    <tr>
+                      <th>Model:</th>
+                      <td>Pulsar ST B17 Series</td>
 
-          </tr>
-          <tr>
-            <th>Make:</th>
-            <td>Nissan</td>
+                    </tr>
+                    <tr>
+                      <th>Make:</th>
+                      <td>Nissan</td>
 
-          </tr>
-          <tr>
-            <th>Year:</th>
-            <td>2016</td>
+                    </tr>
+                    <tr>
+                      <th>Year:</th>
+                      <td>2016</td>
 
-          </tr>
-          <tr>
-            <th>Tier:</th>
-            <td>1</td>
+                    </tr>
+                    <tr>
+                      <th>Tier:</th>
+                      <td>1</td>
+          
+                    </tr>
+                    <tr>
+                      <th>Number of Seats:</th>
+                      <td>5</td>
 
-          </tr>
-          <tr>
-            <th>Number of Seats:</th>
-            <td>5</td>
+                    </tr>
+                    <tr>
+                      <th>Engine Type:</th>
+                      <td> 4 cylinder Petrol Aspirated 1.8L </td>
 
-          </tr>
-          <tr>
-            <th>Engine Type:</th>
-            <td> 4 cylinder Petrol Aspirated 1.8L </td>
+                    </tr>
+                    <tr>
+                      <th>Rental Price per hour:</th>
+                      <td>$35</td>
 
-          </tr>
-          <tr>
-            <th>Rental Price per hour:</th>
-            <td>$35</td>
+                    </tr>-->
+          <?php require 'carInfoScript.php';?>
 
-          </tr>
         </tbody>
       </table>
     </div>
