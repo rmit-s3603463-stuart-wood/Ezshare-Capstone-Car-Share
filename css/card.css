@@ -85,3 +85,14 @@ span.price {
     margin-bottom: 20px;
   }
 }
+
+.left {
+  wdith: 50%;
+  float:left
+  
+}
+
+.right {
+  wdith: 50%;
+  float:right
+}
