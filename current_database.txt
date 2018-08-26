@@ -13,7 +13,7 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIF
 
 create table if not exists customers
 (email varchar(40) NOT NULL,
-pword varchar(25),
+password varchar(25),
 firstName varchar(25),
 lastName varchar(25),
 phone varchar(20),
