@@ -32,8 +32,8 @@
         </li>
       </ul>
 <div class="tab-content">
-
-    <?php require 'carInfoScript.php';?>
+  <?php require 'db_conn.php';?>
+  <?php require 'carInfoScript.php';?>
 
     </div>
 
