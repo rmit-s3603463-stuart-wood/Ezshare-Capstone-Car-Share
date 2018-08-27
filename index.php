@@ -1,23 +1,18 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-    <title>EZshare - Car Hire on the Go</title>
+<head>
+  <?php include_once('head.php'); ?>
+  <script src="calcdistance.js"></script>
+  <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>-->
+  <title>EZshare - Car Hire on the Go</title>
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
         Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/
 
           Always set the map height explicitly to define the size of the div
-           element that contains the map. -->
-	<style>
-	#map {
+          element that contains the map. -->
+          <style>
+          #map {
            height: 100%;
          }
          /* Optional: Makes the sample page fill the window. */
@@ -28,36 +23,54 @@
          }
        </style>
 
-  </head>
-  <body>
-    <!-- Optional JavaScript -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="#">EZshare</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login\SignUp</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Make a Booking</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">FAQS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div id="map"></div>
-       <script>
+     </head>
+     <body>
+      <?php  include_once('navbar.php');?>
+      <?php require 'db_conn.php';?>
+      <div id="map"></div>
+      <script>
+        var map;
+
+      /**
+       * The CenterControl adds a control to the map that recenters the map on
+       * Chicago.
+       * This constructor takes the control DIV as an argument.
+       * @constructor
+       */
+
+      //Custom Button
+      function CenterControl(controlDiv) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to locate the nearest car';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Click to locate the nearest car';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+          alert("Test");
+          calcdistance();
+        });
+
+      }
 
          // Note: This example requires that you consent to location sharing when
          // prompted by your browser. If you see the error "The Geolocation service
@@ -72,39 +85,79 @@
            });
            infoWindow = new google.maps.InfoWindow;
 
+           var centerControlDiv = document.createElement('div');
+           var centerControl = new CenterControl(centerControlDiv);
+
+           centerControlDiv.index = 1;
+           map.controls[google.maps.ControlPosition.RIGHT_TOP].push(centerControlDiv);
+
           // Icons
-          var whitecar = 'resources/assets/icons/small-car-icon-top-view-white-car-1.png';
+          var whitecar = 'resources/assets/icons/white-car.png';
+
+          var redcar = 'resources/assets/icons/red-car.png';
+
+          var greycar = 'resources/assets/icons/grey-car.png';
 
 
           //Content
-          var fakecarinfo = 
-            '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Car 1</h1>'+
-            '<div id="bodyContent">'+
-            '<p>2012 Toyota Corolla Sedan <br> Licence Plate: RJ5 631</p>'+
-            '<p>This car is ready to be used</p>'+
-            '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
-            '</div>'+
-            '</div>';
+          <?php
+          $sql = "SELECT * FROM cars";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+          // output data of each row
+          $x=1;
+           while($row = $result->fetch_assoc()) {
+          echo'var carinfo'.$x.' = ';
+          echo'\'<div id="content">\'+';
+          echo'\'<div id="siteNotice">\'+';
+          echo'\'</div>\'+';
+          echo'\'<h1 id="firstHeading" class="firstHeading">Car'.$x.'</h1>\'+';
+          echo'\'<div id="bodyContent">\'+';
+          echo'\'<p>'.$row["make"].' '.$row["model"].'<br> Licence Plate: '.$row["rego"].'</p>\'+';
+          if($row["booked"]==1){
+            echo'\'<p>This car is currently booked.</p>\'+';
+          }elseif($row["availability"]==0){
+            echo'\'<p>This car is currently under maintenance.</p>\'+';
+          }else{
+              echo'\'<p>This car is ready to be used.</p>\'+';
+          }
+          echo'\'<button name="bookRego" type="submit" value="'.$row["rego"].'">Book this car</button>\'+';
+          echo'\'</div>\'+';
+          echo'\'</div>\';';
+          echo'var carinfowindow'.$x.'= new google.maps.InfoWindow({';
+          echo'content: carinfo'.$x;
+          echo'});';
 
-        var fakecarinfowindow = new google.maps.InfoWindow({
-          content: fakecarinfo
-        });
+          $x+=1;
 
-          // Create markers
-          var fakemarker = new google.maps.Marker({
-          position: {lat: -37.806989, lng: 144.963865},
-          icon: whitecar,
-          map: map
-          });
-          fakemarker.addListener('click', function() {
-            fakecarinfowindow.open(map ,fakemarker);
-          });
+           }
 
-         
+           }
+           $result->free();
+           $result = $conn->query($sql);
+           if ($result->num_rows > 0) {
+           // output data of each row
+           $x=1;
+           $y=00.000001;
+            while($row = $result->fetch_assoc()) {
+          list($lat, $long) = explode(", ",$row["carCords"]);
+          $lat = $lat +$y;
+           echo'var marker'.$x.' = new google.maps.Marker({';
+           echo'position: {lat: '.$lat.', lng: '.$long.'},';
+           echo'icon: whitecar,';
+           echo'map: map';
+           echo'});';
+           echo"marker".$x.".addListener('click', function() {";
+           echo'carinfowindow'.$x.'.open(map ,marker'.$x.');';
+           echo'});';
 
+           $x+=1;
+           $y+=00.000001;
+
+            }
+
+            }
+           ?>
 
         // Attempt at changing icon size depending on zoom
 
@@ -127,15 +180,10 @@
             origin: null,//origin
             anchor: null, //anchor
             scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
-              
+
         }
         });
         */
-
-
-
-
-
            // Try HTML5 geolocation.
            if (navigator.geolocation) {
              navigator.geolocation.getCurrentPosition(function(position) {
@@ -161,8 +209,8 @@
          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
            infoWindow.setPosition(pos);
            infoWindow.setContent(browserHasGeolocation ?
-                                 'Error: The Geolocation service failed.' :
-                                 'Error: Your browser doesn\'t support geolocation.');
+             'Error: The Geolocation service failed.' :
+             'Error: Your browser doesn\'t support geolocation.');
            infoWindow.open(map);
          }
 
@@ -170,13 +218,8 @@
        </script>
        <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
-       </script>
 
+     </script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html>
+     <?php include_once('footer.php');?>
+     </html>
