@@ -1,4 +1,4 @@
-
+<?php include('signUpPro.php') ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,45 +7,20 @@
     <link rel="stylesheet" type="text/css" href="cssSignUp1.css">
     <?php
     session_start();
-    $mysqli = new mysqli('localhost', 'root', '','carshare');
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      // two passwords are equal to each other
-      if ($_POST['password'] == $_POST['confirmpassword']){
-
-        $email = $mysqli->real_escape_string($_POST['email']);
-        $password = md5($_POST['password']);
-        $firstName = $mysqli->real_escape_string($_POST['firstName']);
-        $lastName = $mysqli->real_escape_string($_POST['lastName']);
-        $phone = $mysqli->real_escape_string($_POST['phone']);
-        $dateOfBirth = $mysqli->real_escape_string($_POST['dateOfBirth']);
-        $street = $mysqli->real_escape_string($_POST['street']);
-        $suburb = $mysqli->real_escape_string($_POST['suburb']);
-        $state = $mysqli->real_escape_string($_POST['state']);
-        $postcode = $mysqli->real_escape_string($_POST['postcode']);
-        $country = $mysqli->real_escape_string($_POST['country']);
-
-        $sql = "Insert Into customers (email, password, firstName, lastName, phone, dateOfBirth, street, suburb, state, postcode, country)"
-          ."VALUES ('$email', '$password', '$firstName', '$lastName', '$phone', '$dateOfBirth', '$street', '$suburb', '$state', '$postcode', '$country')";
-        //if query is successful refirst to our home page
-        if($mysqli->query($sql) === true){
-          $_SESSION['message'] = "You have succesfully registered $firstName !";
-          mysqli_query($mysqli, $sql) or die(mysqli_error($db));
-          header("location: index.php");
-        }
-        else{
-          $_SESSION['message'] ="You have not registered succesfully.";
-        }
-      }
-      else{
-          $_SESSION['message'] ="Your passwords did not match.";
-      }
+    $servername = "localhost";
+    $username = "Admin";
+    $password = "p@ssword";
+    $dbname = "carshare";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$dbname);
+    // Check connection
+    if ($conn->connect_error) {
+       die("Connection failed: " . $conn->connect_error);
     }
      ?>
   </head>
   <body>
     <?php  include_once('navbar.php');  ?>
-
      <div class="container">
         <div class="col-md-6 mx-auto text-center">
            <div class="header-title">
@@ -60,7 +35,8 @@
         <div class="row">
            <div class="col-md-4 mx-auto">
               <div class="myform form ">
-                 <form action="signUpProcess.php" method="post" name="login" role="form">
+                 <form action="signUp.php" method="post" name="signUp" role="form">
+                   <?php include('errors.php'); ?>
                     <div class="form-group">
                       <input type="text" name="firstName" class="form-control my-input"  id="firstName" tabindex="1" class="formControl" placeholder="First name" value="" required  pattern="[-a-z A-Z]+">
                     </div>
@@ -98,7 +74,7 @@
                       <input type="text" name="country" class="form-control my-input"  id="country" tabindex="12" class="formControl" placeholder="Country" value="" required>
                     </div>
                     <div class="text-center ">
-                       <button type="submit" class="btn btn-block send-button tx-tfm">Sign Up!</button>
+                       <button type="submit" class="btn" name="reg_user">Register</button>
                        </p>
                     </div>
                     </p>
