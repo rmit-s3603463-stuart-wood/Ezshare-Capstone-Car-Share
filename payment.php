@@ -272,7 +272,7 @@ var chadstonemarker = new google.maps.Marker({
                 </div>
               </div>
 
-                        
+               <input id="total_amount" type="number">         
                         
           </body>
 
@@ -282,6 +282,8 @@ var chadstonemarker = new google.maps.Marker({
             
 
              <script>
+
+
         paypal.Button.render({
 
             env: 'sandbox', // sandbox | production
@@ -299,11 +301,16 @@ var chadstonemarker = new google.maps.Marker({
             payment: function(data, actions) {
 
                 // Make a call to the REST api to create the payment
+
+                var x = document.getElementById("total_amount");
+                var currentVal = x.value;
+                console.log(currentVal);
+
                 return actions.payment.create({
                     payment: {
                         transactions: [
                             {
-                                amount: { total: '235.80', currency: 'AUD' }
+                                amount: { total: currentVal, currency: 'AUD' }
                             }
                         ]
                     }
