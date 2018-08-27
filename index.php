@@ -13,7 +13,7 @@
           element that contains the map. -->
           <style>
           #map {
-           height: 100%;
+           height: 94.5%;
          }
          /* Optional: Makes the sample page fill the window. */
          html, body {
