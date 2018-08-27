@@ -18,10 +18,10 @@ firstName varchar(25),
 lastName varchar(25),
 phone varchar(20),
 dateOfBirth varchar(20),
-street varchar(50), 
-suburb varchar(30), 
-state varchar(20), 
-postcode varchar(20), 
+street varchar(50),
+suburb varchar(30),
+state varchar(20),
+postcode varchar(20),
 country varchar(20),
 PRIMARY KEY (email)
 );
@@ -55,7 +55,6 @@ create table if not exists booking(
 	bookingID varchar(50) NOT NULL,
 	rego varchar(35),
 	email varchar(200),
-	stationName varchar(150),
 	dateBooked varchar(75),
 	timeBooked varchar(75),
 	hoursBooked varchar(75),
@@ -85,4 +84,6 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinder Petrol Twin Turbo Intercooled 2.6L','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  false, true);
 
-INSERT INTO booking(bookingID , rego,email, stationName, dateBooked, timeBooked, hoursBooked, returnLocation , pickupLocation)VALUES('1','1ea5nln','admin@ezshare.com','RMIT','20/08/2018','14:30','2','Chadstone','RMIT');
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country)VALUES('chris@gmail.com', 'abc123', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia');
+
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','Chadstone','RMIT');
