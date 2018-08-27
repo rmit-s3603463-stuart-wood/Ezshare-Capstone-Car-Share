@@ -16,15 +16,30 @@
 		https://www.hellorf.com/video/10486622/similar
 		-->
 		<style>
+		body{
+			background-color: #555;
+		}
+		.container{
+			margin-bottom: 16px;
+		}
+		
+		*{
+			box-sizing: border-box;
+		}
+		
+			#myCarousel{
+				margin-top: 50px;
+			}
+			
 			#info{
 				margin-top: 50px;
 				margin-bottom: 50px;
 				padding: 15px;
-				background-color: #555;
+				background-color: white;
 			}
 		
 			#info h2{
-				color: white;
+				color: #555;
 				display: inline-block;
 				margin-left: 10px;
 			}
@@ -32,10 +47,29 @@
 				position: relative;
 				float: left;
 				width: 33%;
-				height: 250px;
-				padding: 15px;
 			}
-
+			
+			.column img {
+				width: 100%;
+			}
+			.row {
+				margin: 8px -16px;
+			}
+			.row:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+			
+			.row,
+			.row > .column {
+				padding: 8px;
+			}
+			
+			.content{
+				background-color: white;
+				padding: 10px;
+			}
 			.row:after {
 				content: "";
 				display: table;
@@ -43,33 +77,20 @@
 			}
 
 			@media screen and (max-width: 600px) {
-				.column1 {
+				.column {
 					width: 100%;
 				}
 			}
 
-			.centered {
-				position: absolute;
+			 .centered {
 				text-align: center;
-				color: white;
-				text-shadow: 0 2px 0 black;
-				display: inline-block;
-				bottom: 60px;
-				margin-left: 165px;
 				font-size: 20px;
 				font-weight: bold;
-				transform: translate(-50%, -50%);
 			}
 
-			.column img {
-				width: 100%;
-				height: auto;
-			}
-			.column .btn {
-				position: absolute;
-				bottom: 45px;
-				display: inline-block;
-				margin-left: 100px;
+			 .btn {
+				display: flex;
+				justify-content: center;
 				background-color: #555;
 				color: white;
 				font-size: 16px;
@@ -129,23 +150,33 @@
 			  <div id="info">
 				<h2>Voted #1 car rental service in Melbourne</h2><h2>250,000+ members</h2><h2>2000+ cars</h2>
 			  </div>
+			  <div class="row">
 			  <div class="column">
+			  <div class="content">
 			  <img src="resources\assets\icons\happy1.jpg" class="rounded img-fluid" alt="happy1">
-			  <div class="centered">Cars ready, nearby, right now!</div>
+			  <div class="centered">Cars ready, nearby, right now! Explore the world with EZshare!</div>
 			  <a href="index.php" class="btn">BOOK NOW</a>
-			  
+			  </div>
 			</div>
 			 <div class="column">
+			 <div class="content">
 			  <img src="resources\assets\icons\happy2.jpg" class="rounded img-fluid" alt="happy2">
-			  <div class="centered">From sedans to suv's</div>
+			  <div class="centered">From sedans to suv's. Travel in your style!</div>
 			  <a href="carInfo.php" class="btn">SEE FLEET</a>
 			</div>
+			</div>
 			 <div class="column">
+			 <div class="content">
 			  <img src="resources\assets\icons\happy3.png" class="rounded img-fluid" alt="happy3">
 			  <div class="centered">Fuel, cleaning and rego is all included!</div>
 			  <a href="signUp.php" class="btn">JOIN NOW</a>
 			</div>
+			</div>
 		</div>
+		</div>
+		    <div class="jumbotron text-center" style="margin-bottom:0">
+      <p>Footer</p>
+    </div>
 	</body>
 	<?php include_once('footer.php'); ?>
 	</html>
