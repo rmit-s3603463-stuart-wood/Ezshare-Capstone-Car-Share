@@ -1,13 +1,16 @@
 
 <?php
-/*
-    session_start();
-    if(!isset($_SESSION['email']))
-    {
-        header("Location:logIn.php");
-        exit(0);
-    }
-	*/
+session_start();
+$servername = "localhost";
+$username = "Admin";
+$password = "p@ssword";
+$dbname = "carshare";
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+// Check connection
+if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,68 +38,25 @@
 	<th style="width:10%;"></th>
   </tr>
   <tr>
-    <td>1</td>
-	<td>Afd246</td>
-	<td>Fred.Barnes@gmail.com</td>
-	<td>12/02/2019</td>
-    <td>17:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>2</td>
-  <td>abc123</td>
-  <td>geoff.stantly@gmail.com</td>
-    <td>14/03/2019</td>
-    <td>14:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>3</td>
-  <td>ghk998</td>
-  <td>emily.burke@gmail.com</td>
-    <td>14/03/2019</td>
-    <td>14:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>32</td>
-  <td>mbn334</td>
-  <td>kathythomas@outlook.com</td>
-	<td>12/02/2019</td>
-    <td>17:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>4</td>
-  <td>xdf567</td>
-  <td>rayjackson92@gmail.com</td>
-	<td>12/02/2019</td>
-    <td>17:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>5</td>
-  <td>1we1nm</td>
-  <td>chickencat22@outlook.com</td>
-    <td>06/08/2018</td>
-    <td>20:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>6</td>
-  <td>kooool</td>
-  <td>koolkid@yahoo.com</td>
-    <td>12/12/2018</td>
-    <td>12:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
-  </tr>
-  <tr>
-  <td>7</td>
-  <td>hgt469</td>
-  <td>janeaustin@hotmail.com</td>
-    <td>22/11/2018</td>
-    <td>09:00</td>
-	<td><button class="btn" onclick="btnalert()">delete</button></td>
+        <?php
+			
+			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+            $sq = "SELECT bookingID, rego, email, dateBooked, timeBooked FROM booking";
+            
+            $results = mysqli_query($con, $sq);
+            
+            while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
+            {
+            print "<tr>\n";
+            print "<td>{$row['bookingID']}</td>\n";
+            print "<td>{$row['rego']}</td>\n";
+            print "<td>{$row['email']}</td>\n";
+            print "<td>{$row['dateBooked']}</td>\n";
+            print "<td>{$row['timeBooked']}</td>\n";
+			print "<td><a href=bookingdeleteprocess.php?bookingID=".$row['bookingID'].">Delete</a></td>";
+            print "</tr>\n";
+            }
+			?>
   </tr>
 </table>
 
@@ -143,45 +103,26 @@ function btnalert() {
 </script>
 
 
-
-<!--
-<table id="myTable">
-  <tr class="header">
-    <th style="width:20%;">Booking ID</th>
-    <th style="width:10%;">Registration</th>
-	<th style="width:30%;">Email</th>
-	<th style="width:15%;">date booked</th>
-	<th style="width:15%;">time booked</th>
-	<th style="width:10%;"></th>
-  </tr>
-  <tr>
         <?php
-		/*
-            $bookingID = $_GET['bookingid']; 
+		/*	
+			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+            $sq = "SELECT bookingID, rego, email, dateBooked, timeBooked FROM booking";
             
-            //connect
-            $db = mysqli_connect('localhost','root','','carshare') or die(mysqli_error($db));
-            
-            $sq = "select * from booking where bookingid = '$bookingID'";
-            
-            $results = mysqli_query($db, $sq);
+            $results = mysqli_query($con, $sq);
             
             while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
             {
             print "<tr>\n";
-            print "<td>{$row['bookingId']}</td>\n";
+            print "<td>{$row['bookingID']}</td>\n";
             print "<td>{$row['rego']}</td>\n";
             print "<td>{$row['email']}</td>\n";
             print "<td>{$row['dateBooked']}</td>\n";
             print "<td>{$row['timeBooked']}</td>\n";
-			print "<td><a href=deletebookingprocess.php?bookingid=".$row['bookingID'].">Delete</a></td>";
+			print "<td><a href=bookingdeleteprocess.php?bookingID=".$row['bookingID'].">Delete</a></td>";
             print "</tr>\n";
             }
 			*/
-        ?>
-  </tr>
-</table>
--->
+		?>
 </div>
     <div class="jumbotron text-center" style="margin-bottom:0">
       <p>Footer</p>

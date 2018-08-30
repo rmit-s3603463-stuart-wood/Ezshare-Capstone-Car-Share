@@ -1,273 +1,149 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Payment</title>
-  <meta name="viewport" content="initial-scale=1">
-  <meta charset="utf-8">
-
+  <title>CarList</title>
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
-
       <?php include_once('head.php'); ?>
-
-      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-
-
-
       <link rel="stylesheet" href="css/card.css">
-
       <link href="css/card-js.min.css" rel="stylesheet" type="text/css" />
       <script src="css/card-js.min.js"></script>
-
-      <style type="text/css">
-      form button {
-        display: block;
-        margin-top: 15px;
-        width: 100%;
-        font-size: 12px;
-        padding: 8px 12px;
-      }
-    </style>
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
   </head>
-
   <body>
     <?php  include_once('navbar.php');  ?>
-
-
-
-
-
-
-
-
-    <style>
-    form {
-      margin: 30px;
-    }
-    input {
-      width: 200px;
-      margin: 10px auto;
-      display: block;
-    }
-
-            </style>
-
-
-              <div class="col-75">
                 <div class="container">
                   <h2>Add a Car</h2>
-                  <br>
-                    <div class="row">
-
-                      <div class="container">
-                          <form class="form-horizontal" action="/action_page.php">
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="fname">Registration</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fname" placeholder="Car Registration Number" name="fname">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="pwd">Car Model</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="model" placeholder="Car Model" name="model">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="email">Make</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="make" placeholder="Car Make" name="make">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="ptime">Year</label>
-                              <div class="col-sm-10">
-                                <input type="date" class="form-control" id="year" placeholder="09/01/2018" name="year">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="tier">Car Tier</label>
-                              <div class="col-sm-10">
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                          <form action="/action_page.php">
+                              <label for="rego">Registration</label>
+                                <input type="text" id="rego" name="rego">
+                           
+                           
+                              <label for="model">Car Model</label>
+                             
+                                <input type="text" id="model" name="model">
+                           
+                              <label  for="make">Make</label>
+                              
+                                <input type="text" id="make" name="make">
+                            
+                            
+                            
+                              <label  for="year">Year</label>
+                            
+                                <input type="number" id="year" name="year">
+                          
+                              <label for="tier">Car Tier</label>
+                           
+                                <select id="tier">
                                 <option selected>Select a Tier</option>
                                 <option value="1">Tier 1</option>
                                 <option value="2">Tier 2</option>
                                 <option value="3">Tier 3</option>
                               </select>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="pwd">Number Of Seats</label>
-                              <div class="col-sm-10">
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                   
+                              <label for="seatNo">Number Of Seats</label>
+                             
+                                <select id="seatNo">
                                 <option selected>Select Number of Car Seats</option>
-                                <option value="1">2 Seats</option>
-                                <option value="2">3 Seats</option>
-                                <option value="3">4 Seats</option>
-                                <option value="4">5 Seats</option>
-                                <option value="5">6 Seats</option>
-                                <option value="6">7 Seats</option>
-                                <option value="7">8 Seats</option>
+                                <option value="2">2 Seats</option>
+                                <option value="3">3 Seats</option>
+                                <option value="4">4 Seats</option>
+                                <option value="5">5 Seats</option>
+                                <option value="6">6 Seats</option>
+                                <option value="7">7 Seats</option>
+                                <option value="8">8 Seats</option>
                               </select>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="engine">Engine</label>
-                              <div class="col-sm-10">
-                                <input type="number" class="form-control" id="engine" placeholder="Engine Performance" name="dtime">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="price">Price</label>
-                              <div class="col-sm-10">
-                                <input type="number" class="form-control" id="price" placeholder="Car Price" name="dtime">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="seats">Station Name</label>
-                              <div class="col-sm-10">
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            
+                              <label for="engine">Engine</label>
+                           
+                                <input type="text"id="engine" name="engine">
+                             
+                              <label for="price">Price</label>
+                        
+                                <input type="number" id="price" name="price">
+                        
+                              <label  for="stationName">Station Name</label>
+                   
+                                <select id="stationName">
                                 <option selected>Station Name</option>
-                                <option value="1">Melbourne</option>
-                                <option value="2">Brunswick</option>
-                                <option value="3">Broadmedows</option>
-                                <option value="4">Essendon</option>
+                                <option value="Melbourne">Melbourne</option>
+                                <option value="Brunswick">Brunswick</option>
+                                <option value="Broadmedows">Broadmedows</option>
+                                <option value="Essendon">Essendon</option>
                               </select>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-sm-2" for="ptime">Car Image</label>
-                              <div class="col-sm-10">
-                                <input type="file" class="form-control" id="image" placeholder="Car Image" name="image">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Add Car To Database</button>
-                              </div>
-                            </div>
+                      
+                              <label for="carImage">Car Image</label>
+                            
+                                <input type="file" id="image" name="image">
+                      
+                                <button type="submit" class="btn" name="add_car">Add Car</button>
+                   
 
                           </form>
 
                       </div>
 
-                      <div class="col-50">
-
-                        <br>
-
-                        <div class="left">
-
-                        </p>
-
-                        <br>
-                        <br>
-
-
-
-
-
-
-
-
-                    </div>
-
-                    <br>
-
-                    <div class="row">
-
                       <div class="container">
                         <h2>Delete a Car</h2>
-
-                      
-                        <table border="1px">
-
-                            <tr>
-                                <th>Rego</th>
-                                <th>Model</th>
-                                <th>Make</th>
-                                <th>Year</th>
-                                <th>Tier</th>
-                                <th>Seat Number</th>
-                                <th>Engine</th>
-                                <th>Price</th>
-                            </tr>
+<input type="text" id="myInput" onkeyup="searchRego()" placeholder="Search for registration.." title="Type in a registration">
+                      <table id="myTable">
+  <tr class="header">
+    <th style="width:10%;">Registration</th>
+    <th style="width:10%;">Model</th>
+	<th style="width:10%;">Make</th>
+	<th style="width:10%;">Year</th>
+	<th style="width:10%;">Tier</th>
+	<th style="width:10%;">Seat Number</th>
+	<th style="width:10%;">Engine</th>
+	<th style="width:10%;">Price</th>
+	<th style="width:10%;"></th>
+  </tr>
+  <tr>
 
                                 <?php
 
-                                    If(mysql_num_rows($result)>0)
-                                    {
-                                        while($rows=mysql_fetch_array($result))
-                                        {
-
-                                ?>
-                            <?php echo "<tr>";?>
-                                            <td><?php echo $rows['Rego'];?> </td>
-                                            <td><?php echo $rows['Model'];?></td>
-                                            <td><?php echo $rows['Make'];?></td>
-                                            <td><?php echo $rows['Year'];?></td>
-                                            <td><?php echo $rows['Tier'];?></td>
-                                            <td><?php echo $rows['SeatNo'];?></td>
-                                            <td><?php echo $rows['engine'];?></td>
-                                            <td><?php echo $rows['Price'];?></td>
-
-
-                            <?php echo "</tr>";?>
-                                <?php
-                                        }
-                                    }
-
-                            ?>
+								$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+								$sq = "SELECT rego, model, make, year, tier, seatNo, engine, price FROM cars";
+            
+								$results = mysqli_query($con, $sq);
+            
+								while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
+								{
+								print "<tr>\n";
+								print "<td>{$row['rego']}</td>\n";
+								print "<td>{$row['model']}</td>\n";
+								print "<td>{$row['make']}</td>\n";
+								print "<td>{$row['year']}</td>\n";
+								print "<td>{$row['tier']}</td>\n";
+								print "<td>{$row['seatNo']}</td>\n";
+								print "<td>{$row['engine']}</td>\n";
+								print "<td>{$row['price']}</td>\n";
+								print "<td><a href=deletecar.php?rego=".$row['rego'].">Delete</a></td>";
+								print "</tr>\n";
+								}
+								?>
                         </table>
-                            <?php
-
-                            ?>
-                         <br>
-
-<table>
-
-                       </div>
-
-                      <div class="col-50">
-
-
-                          <br>
-                           <br>
-                            <br>
-                              <br>
-                               <br>
-
-
-
-
-
-
-
-                       </div>
-
-
-
-
-
-                       </div>
-
-                    <br>
-
-
                 </div>
-              </div>
-
-
-
-          </body>
-
-
-
-          <?php include_once('footer.php');?>
-
-          </html>
+				
+				<script>
+function searchRego() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+    </body>
+    <?php include_once('footer.php');?>
+</html>
