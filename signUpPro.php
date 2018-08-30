@@ -1,16 +1,5 @@
-
+<?php  include_once('head.php');  ?>
 <?php
-session_start();
-$servername = "localhost";
-$username = "Admin";
-$password = "p@ssword";
-$dbname = "carshare";
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
-// Check connection
-if ($conn->connect_error) {
-   die("Connection failed: " . $conn->connect_error);
-}
 
 // initializing variables
 $email = "";
@@ -79,7 +68,7 @@ if (isset($_POST['reg_user'])) {
   	$query = "INSERT INTO customers (email, password, firstName, lastName, phone, dateOfBirth, street, suburb, state, postcode, country)
   			  VALUES ('$email', '$password', '$firstName', '$lastName', '$phone', '$dateOfBirth', '$street', '$suburb', '$state', '$postcode', '$country')";
   	mysqli_query($conn, $query);
-  	$_SESSION['email'] = $email;
+  	$_SESSION['email'] = $_POST['email'];
   	$_SESSION['success'] = "You are now logged in $firstName !";
   	header('location: index.php');
   }
@@ -102,7 +91,17 @@ if (isset($_POST['login_user'])) {
   	$query = "SELECT * FROM customers WHERE email='$email' AND password='$password'";
   	$results = mysqli_query($conn, $query);
   	if (mysqli_num_rows($results) == 1) {
-  	  $_SESSION['email'] = $email;
+  	  $_SESSION['email'] = $_POST['email'];
+      $email = $results['email'];
+      $firstName =  $results['firstName'];
+      $lastName = $results['lastName'];
+      $phone = $results['phone'];
+      $dateOfBirth = $results['dateOfBirth'];
+      $street = $results['street'];
+      $suburb = $results['suburb'];
+      $state = $results['state'];
+      $postcode = $results['postcode'];
+      $country = $results['country'];
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: myAccount.php');
   	}else {

@@ -1,23 +1,9 @@
+<?php  include_once('head.php');  ?>
 <?php include('signUpPro.php') ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php  include_once('head.php');  ?>
-
     <link rel="stylesheet" type="text/css" href="cssSignUp1.css">
-    <?php
-    session_start();
-    $servername = "localhost";
-    $username = "Admin";
-    $password = "p@ssword";
-    $dbname = "carshare";
-    // Create connection
-    $conn = new mysqli($servername, $username, $password,$dbname);
-    // Check connection
-    if ($conn->connect_error) {
-       die("Connection failed: " . $conn->connect_error);
-    }
-     ?>
   </head>
   <body>
     <?php  include_once('navbar.php');  ?>
