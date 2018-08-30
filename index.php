@@ -26,6 +26,7 @@
      </head>
      <body>
       <?php  include_once('navbar.php');?>
+      <?php require 'db_conn.php';?>
       <div id="map"></div>
       <script>
         var map;
@@ -69,7 +70,7 @@
           calcdistance();
         });
 
-      }   
+      }
 
          // Note: This example requires that you consent to location sharing when
          // prompted by your browser. If you see the error "The Geolocation service
@@ -99,88 +100,64 @@
 
 
           //Content
-          var rmitcarinfo =
-          '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading">Car 1</h1>'+
-          '<div id="bodyContent">'+
-          '<p>2012 Toyota Corolla Sedan <br> Licence Plate: RJ5 631</p>'+
-          '<p>This car is ready to be used</p>'+
-          '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
-          '</div>'+
-          '</div>';
+          <?php
+          $sql = "SELECT * FROM cars";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+          // output data of each row
+          $x=1;
+           while($row = $result->fetch_assoc()) {
+          echo'var carinfo'.$x.' = ';
+          echo'\'<div id="content">\'+';
+          echo'\'<div id="siteNotice">\'+';
+          echo'\'</div>\'+';
+          echo'\'<h1 id="firstHeading" class="firstHeading">Car'.$x.'</h1>\'+';
+          echo'\'<div id="bodyContent">\'+';
+          echo'\'<p>'.$row["make"].' '.$row["model"].'<br> Licence Plate: '.$row["rego"].'</p>\'+';
+          if($row["booked"]==1){
+            echo'\'<p>This car is currently booked.</p>\'+';
+          }elseif($row["availability"]==0){
+            echo'\'<p>This car is currently under maintenance.</p>\'+';
+          }else{
+              echo'\'<p>This car is ready to be used.</p>\'+';
+          }
+          echo'\'<button name="bookRego" type="submit" value="'.$row["rego"].'">Book this car</button>\'+';
+          echo'\'</div>\'+';
+          echo'\'</div>\';';
+          echo'var carinfowindow'.$x.'= new google.maps.InfoWindow({';
+          echo'content: carinfo'.$x;
+          echo'});';
 
-          var rmitcarinfowindow = new google.maps.InfoWindow({
-            content: rmitcarinfo
-          });
+          $x+=1;
 
+           }
 
-          var airportcarinfo =
-          '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading">Car 2</h1>'+
-          '<div id="bodyContent">'+
-          '<p>2016 Nissan Pulsar Sedan <br> Licence Plate: HRK 927</p>'+
-          '<p>This car is ready to be used</p>'+
-          '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
-          '</div>'+
-          '</div>';
+           }
+           $result->free();
+           $result = $conn->query($sql);
+           if ($result->num_rows > 0) {
+           // output data of each row
+           $x=1;
+           $y=00.000001;
+            while($row = $result->fetch_assoc()) {
+          list($lat, $long) = explode(", ",$row["carCords"]);
+          $lat = $lat +$y;
+           echo'var marker'.$x.' = new google.maps.Marker({';
+           echo'position: {lat: '.$lat.', lng: '.$long.'},';
+           echo'icon: whitecar,';
+           echo'map: map';
+           echo'});';
+           echo"marker".$x.".addListener('click', function() {";
+           echo'carinfowindow'.$x.'.open(map ,marker'.$x.');';
+           echo'});';
 
-          var airportcarinfowindow = new google.maps.InfoWindow({
-            content: airportcarinfo
-          });
+           $x+=1;
+           $y+=00.000001;
 
+            }
 
-          var chadstonecarinfo =
-          '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading">Car 3</h1>'+
-          '<div id="bodyContent">'+
-          '<p>2015 Mercedes C300 Sedan <br> Licence Plate: BLN 832</p>'+
-          '<p>This car is ready to be used</p>'+
-          '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
-          '</div>'+
-          '</div>';
-
-          var chadstonecarinfowindow = new google.maps.InfoWindow({
-            content: chadstonecarinfo
-          });
-
-          // Create markers
-          var rmitmarker = new google.maps.Marker({
-            position: {lat: -37.806989, lng: 144.963865},
-            icon: whitecar,
-            map: map
-          });
-          rmitmarker.addListener('click', function() {
-            rmitcarinfowindow.open(map ,rmitmarker);
-          });
-
-
-
-          var airportcarmarker = new google.maps.Marker({
-            position: {lat: -37.669491, lng: 144.851685},
-            icon: redcar,
-            map: map
-          });
-          airportcarmarker.addListener('click', function() {
-            airportcarinfowindow.open(map ,airportcarmarker);
-          });
-
-          var chadstonecarmarker = new google.maps.Marker({
-            position: {lat: -37.885222, lng: 145.086158},
-            icon: greycar,
-            map: map
-          });
-          chadstonecarmarker.addListener('click', function() {
-            chadstonecarinfowindow.open(map ,chadstonecarmarker);
-          });
-
-
-
+            }
+           ?>
 
         // Attempt at changing icon size depending on zoom
 
@@ -243,5 +220,6 @@
        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
 
      </script>
+
      <?php include_once('footer.php');?>
      </html>
