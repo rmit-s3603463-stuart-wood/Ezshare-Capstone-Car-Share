@@ -1,12 +1,16 @@
 <?php
-$db = mysqli_connect('localhost', 'root', '', 'carshare') or die(mysqli_error($db));
+	$bookingID = $_GET['bookingID'];
 
-$sql = "DELETE FROM booking WHERE BOOKINGID='$_GET[bookingID]'";
+
+$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+
+$sql = "DELETE FROM booking WHERE bookingID = $bookingID";
 
 if(mysqli_query($con,$sql))
 {
 	header("refresh:1; url=bookingdelete.php");
-	else
+}
+else{
 	echo "not deleted";
 }
 ?>

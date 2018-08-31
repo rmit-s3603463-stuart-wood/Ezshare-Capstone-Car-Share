@@ -26,6 +26,12 @@ country varchar(20),
 PRIMARY KEY (email)
 );
 
+create table if not exists station(
+	cords varchar(200),
+	stationName varchar(150),
+	PRIMARY KEY (stationName)
+);
+
 create table if not exists cars(
 	rego varchar(35) NOT NULL,
 	model varchar(35),
@@ -43,13 +49,6 @@ create table if not exists cars(
 	PRIMARY KEY (rego),
 	FOREIGN KEY (stationName) REFERENCES station(stationName)
 );
-
-create table if not exists station(
-	cords varchar(200),
-	stationName varchar(150),
-	PRIMARY KEY (stationName)
-);
-
 
 create table if not exists booking(
 	bookingID varchar(50) NOT NULL,

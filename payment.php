@@ -13,7 +13,7 @@
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 
-      
+
 
       <link rel="stylesheet" href="css/card.css">
 
@@ -29,7 +29,7 @@
         padding: 8px 12px;
       }
     </style>
-    
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
@@ -39,6 +39,7 @@
 
   <body>
     <?php  include_once('navbar.php');  ?>
+
     <?php require 'db_conn.php';?>
     <?php
   $pdate1 = $_POST['pdate'];
@@ -96,6 +97,7 @@
 
 
 
+
     <style>
     form {
       margin: 30px;
@@ -105,6 +107,7 @@
       margin: 10px auto;
       display: block;
     }
+
 
   </style>
 
@@ -159,6 +162,9 @@
            <div class="left">
             <h4>Drop Off</h4>
 
+            </style>
+
+
             <p>Date: <?php echo date('d/m/Y', strtotime($ddate));?><br/>
              Time: <?php echo date('h:i A', strtotime($dtime));?><br/>
              Location: <?echo $dlocation?><br/>
@@ -174,6 +180,21 @@
 
 
           <div id="map2" style="width:100%;height:150px;"></div>
+
+
+                        <div class="right">
+                        <div id="map1" style="width:300px;height:150px;"></div>
+
+                        <br>
+
+                        <div class="right">
+                        <div id="map2" style="width:300px;height:150px;"></div>
+
+
+                        </div>
+
+
+                        </div>
 
 
 
@@ -195,10 +216,12 @@
 
     <div class="row">
 
+
       <div class="col-50">
         <h4>Summary of Charges</h4>
 
         <br>
+
 
         <table>
           <tbody>
@@ -282,6 +305,7 @@
         <div id="paypal-button-container"></div>
 
 
+
       </div>
 
 
@@ -309,6 +333,28 @@
 
 
   paypal.Button.render({
+                       </div>
+
+                    <br>
+
+
+                </div>
+              </div>
+
+               <input id="total_amount" type="number">
+
+          </body>
+
+
+
+
+
+
+             <script>
+
+
+        paypal.Button.render({
+
 
             env: 'sandbox', // sandbox | production
 
@@ -357,9 +403,15 @@
           <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
 
+
           
           
           <?php include_once('footer.php');
           ?>
+
+
+
+          <?php include_once('footer.php');?>
+
 
           </html>

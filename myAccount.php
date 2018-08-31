@@ -1,7 +1,9 @@
+<?php  include_once('head.php');?>
+<?php include('signUpPro.php') ?>
 <!doctype html>
 <html lang="en">
   <head>
-    <?php  include_once('head.php');  ?>
+
         <title>EZshare - Car  Information</title>
 
 
@@ -45,25 +47,41 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
         <tbody>
           <tr>
             <td rowspan="8">  <img src="resources\assets\icons\profile.png"  class="rounded img-fluid"  alt="sedan" width="300" height="500"> </td>
+<?php
+$email = $_SESSION["email"];
+$query = mysqli_query($conn,"SELECT * FROM customers");
+$results = mysqli_fetch_assoc($query);
 
-            <th>Name:</th>
-            <td>John Johnson</td>
+  $firstName =  $results['firstName'];
+  $lastName = $results['lastName'];
+  $phone = $results['phone'];
+  $dateOfBirth = $results['dateOfBirth'];
+  $street = $results['street'];
+  $suburb = $results['suburb'];
+  $state = $results['state'];
+  $postcode = $results['postcode'];
+  $country = $results['country'];
 
-          </tr>
-          <tr>
-            <th>Email:</th>
-            <td>John@gmail.com</td>
 
-          </tr>
-          <tr>
-            <th>Phone:</th>
-            <td>0458291232</td>
 
-          </tr>
-          <tr>
-            <th>Address:</th>
-            <td>234  Elizabeth Street, Melbourne, VIC, 3000</td>
+        echo"<th>Name:</th>";
+        echo"<td>$firstName $lastName </td>";
 
+        echo"</tr>";
+        echo"<tr>";
+        echo"<th>Email:</th>";
+        echo"<td> $email </td>";
+
+        echo"</tr>";
+        echo"<tr>";
+        echo"<th>Phone:</th>";
+        echo"<td>$phone</td>";
+
+        echo"</tr>";
+        echo"<tr>";
+        echo"<th>Address:</th>";
+        echo"<td>$street, $suburb, $state, $postcode, $country</td>";
+?>
           </tr>
 
         </tbody>
