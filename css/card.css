@@ -208,7 +208,7 @@ span.price {
 .left {
   wdith: 50%;
   float:left
-  
+
 }
 
 .right {
@@ -219,7 +219,7 @@ span.price {
 .container {
   width: 250px;
   margin: auto;
-  padding-top: 50px;  
+  padding-top: 50px;
 }
 
 .select{
@@ -311,4 +311,4 @@ span.price {
 .select select::-ms-expand {
   display: none;
 }
-*/
+
