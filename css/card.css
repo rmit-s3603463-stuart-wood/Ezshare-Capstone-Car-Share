@@ -206,14 +206,20 @@ span.price {
 }
 
 .left {
-  wdith: 50%;
+  width: 50%;
   float:left
 
 }
 
 .right {
-  wdith: 50%;
+  width: 50%;
   float:right
+}
+
+
+.centerform {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .container {

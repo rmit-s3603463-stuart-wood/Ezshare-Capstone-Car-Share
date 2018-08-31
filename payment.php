@@ -40,44 +40,59 @@
   <body>
     <?php  include_once('navbar.php');  ?>
 
+    <?php require 'db_conn.php';?>
+    <?php
+  $pdate1 = $_POST['pdate'];
+  $pdate = str_replace('-', '/', $pdate1);
+  $ptime = $_POST['ptime'];
+  $plocation = $_POST['plocation'];
 
-<script>
-function initMap1() {
-var rmitLatLng = {lat: -37.806989, lng: 144.963865};
-var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
+  $ddate1 = $_POST['ddate'];
+  $ddate = str_replace('-', '/', $ddate1);
+  $dtime = $_POST['dtime'];
+  $dlocation = $_POST['dlocation'];
 
-var mapProp1= {
-    center:new google.maps.LatLng(-37.806989,144.963865),
-    disableDefaultUI: true,
-    zoom:17,
-};
+  ?>
+    
 
-var mapProp2= {
-    center:new google.maps.LatLng(-37.885222,145.086158),
-    disableDefaultUI: true,
-    zoom:17,
-};
+    <script>
+      function initMap1() {
+        var rmitLatLng = {lat: -37.806989, lng: 144.963865};
+        var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
 
-var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
+        var mapProp1= {
+          center:new google.maps.LatLng(-37.806989,144.963865),
+          disableDefaultUI: true,
+          zoom:17,
+        };
 
-var map2=new google.maps.Map(document.getElementById("map2"),mapProp2);
+        var mapProp2= {
+          center:new google.maps.LatLng(-37.885222,145.086158),
+          disableDefaultUI: true,
+          zoom:17,
+        };
 
-var rmitmarker = new google.maps.Marker({
-    position: rmitLatLng,
-    map: map1,
-    title: 'rmit'
-  });
+        var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
 
-var chadstonemarker = new google.maps.Marker({
-    position: chadstoneLatLng,
-    map: map2,
-    title: 'chadstone'
-  });
+        var map2=new google.maps.Map(document.getElementById("map2"),mapProp2);
+
+        var rmitmarker = new google.maps.Marker({
+          position: rmitLatLng,
+          map: map1,
+          title: 'rmit'
+        });
+
+        var chadstonemarker = new google.maps.Marker({
+          position: chadstoneLatLng,
+          map: map2,
+          title: 'chadstone'
+        });
 
 
 
-}
-</script>
+      }
+    </script>
+
 
 
 
@@ -93,55 +108,79 @@ var chadstonemarker = new google.maps.Marker({
       display: block;
     }
 
+
+  </style>
+
+
+
+  <div class="col-75">
+    <div class="container">
+      <h2>Booking Details</h2>
+      <br>
+      <div class="row">
+
+        <div class="col-50">
+
+
+                    <?php
+  $sql = "SELECT * FROM cars WHERE Rego='SED123'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+
+   while($row = $result->fetch_assoc()) {
+     //cycles through the entire query result, one row at a time
+    echo '<hr>';
+    echo '<h3 class = "text-center">'.$row["model"].'</h3>';
+    echo '<h2 class = "text-center"><img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>';
+    echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
+
+  }
+} else {
+  echo "0 results";
+}
+?>
+        </div>
+
+        <div class="col-50">
+
+          <br>
+
+          <div class="left">
+            <h4>Pick Up</h4>
+
+            <p>Date: <?php echo date('d/m/Y', strtotime($pdate));?><br/>
+             Time: <?php echo date('h:i A', strtotime($ptime));?><br/>
+             Location: <?echo $plocation?><br/>
+           </p>
+
+           <br>
+           <br>
+
+
+
+           <div class="left">
+            <h4>Drop Off</h4>
+
             </style>
 
 
-              <div class="col-75">
-                <div class="container">
-                  <h2>Booking Details</h2>
-                  <br>
-                    <div class="row">
+            <p>Date: <?php echo date('d/m/Y', strtotime($ddate));?><br/>
+             Time: <?php echo date('h:i A', strtotime($dtime));?><br/>
+             Location: <?echo $dlocation?><br/>
+           </p>
+           </div>
 
-                      <div class="col-50">
-                        <h4>Mercedes-Benz C300 Sedan</h4>
-                        <br>
-                        <img src="/resources/assets/img/Mercedes-Benz-C-Class.png" alt="Mercedes-Benz-C-Class">
-                        <br>
-                        <br>
-                        <ul>
-                        <li>2.0L 4 Clylinder Turbo Petrol Engine</li>
-                        <li>Luxurious Interior</li>
-                        <li>5 seats</li>
-                        <li>Air Conditioning</li>
-                        </ul>
-                      </div>
+         </div>
 
-                      <div class="col-50">
+         <div class="right">
+          <div id="map1" style="width:100%;height:150px;"></div>
 
-                        <br>
-
-                        <div class="left">
-                        <h4>Pick Up</h4>
-
-                        <p>RMIT University<br/>
-                           Monday 20 Aug 2018<br/>
-                           12:30 PM<br/>
-                        </p>
-
-                        <br>
-                        <br>
+          <br>
 
 
+          <div id="map2" style="width:100%;height:150px;"></div>
 
-                        <div class="left">
-                        <h4>Drop Off</h4>
-
-                        <p>Chadstone Shopping Center<br/>
-                           Monday 20 Aug 2018<br/>
-                           2:30 PM<br/></p>
-                        </div>
-
-                        </div>
 
                         <div class="right">
                         <div id="map1" style="width:300px;height:150px;"></div>
@@ -160,110 +199,140 @@ var chadstonemarker = new google.maps.Marker({
 
 
 
-                      </div>
+
+        </div>
 
 
 
 
-                    </div>
-
-                    <br>
-
-                    <div class="row">
-
-                      <div class="col-50">
-                        <h4>Summary of Charges</h4>
-
-                         <br>
-
-<table>
-<tbody>
-<tr>
-<td><h5>Cost Details</h5></td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>2 hours at $100 an hour</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>$200.00</td>
-</tr>
-<tr>
-<td>Administration Fee</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>$5.80</td>
-</tr>
-<tr>
-<td>Vehicle Registration Recovery Fee</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>$30.00</td>
-</tr>
-<tr>
-<td>Total Price</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>$235.80</td>
-</tr>
-</tbody>
-</table>
-
-                       </div>
-
-                      <div class="col-50">
-
-
-                          <br>
-                           <br>
-                            <br>
-                              <br>
-                               <br>
-
-
-
-                          <table>
-                          <tbody>
-                          <tr>
-                          <td><h5>Total Rental Cost:</h5></td>
-                          <td>&nbsp;</td>
-                          <td><h5>$235.80</h5></td>
-                          <td>&nbsp;</td>
-                          </tr>
-                          </tbody>
-                          </table>
-
-                           <div id="paypal-button-container"></div>
-
-
-                       </div>
+      </div>
 
 
 
 
+    </div>
 
+    <br>
+
+    <div class="row">
+
+
+      <div class="col-50">
+        <h4>Summary of Charges</h4>
+
+        <br>
+
+
+        <table>
+          <tbody>
+            <tr>
+              <td><h5>Cost Details</h5></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>2 hours at $100 an hour</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>$200.00</td>
+            </tr>
+            <tr>
+              <td>Administration Fee</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>$5.80</td>
+            </tr>
+            <tr>
+              <td>Vehicle Registration Recovery Fee</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>$30.00</td>
+            </tr>
+            <tr>
+              <td>Total Price</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>$235.80</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="col-50">
+
+
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+
+
+
+        <table>
+          <tbody>
+            <tr>
+              <td><h5>Total Rental Cost:</h5></td>
+              <td>&nbsp;</td>
+              <td><h5>$235.80</h5></td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="paypal-button-container"></div>
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+    <br>
+
+
+  </div>
+</div>
+
+<input id="total_amount" type="number">         
+
+</body>
+
+
+
+
+
+
+<script>
+
+
+  paypal.Button.render({
                        </div>
 
                     <br>
@@ -286,12 +355,13 @@ var chadstonemarker = new google.maps.Marker({
 
         paypal.Button.render({
 
+
             env: 'sandbox', // sandbox | production
 
             // PayPal Client IDs - replace with your own
             // Create a PayPal app: https://developer.paypal.com/developer/applications/create
             client: {
-                sandbox:    'AQwFnSEPKOSlT0ap8RhkGFyJ178q7qZAMdlJLc76coRmk7AcVIYN4liyVTY0zViKLwWRY4r51mnZybB2'
+              sandbox:    'AQwFnSEPKOSlT0ap8RhkGFyJ178q7qZAMdlJLc76coRmk7AcVIYN4liyVTY0zViKLwWRY4r51mnZybB2'
             },
 
             // Show the buyer a 'Pay Now' button in the checkout flow
@@ -307,34 +377,41 @@ var chadstonemarker = new google.maps.Marker({
                 console.log(currentVal);
 
                 return actions.payment.create({
-                    payment: {
-                        transactions: [
-                            {
-                                amount: { total: currentVal, currency: 'AUD' }
-                            }
-                        ]
+                  payment: {
+                    transactions: [
+                    {
+                      amount: { total: currentVal, currency: 'AUD' }
                     }
+                    ]
+                  }
                 });
-            },
+              },
 
             // onAuthorize() is called when the buyer approves the payment
             onAuthorize: function(data, actions) {
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
-                    window.alert('Payment Complete!');
+                  window.alert('Payment Complete!');
                 });
-            }
+              }
 
-        }, '#paypal-button-container');
+            }, '#paypal-button-container');
 
-    </script>
+          </script>
 
           <script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
+
+
+          
+          
+          <?php include_once('footer.php');
+          ?>
 
 
 
           <?php include_once('footer.php');?>
+
 
           </html>
