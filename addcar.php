@@ -45,8 +45,8 @@ if (isset($_POST['add_car'])) {
   if (empty($price)) { array_push($errors, "price is required"); }
   if (empty($stationName)) { array_push($errors, "stationName is required"); }
   if (empty($carPic)) { array_push($errors, "carPic is required"); }
-  if (empty($booked)) { array_push($errors, "Password is required"); }
-  if (empty($availability)) { array_push($errors, "Password is required"); }
+  if (empty($booked)) { array_push($errors, "car booking required"); }
+  if (empty($availability)) { array_push($errors, "car availability is required"); }
   }
 
   // first check the database to make sure
@@ -65,8 +65,7 @@ if (isset($_POST['add_car'])) {
   if (count($errors) == 0) {
 
   	$query = "INSERT INTO customers (rego, password, model, make, year, tier, seatNo, engine, price, stationName, carPic)
-  			  VALUES ('$rego', '$password', '$model', '$make', '$year', '$tier', '$seatNo', '$engine', '$price', '$stationName', '$carPic')";
+  			  VALUES ('$rego', '$model', '$make', '$year', '$tier', '$seatNo', '$engine', '$price', '$stationName', '$carPic, '$booked', '$availability')";
   	mysqli_query($conn, $query);
   	header('location: addremovecar.php');
   }
-}
