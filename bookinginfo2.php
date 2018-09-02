@@ -12,7 +12,6 @@
   <?php require 'db_conn.php';?>
 
 
-
   <script>
     function initMap1() {
       var rmitLatLng = {lat: -37.806989, lng: 144.963865};
@@ -95,9 +94,6 @@
             </div>
 
             <br>
-            <br>
-            <br>
-            <br>
 
             <h2>Your Vehicle:</h2>
 
@@ -130,14 +126,7 @@
 
   <div class = "centerform">
 
-     <label for="pdate">Pickup Date:</label>
-      <div>
-        <input type="date" class="form-control" id="pdate" placeholder="09/01/2018" name="pdate">
-      </div>
-
-      <br>
-
-      <label for="ptime">Pick Up Time:</label>
+      <label for="ptime">Pickup Time:</label>
       <div>
         <input type="time" class="form-control" id="ptime" placeholder="09/01/2018" name="ptime">
       </div>
@@ -145,13 +134,13 @@
 
       <br>
 
-      <label for="plocation">Pick Up Location</label>
+      <label for="plocation">Pickup Location</label>
       <div>
         <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
           <option selected disabled>Select a Pickup Location</option>
-          <option value="Melbourne Airport">Melbourne Airport</option>
-          <option value="Chadstone">Chadstone</option>
-          <option value="Melbourne CBD">Melbourne CBD</option>
+          <option value="1">Melbourne Airport</option>
+          <option value="2">Chadstone</option>
+          <option value="3">Melbourne CBD</option>
         </select>
       </div>
 
@@ -166,32 +155,25 @@
 
   <h2>Drop Off Details</h2>
 
+  <br>
+
   <div class = "centerform">
 
-      <br>
-
-      <label for="ddate">Drop Off Date:</label>
+      <label for="ptime">Drop Off Time:</label>
       <div>
-        <input type="date" class="form-control" id="ddate" placeholder="09/01/2018" name="ddate">
-      </div>
-
-      <br>
-
-      <label for="dtime">Drop Off Time:</label>
-      <div>
-        <input type="time" class="form-control" id="dtime" placeholder="09/01/2018" name="dtime">
+        <input type="time" class="form-control" id="ptime" placeholder="09/01/2018" name="dtime">
       </div>
 
 
       <br>
 
-      <label for="dlocation">Drop Off Location</label>
+      <label for="plocation">Drop Off Location</label>
       <div>
         <select class="custom-select mr-sm-2" name="dlocation" form="form">
           <option selected disabled>Select a Drop off Location</option>
-          <option value="Melbourne Airport">Melbourne Airport</option>
-          <option value="Chadstone">Chadstone</option>
-          <option value="Melbourne CBD">Melbourne CBD</option>
+          <option value="1">Melbourne Airport</option>
+          <option value="2">Chadstone</option>
+          <option value="3">Melbourne CBD</option>
         </select>
       </div>
 
