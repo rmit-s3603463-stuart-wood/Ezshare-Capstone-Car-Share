@@ -49,7 +49,7 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
             <td rowspan="8">  <img src="resources\assets\icons\profile.png"  class="rounded img-fluid"  alt="sedan" width="300" height="500"> </td>
 <?php
 $email = $_SESSION["email"];
-$query = mysqli_query($conn,"SELECT * FROM customers");
+$query = mysqli_query($conn,"SELECT * FROM customers where email ='$email'");
 $results = mysqli_fetch_assoc($query);
 
   $firstName =  $results['firstName'];
