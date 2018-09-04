@@ -1,18 +1,4 @@
 
-<?php
-session_start();
-$servername = "localhost";
-$username = "Admin";
-$password = "p@ssword";
-$dbname = "carshare";
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
-// Check connection
-if ($conn->connect_error) {
-   die("Connection failed: " . $conn->connect_error);
-}
-?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,9 +7,9 @@ if ($conn->connect_error) {
 </head>
 <body>
 		<?php include_once('navbar.php'); ?>
-		
+
 		<div class="container">
-		
+
 		<h1 class = "text-center">Delete Booking</h1>
 <input type="text" id="myInput" onkeyup="searchRego()" placeholder="Search for registration.." title="Type in a registration">
 <input type="text" id="myInput2" onkeyup="searchEmail()" placeholder="Search for Email.." title="Type in a email">
@@ -39,12 +25,12 @@ if ($conn->connect_error) {
   </tr>
   <tr>
         <?php
-			
+
 			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
             $sq = "SELECT bookingID, rego, email, dateBooked, timeBooked FROM booking";
-            
+
             $results = mysqli_query($con, $sq);
-            
+
             while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
             {
             print "<tr>\n";
@@ -75,7 +61,7 @@ function searchRego() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 
@@ -93,7 +79,7 @@ function searchEmail() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 
@@ -104,12 +90,12 @@ function btnalert() {
 
 
         <?php
-		/*	
+		/*
 			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
             $sq = "SELECT bookingID, rego, email, dateBooked, timeBooked FROM booking";
-            
+
             $results = mysqli_query($con, $sq);
-            
+
             while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
             {
             print "<tr>\n";

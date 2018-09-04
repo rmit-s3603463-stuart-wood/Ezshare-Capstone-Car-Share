@@ -13,9 +13,6 @@
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="timecalc.js"></script>
 
-
-      
-
       <link rel="stylesheet" href="css/card.css">
 
       <link href="css/card-js.min.css" rel="stylesheet" type="text/css" />
@@ -30,7 +27,7 @@
         padding: 8px 12px;
       }
     </style>
-    
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
@@ -53,7 +50,7 @@
   $dlocation = $_POST['dlocation'];
 
   ?>
-    
+
 
     <script>
       function initMap1() {
@@ -263,7 +260,7 @@
 
         <br>
         <br>
-        <br> 
+        <br>
         <br>
         <br>
 
@@ -297,7 +294,7 @@
   </div>
 </div>
 
-<input id="total_amount" type="number">         
+<input id="total_amount" type="number">
 
 </body>
 
@@ -358,8 +355,8 @@
           <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
 
-          
-          
+
+
           <?php include_once('footer.php');
           ?>
 

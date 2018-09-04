@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 $servername = "localhost";
 $username = "Admin";
@@ -31,13 +31,13 @@ include('addCar.php')
         <form action="addremovecar.php" method="post" name="addcar" role="form">
 			<?php include('errors.php'); ?>
             <label for="rego">Registration</label><input type="text" id="rego" name="rego">
-            
+
 			<label for="model">Car Model</label><input type="text" id="model" name="model">
-                           
+
             <label  for="make">Make</label><input type="text" id="make" name="make">
-                            
+
             <label  for="year">Year</label><input type="number" id="year" name="year">
-                          
+
             <label for="tier">Car Tier</label>
             <select id="tier">
                 <option selected>Select a Tier</option>
@@ -45,7 +45,7 @@ include('addCar.php')
                 <option value="2">Tier 2</option>
                 <option value="3">Tier 3</option>
             </select>
-                   
+
             <label for="seatNo">Number Of Seats</label>
             <select id="seatNo">
                 <option selected>Select Number of Car Seats</option>
@@ -57,11 +57,11 @@ include('addCar.php')
                 <option value="7">7 Seats</option>
                 <option value="8">8 Seats</option>
             </select>
-                            
+
             <label for="engine">Engine</label><input type="text"id="engine" name="engine">
-                             
+
             <label for="price">Price</label><input type="number" id="price" name="price">
-                        
+
             <label  for="stationName">Station Name</label>
             <select id="stationName">
                 <option selected>Station Name</option>
@@ -70,15 +70,15 @@ include('addCar.php')
                 <option value="Broadmedows">Broadmedows</option>
                 <option value="Essendon">Essendon</option>
             </select>
-                      
+
             <label for="carImage">Car Image</label><input type="file" id="carPic" name="carPic">
-								
+
 			<label for="carCords">carCords</label><input type="text" id="carCords" name="carCords">
-								
+
 			<label for="booked">Is the car booked</label><input type="text" id="booked" name="booked">
-								
+
 			<label for="availability">availability</label><input type="text" id="availability" name="availability">
-            
+
 			<button type="submit" class="btn" name="add_car">Add Car</button>
         </form>
 	</div>
@@ -101,9 +101,9 @@ include('addCar.php')
             <?php
 			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT rego, model, make, year, tier, seatNo, engine, price FROM cars";
-            
+
 			$results = mysqli_query($con, $sq);
-            
+
 			while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
 			{
 				print "<tr>\n";
@@ -121,7 +121,7 @@ include('addCar.php')
 			?>
         </table>
     </div>
-				
+
 	<script>
 		function searchRego() {
 		var input, filter, table, tr, td, i;
@@ -137,7 +137,7 @@ include('addCar.php')
 				} else {
 					tr[i].style.display = "none";
 				}
-				} 	      
+				}
 			}
 		}
 	</script>
