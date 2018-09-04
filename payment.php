@@ -113,7 +113,7 @@
 
   <div class="col-75">
     <div class="container">
-      <h2>Booking Detailss</h2>
+      <h2>Booking Details</h2>
       <br>
       <div class="row">
 
