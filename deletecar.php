@@ -14,7 +14,7 @@ $sqlt = "DELETE FROM cars WHERE rego = '$rego'";
 	{
 		if(mysqli_query($con,$sqlt))
 		{
-			header("refresh:1; url=addremovecar.php");
+			header("refresh:1; url=admindeletecar.php");
 		}
 	}
 else{
