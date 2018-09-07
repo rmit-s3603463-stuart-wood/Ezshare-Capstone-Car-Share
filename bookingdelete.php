@@ -21,9 +21,10 @@
 	<th style="width:10%;">Date booked</th>
 	<th style="width:10%;">Time booked</th>
 	<th style="width:10%;">Hours booked</th>
+	<th style="width:5%;">Total price</th>
 	<th style="width:10%;">Pickup location</th>
 	<th style="width:10%;">Return location</th>
-	<th style="width:10%;"></th>
+	<th style="width:5%;"></th>
   </tr>
   <tr>
         <?php
@@ -42,6 +43,7 @@
             echo "<td>{$row['dateBooked']}</td>\n";
             echo "<td>{$row['timeBooked']}</td>\n";
 			echo "<td>{$row['hoursBooked']}</td>\n";
+			echo "<td>{$row['totalPrice']}</td>\n";
 			echo "<td>{$row['pickupLocation']}</td>\n";
 			echo "<td>{$row['returnLocation']}</td>\n";
 			echo "<td><a href=bookingdeleteprocess.php?bookingID=".$row['bookingID'].">Delete</a></td>";

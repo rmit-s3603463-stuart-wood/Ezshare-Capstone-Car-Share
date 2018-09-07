@@ -85,7 +85,7 @@ echo "done 3";
 	  echo "done 3.2";
     }
   }
-echo "cunt";
+echo "something";
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
 echo "done 4";
@@ -102,7 +102,7 @@ echo "done 4";
 		}
 	}else{
 		echo "Car has not been added";
-	header('location: addremovecar.php');
+	header('location: adminaddcar.php');
 	}
 	
   }else{

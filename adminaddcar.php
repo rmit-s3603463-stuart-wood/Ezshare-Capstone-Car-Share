@@ -15,7 +15,7 @@
     <?php  include_once('navbar.php');  ?>
     <div class="container">
         <h2>Add a Car</h2>
-        <form method="post" enctype="multipart/form-data" action="addremovecar.php" name="addcar" role="form">
+        <form method="post" enctype="multipart/form-data" action="adminaddcar.php" name="addcar" role="form">
 			<?php include('errors.php'); ?>
             <label for="rego">Registration</label><input type="text" id="rego" name="rego" placeholder="Please provide registration">
             
