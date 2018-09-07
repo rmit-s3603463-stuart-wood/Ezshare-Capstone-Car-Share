@@ -3,28 +3,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-
-        <title>EZshare - Car  Information</title>
-
-
-     <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/ -->
-     <!-- Pictures provided by:
-   https://www.carsales.com.au/dealer/details/Nissan-Pulsar-2016/OAG-AD-16152591/?gts=OAG-AD-16152591&gtssaleid=OAG-AD-16152591&rankingType=Showcase
-https://www.carsales.com.au/demo/details/Nissan-Patrol-2018/OAG-AD-15431504/?gts=OAG-AD-15431504&gtssaleid=OAG-AD-15431504&rankingType=Showcase
-https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
- -->
-	<style>
-
-       </style>
-
+<title>EZshare - Account  Information</title>
+<link rel="stylesheet" type="text/css" href="cssMyAccount.css">
   </head>
   <body>
-    <?php
-    include_once('navbar.php');
-    ?>
+    <?php include_once('navbar.php');  ?>
 
     <div class="container table-responsive-sm">
-      <h1 class = "text-center"> Our Fleet</h1>
+      <h1 class = "text-center">My Account</h1>
 
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -147,11 +133,6 @@ $results = mysqli_fetch_assoc($query);
     </div>
 
     </div>
-
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
-    </div>
-
 
     </body>
     <?php
