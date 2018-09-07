@@ -85,9 +85,6 @@
 			</div>
 		</div>
 		</div>
-		    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
-    </div>
 	</body>
 	<?php include_once('footer.php'); ?>
 	</html>

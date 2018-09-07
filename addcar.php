@@ -19,7 +19,7 @@ $errors = array();
 echo "done 1";
 
 // REGISTER USER
-if (isset($_POST['add_car'],$_FILES['add_car'])) {
+if (isset($_POST['add_car'])) {
   // receive all input values from the form
   $rego = mysqli_real_escape_string($conn, $_POST['rego']);
   $model =  mysqli_real_escape_string($conn,$_POST['model']);
@@ -35,7 +35,7 @@ if (isset($_POST['add_car'],$_FILES['add_car'])) {
   $carCords = mysqli_real_escape_string($conn, $_POST['carCords']);
   $booked = mysqli_real_escape_string($conn, $_POST['booked']);
   $availability = mysqli_real_escape_string($conn, $_POST['availability']);
-  
+
   move_uploaded_file($location, "resources/assets/icons/$carPic");
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -75,9 +75,11 @@ echo "done 3";
   			  VALUES ('$rego', '$model', '$make', '$year', '$tier', '$seatNo', '$engine', '$price', '$carPic, '$stationName', '$carCords', '$booked', '$availability')";
   	mysqli_query($conn, $query);
 	//header('location: addremovecar.php');
-echo "done 4";	
-  }else{
+echo "done 4";
+  }
+
+else{
 	  echo"not working";
   }
-  
+
   ?>
