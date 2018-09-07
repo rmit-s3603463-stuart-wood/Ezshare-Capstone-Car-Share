@@ -31,14 +31,14 @@
           </li>
         </ul>
         <!-- Social buttons -->
-
+        <div class="footer-copyright text-center py-3">© <?php echo date("Y"); ?> Copyright:
+          <a href="https://www.ezshareau.com/"> Ezshareau.com</a>
+        </div>
       </div>
       <!-- Footer Elements -->
 
       <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© <?php echo date("Y"); ?> Copyright:
-        <a href="https://www.ezshareau.com/"> Ezshareau.com</a>
-      </div>
+
       <!-- Copyright -->
 
     </footer>

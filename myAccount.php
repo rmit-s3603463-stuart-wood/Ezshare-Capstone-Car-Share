@@ -67,6 +67,7 @@ $results = mysqli_fetch_assoc($query);
         echo"<tr>";
         echo"<th>Address:</th>";
         echo"<td>$street, $suburb, $state, $postcode, $country</td>";
+        echo"</tr>";
 ?>
           </tr>
 
@@ -75,55 +76,61 @@ $results = mysqli_fetch_assoc($query);
     </div>
     <div id="Bookings" class="container tab-pane fade"><br>
 
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-dark">
-          <tr>
-            <th colspan = "3">Bookings</th>
-          </tr>
+
         </thead>
         <tbody>
           <tr>
-            <td rowspan="8"><img src="resources\assets\icons\"  class="rounded img-fluid"  alt="Map" width="600" height="500"></td>
+                <th>Booking ID</th>
 
-            <th>Booking ID:</th>
-            <td>#1432</td>
+                <th>Registration Number</th>
 
+                <th>Total Price</th>
+
+                <th>Pick Up location</th>
+
+                <th>Return location</th>
+
+                <th>Date Booked</th>
+
+                <th>Time Booked</th>
+
+                <th>Hours Booked</th>
           </tr>
-          <tr>
-            <th>Registration Number:</th>
-            <td>EDH234</td>
 
-          </tr>
-          <tr>
-            <th>Price:</th>
-            <td>$500</td>
+            <?php
+            $email = $_SESSION["email"];
+            $query2 = "SELECT * FROM booking where email ='$email'";
+            $results2  = $conn->query($query2);
 
-          </tr>
-          <tr>
-            <th>Pickup Location:</th>
-            <td>Lilydale</td>
 
-          </tr>
-          <tr>
-            <th>Return Location:</th>
-            <td>Dandenong</td>
+            while($row = $results2->fetch_assoc()) {
 
-          </tr>
-          <tr>
-            <th>Date Booked:</th>
-            <td>02/09/2018</td>
 
-          </tr>
-          <tr>
-            <th>Time Booked</th>
-            <td>14:30:00</td>
+              $bookingID =  $row['bookingID'];
+              $rego = $row['rego'];
+              $dateBooked = $row['dateBooked'];
+              $timeBooked = $row['timeBooked'];
+              $hoursBooked = $row['hoursBooked'];
+              $totalPrice = $row['totalPrice'];
+              $returnLocation = $row['returnLocation'];
+              $pickupLocation = $row['pickupLocation'];
 
-          </tr>
-          <tr>
-            <th>Hours Booked</th>
-            <td>2 hours</td>
+                      echo"<tr>
+                      <td>$bookingID</td>
+                      <td>$rego</td>
+                      <td> $$totalPrice</td>
+                      <td>$pickupLocation</td>
+                      <td>$returnLocation</td>
+                      <td>$dateBooked</td>
+                      <td>$timeBooked</td>
+                      <td>$hoursBooked</td>
 
-          </tr>
+                      </tr>";
+                    }
+
+              ?>
 
 
         </tbody>
