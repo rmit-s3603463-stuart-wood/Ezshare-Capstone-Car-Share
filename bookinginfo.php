@@ -183,7 +183,7 @@
                 <div>
                   <input type="number" class="form-control" id="dlicence" name="dlicence" placeholder="Enter Drivers Licence Number" disabled>
                 </div>
-             
+
 
             </div>
 
@@ -252,7 +252,7 @@
 
       <div id="map1" style="width:100%;height:150px;"></div>
 
- 
+
   </div>
 
   <br>
@@ -299,15 +299,19 @@
 
 </div>
 </div>
-</div>
 
 </div>
+</div>
+</div>
+
+
+<?php  include_once('footer.php');  ?>
 </body>
 
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
 
-<?php  include_once('footer.php');  ?>
+
 <script>
 </script>
 </html>

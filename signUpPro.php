@@ -92,16 +92,6 @@ if (isset($_POST['login_user'])) {
   	$results = mysqli_query($conn, $query);
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['email'] = $_POST['email'];
-      $email = $results['email'];
-      $firstName =  $results['firstName'];
-      $lastName = $results['lastName'];
-      $phone = $results['phone'];
-      $dateOfBirth = $results['dateOfBirth'];
-      $street = $results['street'];
-      $suburb = $results['suburb'];
-      $state = $results['state'];
-      $postcode = $results['postcode'];
-      $country = $results['country'];
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: myAccount.php');
   	}else {

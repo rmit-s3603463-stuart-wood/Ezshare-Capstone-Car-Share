@@ -57,6 +57,7 @@ create table if not exists booking(
 	dateBooked varchar(75),
 	timeBooked varchar(75),
 	hoursBooked varchar(75),
+	totalPrice varchar(75),
 	returnLocation varchar(200),
 	pickupLocation varchar(200),
 	PRIMARY KEY (bookingID),
@@ -85,4 +86,4 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country)VALUES('chris@gmail.com', 'abc123', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia');
 
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','Chadstone','RMIT');
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT');
