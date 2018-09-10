@@ -17,6 +17,7 @@
     function initMap1() {
       var rmitLatLng = {lat: -37.806989, lng: 144.963865};
       var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
+      gestureHandling: 'greedy'
 
       var mapProp1= {
         center:new google.maps.LatLng(-37.806989,144.963865),
@@ -47,6 +48,66 @@
       });
 
 
+      $("#EndDate").change(function () {
+    var startDate = document.getElementById("StartDate").value;
+    var endDate = document.getElementById("EndDate").value;
+ 
+    if ((Date.parse(endDate) < Date.parse(startDate))) {
+        alert("Drop off date should be greater than pick up date");
+        document.getElementById("EndDate").value = "";
+    }
+
+});
+
+      $("#StartDate").change(function () {
+    var startDate = document.getElementById("StartDate").value;
+    var endDate = document.getElementById("EndDate").value;
+ 
+    if ((Date.parse(startDate) > Date.parse(endDate))) {
+        alert("Drop off date should be greater than pick up date");
+        document.getElementById("StartDate").value = "";
+    }
+
+});
+
+
+      $("#dtime").change(function () {
+    var startTime = document.getElementById("ptime").value;
+    var endTime = document.getElementById("dtime").value;
+
+    var start = new Date("November 13, 2013 " + startTime);
+    start = start.getTime();
+
+    var end = new Date("November 13, 2013 " + endTime);
+    end = end.getTime();
+ 
+    if ((startTime = endTime) && (start > end)) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("dtime").value = "";
+    }
+
+});
+
+      $("#ptime").change(function () {
+    var startTime = document.getElementById("ptime").value;
+    var endTime = document.getElementById("dtime").value;
+
+    var start = new Date("November 13, 2013 " + startTime);
+    start = start.getTime();
+
+    var end = new Date("November 13, 2013 " + endTime);
+    end = end.getTime();
+
+    console.log("Time1: "+ start + " Time2: " + end);
+ 
+    if ((startTime = endTime) && (start > end)) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("ptime").value = "";
+    }
+
+});
+
+
 
     }
   </script>
@@ -66,21 +127,53 @@
 
             <div class = "centerform">
 
+              <?php
+  $sql = "SELECT * FROM customers WHERE email='dan-h1997@hotmail.com'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+
+   while($row = $result->fetch_assoc()) {
+    $firstName = $row["firstName"];
+
+
+    $lastName = $row["lastName"];
+
+
+    $email = $row["email"];
+
+
+    $phone = $row["phone"];
+
+
+  }
+} else {
+  echo "0 results";
+}
+?>
+
               <form class="form-horizontal" method="POST" action="payment.php" id="form">
 
                 <label for="fname">First Name:</label>
                 <div>
-                  <input type="text" class="form-control" id="fname" align="middle" placeholder="Enter First name" name="fname">
+                  <input type="text" class="form-control" id="fname" align="middle" placeholder="<?php echo $firstName; ?>" name="fname" disabled>
                 </div>
 
                 <label for="lname">Last Name:</label>
                 <div>
-                  <input type="text" class="form-control" id="lname" placeholder="Enter Last name" name="lname">
+                  <input type="text" class="form-control" id="lname" placeholder="<?php echo $lastName; ?>" name="lname" disabled>
                 </div>
 
                 <label for="email">Email:</label>
                 <div>
-                  <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+                  <input type="email" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email" disabled>
+                </div>
+
+                <br>
+
+                <label for="phone">Phone Number:</label>
+                <div>
+                  <input type="tel" class="form-control" id="phone" placeholder="<?php echo $phone; ?>" name="phone" disabled>
                 </div>
 
                 <br>
@@ -88,18 +181,20 @@
 
                 <label for="dlicence">Drivers Licence Number:</label>
                 <div>
-                  <input type="number" class="form-control" id="dlicence" name="dlicence"placeholder="Enter Drivers Licence Number" name="dtime">
+                  <input type="number" class="form-control" id="dlicence" name="dlicence" placeholder="Enter Drivers Licence Number" disabled>
                 </div>
 
 
             </div>
 
-            <br>
-            <br>
-            <br>
-            <br>
+              <br>
+            
 
             <h2>Your Vehicle:</h2>
+
+            <br>
+            <br>
+            <br>
 
 
             <?php
@@ -130,16 +225,16 @@
 
   <div class = "centerform">
 
-     <label for="pdate">Pickup Date:</label>
+     <label for="pdate">Pick Up Date:</label>
       <div>
-        <input type="date" class="form-control" id="pdate" placeholder="09/01/2018" name="pdate">
+        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate" required>
       </div>
 
       <br>
 
       <label for="ptime">Pick Up Time:</label>
       <div>
-        <input type="time" class="form-control" id="ptime" placeholder="09/01/2018" name="ptime">
+        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" required>
       </div>
 
 
@@ -172,14 +267,14 @@
 
       <label for="ddate">Drop Off Date:</label>
       <div>
-        <input type="date" class="form-control" id="ddate" placeholder="09/01/2018" name="ddate">
+        <input type="date" class="form-control" id="EndDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="ddate" required>
       </div>
 
       <br>
 
       <label for="dtime">Drop Off Time:</label>
       <div>
-        <input type="time" class="form-control" id="dtime" placeholder="09/01/2018" name="dtime">
+        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" required>
       </div>
 
 
