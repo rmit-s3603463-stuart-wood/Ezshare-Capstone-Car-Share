@@ -21,7 +21,7 @@
      }
     else
     { echo"<a class='dropdown-item' href='logIn.php'>Login</a>";
-      echo"<a class='dropdown-item' href='SignUp.php'>Sign Up</a>";
+      echo"<a class='dropdown-item' href='signUp.php'>Sign Up</a>";
     }
     ?>
     <!--    <a class="dropdown-item" href="logIn.php">Login</a>  //-->

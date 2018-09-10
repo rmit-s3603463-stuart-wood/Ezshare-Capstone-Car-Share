@@ -19,7 +19,7 @@
 			}
 
 			.active, .accordion:hover {
-				background-color: #ccc; 
+				background-color: #ccc;
 			}
 
 			.panel {
@@ -32,11 +32,11 @@
 	</head>
 	<body>
 		<?php include_once('navbar.php'); ?>
-		
+
 		<div class="container">
-		
+
 		<h1 class = "text-center">FAQS</h1>
-		
+
 		<button class="accordion">Q: Do I have to pay for petrol?</button>
 		<div class="panel">
 			<h5><span class="label label-primary">Answer</span></h5>
@@ -54,7 +54,7 @@
 			<h5><span class="label label-primary">Answer</span></h5>
 			<p>Simply drive the car you currently have booked to the dropoff location that you selected. Once there exit the vehicle and go to your profile under <u>MyAccount</u>, go to your bookings, select the current booking and confirm that you wish to end your booking.</p>
 		</div>
-						
+
 		<button class="accordion">Q: How do I cancel a booking?</button>
 		<div class="panel">
 			<h5><span class="label label-primary">Answer</span></h5>
@@ -77,10 +77,6 @@
 		}
 	</script>
 		</div>
-		<div class="jumbotron text-center" style="margin-bottom:0">
-			<p>Footer</p>
-		</div>
 	</body>
 		<?php	include_once('footer.php');	?>
 </html>
-

@@ -3,7 +3,7 @@
   <head>
     <?php  include_once('head.php');  ?>
         <title>EZshare - Car  Information</title>
-
+<link href="css/fleet.css" rel="stylesheet" type="text/css" >
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/ -->
      <!-- Pictures sourced from https://www.carsales.com.au -->
@@ -39,9 +39,6 @@
 
     </div>
 
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
-    </div>
 
 
     </body>

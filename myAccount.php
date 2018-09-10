@@ -3,28 +3,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-
-        <title>EZshare - Car  Information</title>
-
-
-     <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/ -->
-     <!-- Pictures provided by:
-   https://www.carsales.com.au/dealer/details/Nissan-Pulsar-2016/OAG-AD-16152591/?gts=OAG-AD-16152591&gtssaleid=OAG-AD-16152591&rankingType=Showcase
-https://www.carsales.com.au/demo/details/Nissan-Patrol-2018/OAG-AD-15431504/?gts=OAG-AD-15431504&gtssaleid=OAG-AD-15431504&rankingType=Showcase
-https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
- -->
-	<style>
-
-       </style>
-
+<title>EZshare - Account  Information</title>
+<link rel="stylesheet" type="text/css" href="cssMyAccount.css">
   </head>
   <body>
-    <?php
-    include_once('navbar.php');
-    ?>
+    <?php include_once('navbar.php');  ?>
 
     <div class="container table-responsive-sm">
-      <h1 class = "text-center"> Our Fleet</h1>
+      <h1 class = "text-center">My Account</h1>
 
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -49,7 +35,7 @@ https://www.carsales.com.au/bncis/details/Nissan-GT-R-2017/OAG-AD-16064743/?Cr=5
             <td rowspan="8">  <img src="resources\assets\icons\profile.png"  class="rounded img-fluid"  alt="sedan" width="300" height="500"> </td>
 <?php
 $email = $_SESSION["email"];
-$query = mysqli_query($conn,"SELECT * FROM customers");
+$query = mysqli_query($conn,"SELECT * FROM customers where email ='$email'");
 $results = mysqli_fetch_assoc($query);
 
   $firstName =  $results['firstName'];
@@ -81,6 +67,7 @@ $results = mysqli_fetch_assoc($query);
         echo"<tr>";
         echo"<th>Address:</th>";
         echo"<td>$street, $suburb, $state, $postcode, $country</td>";
+        echo"</tr>";
 ?>
           </tr>
 
@@ -89,55 +76,61 @@ $results = mysqli_fetch_assoc($query);
     </div>
     <div id="Bookings" class="container tab-pane fade"><br>
 
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-dark">
-          <tr>
-            <th colspan = "3">Bookings</th>
-          </tr>
+
         </thead>
         <tbody>
           <tr>
-            <td rowspan="8"><img src="resources\assets\icons\"  class="rounded img-fluid"  alt="Map" width="600" height="500"></td>
+                <th>Booking ID</th>
 
-            <th>Booking ID:</th>
-            <td>#1432</td>
+                <th>Registration Number</th>
 
+                <th>Total Price</th>
+
+                <th>Pick Up location</th>
+
+                <th>Return location</th>
+
+                <th>Date Booked</th>
+
+                <th>Time Booked</th>
+
+                <th>Hours Booked</th>
           </tr>
-          <tr>
-            <th>Registration Number:</th>
-            <td>EDH234</td>
 
-          </tr>
-          <tr>
-            <th>Price:</th>
-            <td>$500</td>
+            <?php
+            $email = $_SESSION["email"];
+            $query2 = "SELECT * FROM booking where email ='$email'";
+            $results2  = $conn->query($query2);
 
-          </tr>
-          <tr>
-            <th>Pickup Location:</th>
-            <td>Lilydale</td>
 
-          </tr>
-          <tr>
-            <th>Return Location:</th>
-            <td>Dandenong</td>
+            while($row = $results2->fetch_assoc()) {
 
-          </tr>
-          <tr>
-            <th>Date Booked:</th>
-            <td>02/09/2018</td>
 
-          </tr>
-          <tr>
-            <th>Time Booked</th>
-            <td>14:30:00</td>
+              $bookingID =  $row['bookingID'];
+              $rego = $row['rego'];
+              $dateBooked = $row['dateBooked'];
+              $timeBooked = $row['timeBooked'];
+              $hoursBooked = $row['hoursBooked'];
+              $totalPrice = $row['totalPrice'];
+              $returnLocation = $row['returnLocation'];
+              $pickupLocation = $row['pickupLocation'];
 
-          </tr>
-          <tr>
-            <th>Hours Booked</th>
-            <td>2 hours</td>
+                      echo"<tr>
+                      <td>$bookingID</td>
+                      <td>$rego</td>
+                      <td> $$totalPrice</td>
+                      <td>$pickupLocation</td>
+                      <td>$returnLocation</td>
+                      <td>$dateBooked</td>
+                      <td>$timeBooked</td>
+                      <td>$hoursBooked</td>
 
-          </tr>
+                      </tr>";
+                    }
+
+              ?>
 
 
         </tbody>
@@ -147,11 +140,6 @@ $results = mysqli_fetch_assoc($query);
     </div>
 
     </div>
-
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
-    </div>
-
 
     </body>
     <?php

@@ -28,7 +28,7 @@
 				<th style="width:10%;"></th>
 			</tr>
             <?php
-			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT rego, model, make, year, tier, seatNo, engine, price FROM cars";
             
 			$results = mysqli_query($con, $sq);

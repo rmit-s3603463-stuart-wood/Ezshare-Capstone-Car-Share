@@ -13,9 +13,6 @@
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="timecalc.js"></script>
 
-
-      
-
       <link rel="stylesheet" href="css/card.css">
 
       <link href="css/card-js.min.css" rel="stylesheet" type="text/css" />
@@ -53,12 +50,13 @@
   $dlocation = $_POST['dlocation'];
 
   ?>
-    
+
 
     <script>
       function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
         var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
+        gestureHandling: 'greedy'
 
         var mapProp1= {
           center:new google.maps.LatLng(-37.806989,144.963865),
@@ -263,7 +261,7 @@
 
         <br>
         <br>
-        <br> 
+        <br>
         <br>
         <br>
 
@@ -297,7 +295,7 @@
   </div>
 </div>
 
-<input id="total_amount" type="number">         
+<input id="total_amount" type="number">
 
 </body>
 
@@ -358,8 +356,6 @@
           <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
 
-          
-          
           <?php include_once('footer.php');
           ?>
 
