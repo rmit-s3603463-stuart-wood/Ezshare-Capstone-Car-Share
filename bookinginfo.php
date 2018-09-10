@@ -48,6 +48,66 @@
       });
 
 
+      $("#EndDate").change(function () {
+    var startDate = document.getElementById("StartDate").value;
+    var endDate = document.getElementById("EndDate").value;
+ 
+    if ((Date.parse(endDate) < Date.parse(startDate))) {
+        alert("Drop off date should be greater than pick up date");
+        document.getElementById("EndDate").value = "";
+    }
+
+});
+
+      $("#StartDate").change(function () {
+    var startDate = document.getElementById("StartDate").value;
+    var endDate = document.getElementById("EndDate").value;
+ 
+    if ((Date.parse(startDate) > Date.parse(endDate))) {
+        alert("Drop off date should be greater than pick up date");
+        document.getElementById("StartDate").value = "";
+    }
+
+});
+
+
+      $("#dtime").change(function () {
+    var startTime = document.getElementById("ptime").value;
+    var endTime = document.getElementById("dtime").value;
+
+    var start = new Date("November 13, 2013 " + startTime);
+    start = start.getTime();
+
+    var end = new Date("November 13, 2013 " + endTime);
+    end = end.getTime();
+ 
+    if ((startTime = endTime) && (start > end)) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("dtime").value = "";
+    }
+
+});
+
+      $("#ptime").change(function () {
+    var startTime = document.getElementById("ptime").value;
+    var endTime = document.getElementById("dtime").value;
+
+    var start = new Date("November 13, 2013 " + startTime);
+    start = start.getTime();
+
+    var end = new Date("November 13, 2013 " + endTime);
+    end = end.getTime();
+
+    console.log("Time1: "+ start + " Time2: " + end);
+ 
+    if ((startTime = endTime) && (start > end)) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("ptime").value = "";
+    }
+
+});
+
+
 
     }
   </script>
@@ -165,16 +225,16 @@
 
   <div class = "centerform">
 
-     <label for="pdate">Pickup Date:</label>
+     <label for="pdate">Pick Up Date:</label>
       <div>
-        <input type="date" class="form-control" id="pdate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate">
+        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate" required>
       </div>
 
       <br>
 
       <label for="ptime">Pick Up Time:</label>
       <div>
-        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime">
+        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" required>
       </div>
 
 
@@ -207,14 +267,14 @@
 
       <label for="ddate">Drop Off Date:</label>
       <div>
-        <input type="date" class="form-control" id="ddate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="ddate">
+        <input type="date" class="form-control" id="EndDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="ddate" required>
       </div>
 
       <br>
 
       <label for="dtime">Drop Off Time:</label>
       <div>
-        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime">
+        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" required>
       </div>
 
 
