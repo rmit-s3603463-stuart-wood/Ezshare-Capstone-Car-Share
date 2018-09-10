@@ -9,7 +9,7 @@ drop database carshare;
 create database if not exists carshare;
 
 use carshare;
-GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'p@ssword';
+GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'password';
 
 create table if not exists customers
 (email varchar(40) NOT NULL,
@@ -78,11 +78,11 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinder Petrol Twin Turbo Intercooled 3.8L','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true);
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinder Petrol Aspirated 3.5L','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, true);
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinder Petrol Aspirated 3.5L','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false);
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinder Diesel Twin Turbo Intercooled 2.3L','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  false, true);
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinder Diesel Twin Turbo Intercooled 2.3L','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  true, false);
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinder Petrol Twin Turbo Intercooled 2.6L','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  false, true);
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinder Petrol Twin Turbo Intercooled 2.6L','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  true, true);
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country)VALUES('chris@gmail.com', 'abc123', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia');
 
