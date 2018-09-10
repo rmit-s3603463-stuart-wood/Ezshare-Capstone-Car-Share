@@ -21,14 +21,14 @@
 		left: 600px;
 		top: 60px;
        }
-	   
-		.container {   
+
+		.container {
 		position: relative;
 		padding-bottom: 20px;
 		}
-		
+
 	@media screen and (max-width: 800px) {
-    .container, #map {   
+    .container, #map {
         width: 100%;
         padding: 0;
     }
@@ -74,9 +74,6 @@
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
 			</script>
 		 </div>
-		<div class="jumbotron text-center" style="margin-bottom:0">
-			<p>Footer</p>
-		</div>
 	</body>
 		<?php include_once('footer.php'); ?>
 </html>

@@ -6,7 +6,7 @@
 		<title>Home</title>
 		<!--
 		bootstrap code provided: https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_carousel&stacked=h
-		
+
 		images provided by these websites:
 		http://www.flightblitz.com/travel/i-htm/
 		https://www.ellaslist.com.au/articles/ellaslist-presents-the-ultimate-road-trip-survival-guide
@@ -15,96 +15,7 @@
 		https://www.shutterstock.com/video/clip-21719824-stock-footage-slow-motion-of-happy-asian-family-on-mini-van-are-smiling-and-preparing-for-travel-on-vacation.html
 		https://www.hellorf.com/video/10486622/similar
 		-->
-		<style>
-		body{
-			background-color: #555;
-		}
-		.container{
-			margin-bottom: 16px;
-		}
-		
-		*{
-			box-sizing: border-box;
-		}
-		
-			#myCarousel{
-				margin-top: 50px;
-			}
-			
-			#info{
-				margin-top: 50px;
-				margin-bottom: 50px;
-				padding: 15px;
-				background-color: white;
-			}
-		
-			#info h2{
-				color: #555;
-				display: inline-block;
-				margin-left: 10px;
-			}
-			.column {
-				position: relative;
-				float: left;
-				width: 33%;
-			}
-			
-			.column img {
-				width: 100%;
-			}
-			.row {
-				margin: 8px -16px;
-			}
-			.row:after {
-				content: "";
-				display: table;
-				clear: both;
-			}
-			
-			.row,
-			.row > .column {
-				padding: 8px;
-			}
-			
-			.content{
-				background-color: white;
-				padding: 10px;
-			}
-			.row:after {
-				content: "";
-				display: table;
-				clear: both;
-			}
 
-			@media screen and (max-width: 600px) {
-				.column {
-					width: 100%;
-				}
-			}
-
-			 .centered {
-				text-align: center;
-				font-size: 20px;
-				font-weight: bold;
-			}
-
-			 .btn {
-				display: flex;
-				justify-content: center;
-				background-color: #555;
-				color: white;
-				font-size: 16px;
-				padding: 12px 24px;
-				border: none;
-				cursor: pointer;
-				border-radius: 5px;
-			}
-
-			.column .btn:hover {
-				background-color: black;
-			}
-			
-		</style>
 	</head>
 	<body>
 		<?php include_once('navbar.php'); ?>
@@ -127,11 +38,11 @@
 				  <div class="carousel-item">
 					<img src="resources\assets\icons\keys.jpg" alt="keys" style="width:100%;">
 				  </div>
-				
+
 				  <div class="carousel-item">
 					<img src="resources\assets\icons\holiday.jpg" alt="holiday" style="width:100%;">
 				  </div>
-				  
+
 						<div class="carousel-item">
 					<img src="resources\assets\icons\suv.jpg" alt="suv" style="width:100%;">
 				  </div>
@@ -174,9 +85,6 @@
 			</div>
 		</div>
 		</div>
-		    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
-    </div>
 	</body>
 	<?php include_once('footer.php'); ?>
 	</html>
