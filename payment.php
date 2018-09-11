@@ -44,11 +44,39 @@
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
+  if ($plocation == "-37.806989|144.963865|17") {
+    $plocation = "RMIT";
+    $plat = "-37.806989";
+    $plong = "144.963865";
+} elseif ($plocation == "-37.885222|145.086158|17") {
+    $plocation = "Chadstone Shopping Centre";
+    $plat = "-37.885222";
+    $plong = "145.086158";
+} else {
+    $plocation = "Melbourne Airport";
+    $plat = "-37.669046";
+    $plong = "144.841049";
+}
+
+
   $ddate1 = $_POST['ddate'];
   $ddate = str_replace('-', '/', $ddate1);
   $dtime = $_POST['dtime'];
   $dlocation = $_POST['dlocation'];
 
+  if ($dlocation == "-37.806989|144.963865|17") {
+    $dlocation = "RMIT";
+    $dlat = "-37.806989";
+    $dlong = "144.963865";
+} elseif ($dlocation == "-37.885222|145.086158|17") {
+    $dlocation = "Chadstone Shopping Centre";
+    $dlat = "-37.885222";
+    $dlong = "145.086158";
+} else {
+    $dlocation = "Melbourne Airport";
+    $dlat = "-37.669046";
+    $dlong = "144.841049";
+}
   ?>
 
 
@@ -56,18 +84,19 @@
       function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
         var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
+        var melbairportLatLng = {lat: -37.669046, lng: 144.841049};
         gestureHandling: 'greedy'
 
         var mapProp1= {
-          center:new google.maps.LatLng(-37.806989,144.963865),
+          center:new google.maps.LatLng(<?php echo $plat; ?>,<?php echo $plong; ?>),
           disableDefaultUI: true,
-          zoom:17,
+          zoom:15,
         };
 
         var mapProp2= {
-          center:new google.maps.LatLng(-37.885222,145.086158),
+          center:new google.maps.LatLng(<?php echo $dlat; ?>,<?php echo $dlong; ?>),
           disableDefaultUI: true,
-          zoom:17,
+          zoom:15,
         };
 
         var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
@@ -82,8 +111,32 @@
 
         var chadstonemarker = new google.maps.Marker({
           position: chadstoneLatLng,
+          map: map1,
+          title: 'chadstone'
+        });
+
+        var melbairportmarker = new google.maps.Marker({
+          position: melbairportLatLng,
+          map: map1,
+          title: 'melbarirport'
+        });
+
+        var rmitmarker = new google.maps.Marker({
+          position: rmitLatLng,
+          map: map2,
+          title: 'rmit'
+        });
+
+        var chadstonemarker = new google.maps.Marker({
+          position: chadstoneLatLng,
           map: map2,
           title: 'chadstone'
+        });
+
+        var melbairportmarker = new google.maps.Marker({
+          position: melbairportLatLng,
+          map: map2,
+          title: 'melbarirport'
         });
       }
 

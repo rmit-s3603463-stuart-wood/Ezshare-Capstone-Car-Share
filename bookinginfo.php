@@ -6,6 +6,13 @@
   <title>Booking</title>
 
 
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
   <?php  include_once('navbar.php');  ?>
@@ -14,39 +21,43 @@
 
 
   <script>
-    function initMap1() {
-      var rmitLatLng = {lat: -37.806989, lng: 144.963865};
-      var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
-      gestureHandling: 'greedy'
 
-      var mapProp1= {
-        center:new google.maps.LatLng(-37.806989,144.963865),
-        disableDefaultUI: true,
-        zoom:17,
-      };
+    var map;
 
-      var mapProp2= {
-        center:new google.maps.LatLng(-37.885222,145.086158),
-        disableDefaultUI: true,
-        zoom:17,
-      };
-
-      var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
-
-      var map2=new google.maps.Map(document.getElementById("map2"),mapProp2);
-
-      var rmitmarker = new google.maps.Marker({
-        position: rmitLatLng,
-        map: map1,
-        title: 'rmit'
+  var markerData= [
+    {lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"},
+    {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
+    {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
+  ];
+   
+  function initialize() {
+      map = new google.maps.Map(document.getElementById('map1'), {
+        zoom: 6,
+        center: {lat: -37.025097, lng: 144.175104}
+      });
+      markerData.forEach(function(data) {
+        var newmarker= new google.maps.Marker({
+          map:map,
+          position:{lat:data.lat, lng:data.lng},
+          title: data.name
+        });
+        jQuery("#selectlocation").append('<option value="'+[data.lat, data.lng,data.zoom].join('|')+'">'+data.name+'</option>');
       });
 
-      var chadstonemarker = new google.maps.Marker({
-        position: chadstoneLatLng,
-        map: map2,
-        title: 'chadstone'
-      });
+  }
 
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  jQuery(document).on('change','#selectlocation',function() {
+    var latlngzoom = jQuery(this).val().split('|');
+    var newzoom = 1*latlngzoom[2],
+    newlat = 1*latlngzoom[0],
+    newlng = 1*latlngzoom[1];
+    map.setZoom(newzoom);
+    map.setCenter({lat:newlat, lng:newlng});
+  });
+
+$(function () {
 
       $("#EndDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
@@ -118,6 +129,13 @@
         document.getElementById("dtime").value = "";
     }
 
+    if (end - start < 1800000) {
+        alert("The minimum time to rent a car is 30 minutes");
+        document.getElementById("dtime").value = "";
+    }
+
+    console.log(end - start);
+
 });
 
       $("#ptime").change(function () {
@@ -138,12 +156,49 @@
     }
 
 });
+      });
+      
+</script>
 
 
+    
+<script>
+  var map2;
 
-    }
+  var markerData2= [
+    {lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"},
+    {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
+    {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
+  ];
+   
+  function initialize() {
+      map2 = new google.maps.Map(document.getElementById('map2'), {
+        zoom: 6,
+        center: {lat: -37.025097, lng: 144.175104}
+      });
+      markerData2.forEach(function(data) {
+        var newmarker= new google.maps.Marker({
+          map:map2,
+          position:{lat:data.lat, lng:data.lng},
+          title: data.name
+        });
+        jQuery("#selectlocation2").append('<option value="'+[data.lat, data.lng,data.zoom].join('|')+'">'+data.name+'</option>');
+      });
+
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  jQuery(document).on('change','#selectlocation2',function() {
+    var latlngzoom = jQuery(this).val().split('|');
+    var newzoom = 1*latlngzoom[2],
+    newlat = 1*latlngzoom[0],
+    newlng = 1*latlngzoom[1];
+    map2.setZoom(newzoom);
+    map2.setCenter({lat:newlat, lng:newlng});
+  });
+  
   </script>
-
   <div class="row">
     <div class="col-75">
       <div class="container">
@@ -274,11 +329,8 @@
 
       <label for="plocation">Pick Up Location</label>
       <div>
-        <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
-          <option selected disabled>Select a Pickup Location</option>
-          <option value="Melbourne Airport">Melbourne Airport</option>
-          <option value="Chadstone">Chadstone</option>
-          <option value="Melbourne CBD">Melbourne CBD</option>
+        <select class="custom-select mr-sm-2" id="selectlocation" name="plocation" form="form">
+          <option value="10|10|3">Please select a Pick Up point</option>
         </select>
       </div>
 
@@ -314,11 +366,8 @@
 
       <label for="dlocation">Drop Off Location</label>
       <div>
-        <select class="custom-select mr-sm-2" name="dlocation" form="form">
-          <option selected disabled>Select a Drop off Location</option>
-          <option value="Melbourne Airport">Melbourne Airport</option>
-          <option value="Chadstone">Chadstone</option>
-          <option value="Melbourne CBD">Melbourne CBD</option>
+        <select class="custom-select mr-sm-2" id="selectlocation2" name="dlocation" form="form">
+          <option value="10|10|3">Please select a Drop Off point</option>
         </select>
       </div>
 
