@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="cssHome.css">
+		
 		<?php include_once('head.php'); ?>
 		<title>Home</title>
 		<!--

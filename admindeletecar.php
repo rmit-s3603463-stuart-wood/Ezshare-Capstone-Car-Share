@@ -1,5 +1,4 @@
 <?php include_once('head.php'); ?>
-<?php include('addcar.php'); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,42 +11,8 @@
       <script src="css/card-js.min.js"></script>
   </head>
   <body>
-    <?php  include_once('navbar.php');  ?>
-    <div class="container">
-        <h2>Add a Car</h2>
-        <form action="addremovecar.php" method="post" name="addcar" role="form">
-			<?php include('errors.php'); ?>
-            <label for="rego">Registration</label><input type="text" id="rego" name="rego">
-            
-			<label for="model">Car Model</label><input type="text" id="model" name="model">
-                           
-            <label  for="make">Make</label><input type="text" id="make" name="make">
-                            
-            <label  for="year">Year</label><input type="number" id="year" name="year">
-                          
-            <label for="tier">Car Tier</label><input type="number" id="tier" name="tier">
-                   
-            <label for="seatNo">Number Of Seats</label><input type="number" id="seatNo" name="seatNo">
-                            
-            <label for="engine">Engine</label><input type="text"id="engine" name="engine">
-                             
-            <label for="price">Price</label><input type="number" id="price" name="price">
-                      
-			<label for="carImage">Car Image</label><input type="file" id="carPic" name="carPic">
-			
-            <label  for="stationName">Station Name</label><input type="text" id="stationName" name="stationName">
-                      					
-			<label for="carCords">carCords</label><input type="text" id="carCords" name="carCords">
-								
-			<label for="booked">Is the car booked</label><input type="text" id="booked" name="booked">
-								
-			<label for="availability">availability</label><input type="text" id="availability" name="availability">
-            
-			<button type="submit" class="btn" name="add_car">Add Car</button>
-        </form>
-	</div>
-
-    <div class="container">
+    <?php  include_once('navbar.php');  ?>    
+	<div class="container">
         <h2>Delete a Car</h2>
 		<input type="text" id="myInput" onkeyup="searchRego()" placeholder="Search for registration.." title="Type in a registration">
         <table id="myTable">
@@ -63,7 +28,7 @@
 				<th style="width:10%;"></th>
 			</tr>
             <?php
-			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT rego, model, make, year, tier, seatNo, engine, price FROM cars";
             
 			$results = mysqli_query($con, $sq);
@@ -105,6 +70,5 @@
 			}
 		}
 	</script>
-    </body>
-    <?php include_once('footer.php');?>
+	</body>
 </html>

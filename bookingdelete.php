@@ -1,46 +1,53 @@
-
+<?php include_once('head.php'); ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include_once('head.php'); ?>
 		<link rel="stylesheet" type="text/css" href="cssBookingDelete.css">
 </head>
 <body>
 		<?php include_once('navbar.php'); ?>
-
+		
 		<div class="container">
-
+		
 		<h1 class = "text-center">Delete Booking</h1>
 <input type="text" id="myInput" onkeyup="searchRego()" placeholder="Search for registration.." title="Type in a registration">
 <input type="text" id="myInput2" onkeyup="searchEmail()" placeholder="Search for Email.." title="Type in a email">
 
 <table id="myTable">
   <tr class="header">
-    <th style="width:20%;">Booking ID</th>
+    <th style="width:10%;">Booking ID</th>
     <th style="width:10%;">Registration</th>
-	<th style="width:30%;">Email</th>
-	<th style="width:15%;">date booked</th>
-	<th style="width:15%;">time booked</th>
-	<th style="width:10%;"></th>
+	<th style="width:20%;">Email</th>
+	<th style="width:10%;">Date booked</th>
+	<th style="width:10%;">Time booked</th>
+	<th style="width:10%;">Hours booked</th>
+	<th style="width:5%;">Total price</th>
+	<th style="width:10%;">Pickup location</th>
+	<th style="width:10%;">Return location</th>
+	<th style="width:5%;"></th>
   </tr>
   <tr>
         <?php
 
 			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
-            $sq = "SELECT bookingID, rego, email, dateBooked, timeBooked FROM booking";
-
+            $sq = "SELECT * FROM booking";
+            
             $results = mysqli_query($con, $sq);
-
+            
             while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
             {
-            print "<tr>\n";
-            print "<td>{$row['bookingID']}</td>\n";
-            print "<td>{$row['rego']}</td>\n";
-            print "<td>{$row['email']}</td>\n";
-            print "<td>{$row['dateBooked']}</td>\n";
-            print "<td>{$row['timeBooked']}</td>\n";
-			print "<td><a href=bookingdeleteprocess.php?bookingID=".$row['bookingID'].">Delete</a></td>";
-            print "</tr>\n";
+            echo "<tr>\n";
+            echo "<td>{$row['bookingID']}</td>\n";
+            echo "<td>{$row['rego']}</td>\n";
+            echo "<td>{$row['email']}</td>\n";
+            echo "<td>{$row['dateBooked']}</td>\n";
+            echo "<td>{$row['timeBooked']}</td>\n";
+			echo "<td>{$row['hoursBooked']}</td>\n";
+			echo "<td>{$row['totalPrice']}</td>\n";
+			echo "<td>{$row['pickupLocation']}</td>\n";
+			echo "<td>{$row['returnLocation']}</td>\n";
+			echo "<td><a href=bookingdeleteprocess.php?bookingID=".$row['bookingID'].">Delete</a></td>";
+            echo "</tr>\n";
             }
 			?>
   </tr>
@@ -61,7 +68,7 @@ function searchRego() {
       } else {
         tr[i].style.display = "none";
       }
-    }
+    }       
   }
 }
 
@@ -79,36 +86,10 @@ function searchEmail() {
       } else {
         tr[i].style.display = "none";
       }
-    }
+    }       
   }
 }
-
-function btnalert() {
-	alert("item deleted");
-}
 </script>
-
-
-        <?php
-		/*
-			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
-            $sq = "SELECT bookingID, rego, email, dateBooked, timeBooked FROM booking";
-
-            $results = mysqli_query($con, $sq);
-
-            while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
-            {
-            print "<tr>\n";
-            print "<td>{$row['bookingID']}</td>\n";
-            print "<td>{$row['rego']}</td>\n";
-            print "<td>{$row['email']}</td>\n";
-            print "<td>{$row['dateBooked']}</td>\n";
-            print "<td>{$row['timeBooked']}</td>\n";
-			print "<td><a href=bookingdeleteprocess.php?bookingID=".$row['bookingID'].">Delete</a></td>";
-            print "</tr>\n";
-            }
-			*/
-		?>
 </div>
     <div class="jumbotron text-center" style="margin-bottom:0">
       <p>Footer</p>

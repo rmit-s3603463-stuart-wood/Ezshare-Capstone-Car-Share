@@ -27,7 +27,7 @@
         padding: 8px 12px;
       }
     </style>
-
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
@@ -56,6 +56,7 @@
       function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
         var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
+        gestureHandling: 'greedy'
 
         var mapProp1= {
           center:new google.maps.LatLng(-37.806989,144.963865),
@@ -354,8 +355,6 @@
 
           <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
-
-
 
           <?php include_once('footer.php');
           ?>
