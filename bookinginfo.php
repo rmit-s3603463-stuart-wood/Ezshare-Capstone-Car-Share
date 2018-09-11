@@ -72,6 +72,8 @@
 
 
       $("#dtime").change(function () {
+    var startDate = document.getElementById("StartDate").value;
+    var endDate = document.getElementById("EndDate").value;
     var startTime = document.getElementById("ptime").value;
     var endTime = document.getElementById("dtime").value;
 
@@ -80,8 +82,14 @@
 
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
+
+    console.log("Time1: "+ start + " Time2: " + end);
+
+    console.log(startDate);
+
+    console.log(endDate);
  
-    if ((startTime = endTime) && (start > end)) {
+    if (startDate == endDate && start > end) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("dtime").value = "";
     }
@@ -89,6 +97,8 @@
 });
 
       $("#ptime").change(function () {
+    var startDate = document.getElementById("StartDate").value;
+    var endDate = document.getElementById("EndDate").value;
     var startTime = document.getElementById("ptime").value;
     var endTime = document.getElementById("dtime").value;
 
@@ -100,7 +110,7 @@
 
     console.log("Time1: "+ start + " Time2: " + end);
  
-    if ((startTime = endTime) && (start > end)) {
+    if (startDate == endDate && start > end) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("ptime").value = "";
     }
