@@ -51,6 +51,21 @@
       $("#EndDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
     var endDate = document.getElementById("EndDate").value;
+
+    var startTime = document.getElementById("ptime").value;
+    var endTime = document.getElementById("dtime").value;
+
+    var start = new Date("November 13, 2013 " + startTime);
+    start = start.getTime();
+
+    var end = new Date("November 13, 2013 " + endTime);
+    end = end.getTime();
+ 
+    if (startDate == endDate && start > end) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("dtime").value = "";
+        document.getElementById("ptime").value = "";
+      }
  
     if ((Date.parse(endDate) < Date.parse(startDate))) {
         alert("Drop off date should be greater than pick up date");
@@ -62,6 +77,21 @@
       $("#StartDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
     var endDate = document.getElementById("EndDate").value;
+
+    var startTime = document.getElementById("ptime").value;
+    var endTime = document.getElementById("dtime").value;
+
+    var start = new Date("November 13, 2013 " + startTime);
+    start = start.getTime();
+
+    var end = new Date("November 13, 2013 " + endTime);
+    end = end.getTime();
+ 
+    if (startDate == endDate && start > end) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("dtime").value = "";
+        document.getElementById("ptime").value = "";
+      }
  
     if ((Date.parse(startDate) > Date.parse(endDate))) {
         alert("Drop off date should be greater than pick up date");
@@ -82,12 +112,6 @@
 
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
-
-    console.log("Time1: "+ start + " Time2: " + end);
-
-    console.log(startDate);
-
-    console.log(endDate);
  
     if (startDate == endDate && start > end) {
         alert("Drop off time should be greater than pick up time");
@@ -107,8 +131,6 @@
 
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
-
-    console.log("Time1: "+ start + " Time2: " + end);
  
     if (startDate == endDate && start > end) {
         alert("Drop off time should be greater than pick up time");
