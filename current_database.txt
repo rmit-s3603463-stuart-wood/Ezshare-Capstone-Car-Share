@@ -9,7 +9,7 @@ drop database carshare;
 create database if not exists carshare;
 
 use carshare;
-GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'p@ssword';
+GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'password';
 
 create table if not exists customers
 (email varchar(40) NOT NULL,
