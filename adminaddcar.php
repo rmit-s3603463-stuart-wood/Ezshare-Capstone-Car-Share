@@ -1,5 +1,70 @@
-<?php include_once('head.php'); ?>
-<?php include('addcar.php'); ?>
+<?php include('head.php');
+
+// Add Car
+if (isset($_POST['submit'])) {
+  // receive all input values from the form
+  $rego = $_POST['rego'];
+  $model = $_POST['model'];
+  $make = $_POST['make'];
+  $year = $_POST['year'];
+  $tier = $_POST['tier'];
+  $seatNo = $_POST['seatNo'];
+  $engine = $_POST['engine'];
+  $price = $_POST['price'];
+  $target = "resources/assets/icons/".basename($_FILES['carPic']['name']);
+  $carPic = $_FILES['carPic']['name'];
+  $stationName = $_POST['stationName'];
+if($stationName = 'RMIT')
+  {
+	$carCords = '-37.817644, 144.966933';
+  }elseif($stationName = 'Melbourne Airport'){
+	$carCords = '-37.669491, 144.851685';
+  }elseif($stationName ='Chadstone'){
+	$carCords = '-37.885222, 145.086158';
+  }
+  $booked = true;
+  $availability = true; 
+
+  // first check the database to make sure
+  // a car does not already exist with the same rego
+  $car_check_query = "SELECT * FROM cars WHERE  rego='$rego' LIMIT 1";
+  $result = mysqli_query($conn, $car_check_query);
+  $car = mysqli_fetch_assoc($result);
+  if ($car) { // if user exists
+    if ($car['rego'] === $rego) {
+      echo "rego is already being used! Try another";
+    }
+  }
+$servername = "localhost";
+$username = "Admin";
+$password = "password";
+$dbname = "carshare";
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+// Check connection
+if ($conn->connect_error) {
+   die("Database Connection failed: " . $conn->connect_error);
+}
+$query = "INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)
+  			  VALUES ('$rego', '$model', '$make', '$year', '$tier', '$seatNo', '$engine', '$price', '$carPic', '$stationName', '$carCords', '$booked', '$availability')";
+	
+			  mysqli_query($conn, $query);
+			  if(mysqli_query($conn, $query))
+			  {
+				echo"car has been added to the database";
+			  }else{
+				  echo"car has not been added to the database";
+			  }
+			  
+	if(move_uploaded_file($_FILES['carPic']['tmp_name'], $target))
+	{
+		echo"image uploaded successfully";
+	}else{
+		die("Error: {$conn->errno} : {$conn->error}");
+		echo"your image has not been uploaded!";
+	}
+}
+  ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +81,7 @@
     <div class="container">
         <h2>Add a Car</h2>
         <form method="post" enctype="multipart/form-data" action="adminaddcar.php" name="addcar" role="form">
-			<?php include('errors.php'); ?>
+			
             <label for="rego">Registration</label><input type="text" id="rego" name="rego" placeholder="Please provide registration">
             
 			<label for="model">Car Model</label><input type="text" id="model" name="model" placeholder="Please provide car model">
@@ -53,7 +118,7 @@
 															<option value="Chadstone">Chadstone</option>
 														  </select>
             
-			<button type="submit" class="btn" name="add_car">Add Car</button>
+			<button type="submit" class="btn" name="submit">Add Car</button>
         </form>
 	</div>
     </body>
