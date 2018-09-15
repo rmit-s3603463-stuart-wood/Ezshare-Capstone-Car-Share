@@ -79,6 +79,10 @@
 }
   ?>
 
+  <?php $query = "INSERT INTO booking (rego, email, dateBooked, timeBooked, hoursBooked, returnLocation, pickupLocation)
+          VALUES ('SED123', 'chris@gmail.com', '20/08/2018', '14:30', '2', 'Chadstone', 'RMIT')";
+    mysqli_query($conn, $query); ?>
+
 
     <script>
       function initMap1() {
@@ -461,7 +465,8 @@
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
-                  window.alert('Payment Complete!');
+                  <?php $query = "INSERT INTO booking (bookingID, rego, email, dateBooked, timeBooked, hoursBooked, returnLocation, pickupLocation)
+          VALUES ('plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation')"; ?>
                 });
               }
 
