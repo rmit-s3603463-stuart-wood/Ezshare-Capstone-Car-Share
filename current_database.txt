@@ -1,0 +1,89 @@
+select * from booking;
+select * from cars;
+select * from customers;
+select * from station;
+drop database carshare;
+--------------------------------------
+
+
+create database if not exists carshare;
+
+use carshare;
+GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'password';
+
+create table if not exists customers
+(email varchar(40) NOT NULL,
+password varchar(200),
+firstName varchar(25),
+lastName varchar(25),
+phone varchar(20),
+dateOfBirth varchar(20),
+street varchar(50),
+suburb varchar(30),
+state varchar(20),
+postcode varchar(20),
+country varchar(20),
+PRIMARY KEY (email)
+);
+
+create table if not exists station(
+	cords varchar(200),
+	stationName varchar(150),
+	PRIMARY KEY (stationName)
+);
+
+create table if not exists cars(
+	rego varchar(35) NOT NULL,
+	model varchar(35),
+	make varchar(35),
+	year varchar(25),
+	tier varchar(25),
+	seatNo varchar(25),
+	engine varchar(50),
+	price varchar(50),
+	carPic  varchar(150),
+	stationName varchar(100),
+	carCords varchar(200),
+	booked boolean,
+	availability boolean,
+	PRIMARY KEY (rego),
+	FOREIGN KEY (stationName) REFERENCES station(stationName)
+);
+
+create table if not exists booking(
+	bookingID varchar(50) NOT NULL,
+	rego varchar(35),
+	email varchar(200),
+	dateBooked varchar(75),
+	timeBooked varchar(75),
+	hoursBooked varchar(75),
+	totalPrice varchar(75),
+	returnLocation varchar(200),
+	pickupLocation varchar(200),
+	PRIMARY KEY (bookingID),
+	FOREIGN KEY (email) REFERENCES customers(email),
+	FOREIGN KEY (rego) REFERENCES cars(rego),
+	FOREIGN KEY (pickupLocation) REFERENCES station(stationName),
+	FOREIGN KEY (returnLocation) REFERENCES station(stationName)
+);
+
+
+INSERT INTO station (cords, stationName)VALUES('-37.817644, 144.966933','RMIT');
+INSERT INTO station (cords, stationName)VALUES('-37.669491, 144.851685','Melbourne Airport');
+INSERT INTO station (cords, stationName)VALUES('-37.885222, 145.086158','Chadstone');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinder Petrol Aspirated 1.8L','35','sedan.jpg','RMIT','-37.817644, 144.966933',  false, true);
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinder Petrol Aspirated 5.6L','50','4wd.jpg','Melbourne Airport','-37.669491, 144.851685',  false, true);
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinder Petrol Twin Turbo Intercooled 3.8L','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true);
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinder Petrol Aspirated 3.5L','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false);
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinder Diesel Twin Turbo Intercooled 2.3L','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  true, false);
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinder Petrol Twin Turbo Intercooled 2.6L','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  true, true);
+
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country)VALUES('chris@gmail.com', 'abc123', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia');
+
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT');
