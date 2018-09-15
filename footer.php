@@ -5,7 +5,7 @@
   <footer class="page-footer font-small special-color-dark pt-4">
   <link href="footerCSS.css" rel="stylesheet" type="text/css" />
       <!-- Footer Elements -->
-      <div class="container">
+      <div class="container1">
 
         <!-- Social buttons -->
         <ul class="list-unstyled list-inline text-center">

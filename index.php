@@ -39,6 +39,7 @@
            */
 
           //Custom Button
+
           window.lat= -34.39;
           window.lng= 150.644;
           function getLocation() {
@@ -303,6 +304,7 @@
                   controlDiv.appendChild(controlUI);
 
                   // Set CSS for the control interior.
+
                   var controlText = document.createElement('div');
                   controlText.style.color = 'rgb(25,25,25)';
                   controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
@@ -318,12 +320,17 @@
                      map.setCenter(closestMarker.position);
                    });
 
+
                  }
+
 
                  </script>
                  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
                  <script async defer
+
                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initialize">
+
+
                </script>
                <script src="oms.min.js"></script>
                <script src="markerclusterer.min.js"></script>

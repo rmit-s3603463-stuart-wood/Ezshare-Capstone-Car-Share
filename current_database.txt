@@ -56,7 +56,9 @@ create table if not exists cars(
 );
 
 create table if not exists booking(
-	bookingID varchar(50) NOT NULL,
+
+	bookingID int(50) NOT NULL,
+
 	rego varchar(35),
 	email varchar(200),
 	dateBooked varchar(75),
@@ -78,6 +80,7 @@ INSERT INTO station (cords, stationName)VALUES('-37.669491, 144.851685','Melbour
 INSERT INTO station (cords, stationName)VALUES('-37.885222, 145.086158','Chadstone');
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinder Petrol Aspirated 1.8L','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','0', 'chris@gmail.com');
+
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinder Petrol Aspirated 5.6L','50','4wd.jpg','Melbourne Airport','-37.669491, 144.851685',  false, true,'20000','0', 'Null');
 
