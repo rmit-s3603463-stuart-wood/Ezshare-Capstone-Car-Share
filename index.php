@@ -253,7 +253,7 @@
 
           setInterval(function() {
             pubnub.publish({channel:pnChannel, message:currentLocation()});
-          }, 5000);
+          }, 10000);
 
           function rad(x) {return x*Math.PI/180;}
           function find_closest_marker(  markArr,userlat,userlng,map ) {

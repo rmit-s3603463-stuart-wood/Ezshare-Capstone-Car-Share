@@ -12,6 +12,7 @@ if ($conn->connect_error) {
 
 $currkm = $_GET['currkm'];
 $Rego = $_GET['carRego'];
+
 //GET COORDS FROM DATABASE
       $sql = "UPDATE cars SET journeykm='".$currkm."'WHERE rego ='".$Rego."'";
 
