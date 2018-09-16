@@ -69,7 +69,7 @@
       var markerLoc =[];
       var carRego = [];
       var currDriver = [];
-
+      var totalkm = [];
       var initialize = function() {
         map  = new google.maps.Map(document.getElementById('map'),
          {center:{lat:lat,lng:lng},
@@ -156,6 +156,10 @@
                           $rego=$row["rego"];
                           $rego=json_encode($rego,JSON_UNESCAPED_SLASHES);
                           echo "carRego.push($rego);";
+
+                          $totalkm=$row["totalkm"];
+                          $totalkm=json_encode($totalkm,JSON_UNESCAPED_SLASHES);
+                          echo "totalkm.push($totalkm);";
 
                           $currDriver=$row["currDriver"];
                           $currDriver=json_encode($currDriver,JSON_UNESCAPED_SLASHES);
@@ -305,7 +309,9 @@
                setDistance(currkm,carRego[i]);
                document.getElementById("car"+[i]).innerHTML = carRego[i];
                document.getElementById("jKm"+[i]).innerHTML = currkm +" km";
+               document.getElementById("tKm"+[i]).innerHTML = totalkm[i] +" km";
                document.getElementById("email"+[i]).innerHTML = currDriver[i];
+
                //document.write(currkm);
                if(i==1){
                  markArr[i].setPosition(templatlngTEST);
@@ -419,14 +425,14 @@
 
                  <table class="table">
                    <tbody>
-                   <tr><th class="table-active">Car: </th><th class="table-active">Current Journey km: </th><th class="table-active">Booked By: </th></tr>
-                   <tr><td id="car0"></td><td id="jKm0"></td><td id="email0"></td></tr>
-                   <tr><td id="car1"></td><td id="jKm1"></td><td id="email1"></td></tr>
-                   <tr><td id="car2"></td><td id="jKm2"></td><td id="email2"></td></tr>
-                   <tr><td id="car3"></td><td id="jKm3"></td><td id="email3"></td></tr>
-                   <tr><td id="car4"></td><td id="jKm4"></td><td id="email4"></td></tr>
-                   <tr><td id="car5"></td><td id="jKm5"></td><td id="email5"></td></tr>
-                   <tr><td id="car6"></td><td id="jKm6"></td><td id="email6"></td></tr>
+                   <tr><th class="table-active">Car: </th><th class="table-active">Current Journey km: </th><th class="table-active">Total km traveled: </th><th class="table-active">Booked By: </th></tr>
+                   <tr><td id="car0"></td><td id="jKm0"></td><td id="tKm0"></td><td id="email0"></td></tr>
+                   <tr><td id="car1"></td><td id="jKm1"></td><td id="tKm1"></td><td id="email1"></td></tr>
+                   <tr><td id="car2"></td><td id="jKm2"></td><td id="tKm2"></td><td id="email2"></td></tr>
+                   <tr><td id="car3"></td><td id="jKm3"></td><td id="tKm3"></td><td id="email3"></td></tr>
+                   <tr><td id="car4"></td><td id="jKm4"></td><td id="tKm4"></td><td id="email4"></td></tr>
+                   <tr><td id="car5"></td><td id="jKm5"></td><td id="tKm5"></td><td id="email5"></td></tr>
+                   <tr><td id="car6"></td><td id="jKm6"></td><td id="tKm6"></td><td id="email6"></td></tr>
                  </tbody>
                  </table>
 
