@@ -65,7 +65,8 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
-    $query = "INSERT INTO customers (email, password, firstName, lastName, phone, dateOfBirth, street, suburb, state, postcode, country,isAdmin)
+
+  	$query = "INSERT INTO customers (email, password, firstName, lastName, phone, dateOfBirth, street, suburb, state, postcode, country,isAdmin)
                 VALUES ('$email', '$password', '$firstName', '$lastName', '$phone', '$dateOfBirth', '$street', '$suburb', '$state', '$postcode', '$country','0')";
 
   	mysqli_query($conn, $query);

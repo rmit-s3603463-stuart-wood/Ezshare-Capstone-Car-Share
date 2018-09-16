@@ -191,7 +191,13 @@ $(function () {
             <div class = "centerform">
 
               <?php
-              $errors = array();
+
+  $email = $_SESSION["email"];
+  $sql = "SELECT * FROM customers WHERE email= '".$email."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+
 
                       if (isset($_SESSION["email"])){
                         $userEmail = $_SESSION['email'];
