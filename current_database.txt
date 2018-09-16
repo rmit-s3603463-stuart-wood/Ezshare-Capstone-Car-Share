@@ -58,7 +58,6 @@ create table if not exists cars(
 create table if not exists booking(
 
 	bookingID int(50) NOT NULL,
-
 	rego varchar(35),
 	email varchar(200),
 	dateBooked varchar(75),
@@ -67,6 +66,7 @@ create table if not exists booking(
 	totalPrice varchar(75),
 	returnLocation varchar(200),
 	pickupLocation varchar(200),
+	completed boolean,
 	PRIMARY KEY (bookingID),
 	FOREIGN KEY (email) REFERENCES customers(email),
 	FOREIGN KEY (rego) REFERENCES cars(rego),
@@ -98,4 +98,6 @@ INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, stre
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('john@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'John', 'Wick','0234769345','15/4/1980','4 Swanston Street', 'CBD', 'VIC', '3006', 'Australia', false);
 
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT');
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT', true);
+
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED123','chris@gmail.com','20/08/2018','16:30','2','300','RMIT','Chadstone', false);

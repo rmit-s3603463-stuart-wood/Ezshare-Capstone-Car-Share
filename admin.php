@@ -280,11 +280,6 @@
                var temparray = markLoc[i].split(",");
                var templat = parseFloat(temparray[0]);
                var templng = parseFloat(temparray[1]);
-
-               var kmlat = markArr[i].getPosition().lat();
-               var kmlng = markArr[i].getPosition().lng();
-               var kmlatlng = new google.maps.LatLng(kmlat, kmlng);
-
                var templatTEST = parseFloat(temparray[0]);
                var templngTEST = parseFloat(temparray[1]);
 
@@ -294,7 +289,15 @@
               // document.write(templat +" " +templng+ "------ ");
                var templatlng= new google.maps.LatLng(templat, templng);
                var templatlngTEST= new google.maps.LatLng(templatTEST, templngTEST);
-               currkm = google.maps.geometry.spherical.computeDistanceBetween(templatlng,kmlatlng);
+
+               var kmlat = markArr[i].getPosition().lat();
+               var kmlng = markArr[i].getPosition().lng();
+               var kmlatlng = new google.maps.LatLng(kmlat, kmlng);
+               if(i==1){
+                 currkm = google.maps.geometry.spherical.computeDistanceBetween(templatlngTEST,kmlatlng);
+               }else{
+                 currkm = google.maps.geometry.spherical.computeDistanceBetween(templatlng,kmlatlng);
+               }
                if(x!=0){
                  currkm = currkm/1000;
                }
