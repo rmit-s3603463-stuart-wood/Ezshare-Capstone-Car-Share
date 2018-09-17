@@ -6,7 +6,7 @@
   <title>CarList</title>
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
-
+      
       <link rel="stylesheet" href="css/card.css">
       <link href="css/card-js.min.css" rel="stylesheet" type="text/css" />
       <script src="css/card-js.min.js"></script>
@@ -18,31 +18,31 @@
         <form action="addremovecar.php" method="post" name="addcar" role="form">
 			<?php include('errors.php'); ?>
             <label for="rego">Registration</label><input type="text" id="rego" name="rego">
-
+            
 			<label for="model">Car Model</label><input type="text" id="model" name="model">
-
+                           
             <label  for="make">Make</label><input type="text" id="make" name="make">
-
+                            
             <label  for="year">Year</label><input type="number" id="year" name="year">
-
+                          
             <label for="tier">Car Tier</label><input type="number" id="tier" name="tier">
-
+                   
             <label for="seatNo">Number Of Seats</label><input type="number" id="seatNo" name="seatNo">
-
+                            
             <label for="engine">Engine</label><input type="text"id="engine" name="engine">
-
+                             
             <label for="price">Price</label><input type="number" id="price" name="price">
-
+                      
 			<label for="carImage">Car Image</label><input type="file" id="carPic" name="carPic">
-
+			
             <label  for="stationName">Station Name</label><input type="text" id="stationName" name="stationName">
-
+                      					
 			<label for="carCords">carCords</label><input type="text" id="carCords" name="carCords">
-
+								
 			<label for="booked">Is the car booked</label><input type="text" id="booked" name="booked">
-
+								
 			<label for="availability">availability</label><input type="text" id="availability" name="availability">
-
+            
 			<button type="submit" class="btn" name="add_car">Add Car</button>
         </form>
 	</div>
@@ -65,9 +65,9 @@
             <?php
 			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT rego, model, make, year, tier, seatNo, engine, price FROM cars";
-
+            
 			$results = mysqli_query($con, $sq);
-
+            
 			while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
 			{
 				print "<tr>\n";
@@ -85,7 +85,7 @@
 			?>
         </table>
     </div>
-
+				
 	<script>
 		function searchRego() {
 		var input, filter, table, tr, td, i;
@@ -101,7 +101,7 @@
 				} else {
 					tr[i].style.display = "none";
 				}
-				}
+				} 	      
 			}
 		}
 	</script>

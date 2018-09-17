@@ -2,7 +2,7 @@
 	$bookingID = $_GET['bookingID'];
 
 
-$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
+$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
 
 $sql = "DELETE FROM booking WHERE bookingID = $bookingID";
 
