@@ -224,6 +224,7 @@ $(function () {
                       } else {
                         echo "0 results";
                       }
+                      }
 
 
 }else{
@@ -287,6 +288,7 @@ $(function () {
             <?php
                     if (isset($_POST['bookRego'])){
                       $carRego = $_POST['bookRego'];
+                      $_SESSION['bookRego'] = $carRego;
 
                       $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
                       $result = $conn->query($sql);
