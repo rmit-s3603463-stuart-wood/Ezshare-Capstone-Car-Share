@@ -224,6 +224,7 @@ $(function () {
                       } else {
                         echo "0 results";
                       }
+                      }
 
 
 }else{
