@@ -18,17 +18,44 @@
   <?php  include_once('navbar.php');  ?>
   <?php require 'db_conn.php';?>
 
+        <?php
 
+if (isset($_POST['bookRego'])){
+  $carRego = $_POST['bookRego'];
+
+  $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+
+   while($row = $result->fetch_assoc()) {
+     //cycles through the entire query result, one row at a time
+    $stationName = $row["stationName"];
+    
+  }
+} else {
+  echo "0 results";
+}
+}
+
+
+ ?>
 
   <script>
 
     var map;
+  var stationName = "<?php echo $stationName; ?>";
 
-  var markerData= [
-    {lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"},
-    {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
-    {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
-  ];
+  if (stationName == "Chadstone") {
+    var markerData = [{lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"}];
+} else if (stationName == "RMIT") {
+    var markerData = [{lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"}];
+} else  {
+    var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"}];
+}
+
+
+  
    
   function initialize() {
       map = new google.maps.Map(document.getElementById('map1'), {
@@ -341,34 +368,11 @@ $(function () {
       <label for="plocation">Pick Up Location</label>
       <div>
 
-        <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
-          <option selected disabled>Select a Pickup Location</option>
-<?php
+        <select class="custom-select mr-sm-2" id="selectlocation" name="plocation" form="form">
 
-if (isset($_POST['bookRego'])){
-  $carRego = $_POST['bookRego'];
-
-  $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-  // output data of each row
-
-   while($row = $result->fetch_assoc()) {
-     //cycles through the entire query result, one row at a time
-    echo '<option value="'.$row["stationName"].'">'.$row["stationName"].'</option>';
-  }
-} else {
-  echo "0 results";
-}
-}else{
-  echo '<option value="error">You must choose a car via the map!</option>';
-  array_push($errors, "Invalid page access!");
-}
-
-
- ?>
 
         </select>
+
       </div>
 
       <div id="map1" style="width:100%;height:150px;"></div>
@@ -387,7 +391,7 @@ if (isset($_POST['bookRego'])){
       <br>
 
       <label for="ddate">Drop Off Date:</label>
-      <div>
+ row     <div>
         <input type="date" class="form-control" id="EndDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="ddate" required>
       </div>
 

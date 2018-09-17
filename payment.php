@@ -44,11 +44,11 @@
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
-  if ($plocation == "-37.806989|144.963865|17") {
+  if ($plocation == "-37.806989|144.963865|17" or $plocation == "RMIT") {
     $plocation = "RMIT";
     $plat = "-37.806989";
     $plong = "144.963865";
-} elseif ($plocation == "-37.885222|145.086158|17") {
+} elseif ($plocation == "-37.885222|145.086158|17" or $plocation == "Chadstone") {
     $plocation = "Chadstone";
     $plat = "-37.885222";
     $plong = "145.086158";
