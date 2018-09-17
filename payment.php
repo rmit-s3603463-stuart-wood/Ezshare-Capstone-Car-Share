@@ -225,7 +225,8 @@
 
 
                     <?php
-  $sql = "SELECT * FROM cars WHERE Rego='SED123'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                    $bookRego = $_SESSION['bookRego'];
+  $sql = "SELECT * FROM cars WHERE Rego='".$bookRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
   // output data of each row
