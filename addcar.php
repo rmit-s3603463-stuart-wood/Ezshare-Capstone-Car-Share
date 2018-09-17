@@ -10,7 +10,6 @@ $tier ="";
 $seatNo ="";
 $engine ="";
 $price ="";
-$carPic ="";
 $stationName ="";
 $carCords ="";
 $booked ="";
@@ -18,32 +17,52 @@ $availability ="";
 $errors = array();
 echo "done 1";
 
-// REGISTER USER
+// Add Car
 if (isset($_POST['add_car'])) {
+	echo "hihiihihhihi";
   // receive all input values from the form
   $rego = mysqli_real_escape_string($conn, $_POST['rego']);
+  echo" $rego";
   $model =  mysqli_real_escape_string($conn,$_POST['model']);
+  echo" $model";
   $make = mysqli_real_escape_string($conn, $_POST['make']);
+  echo" $make";
   $year = mysqli_real_escape_string($conn, $_POST['year']);
+  echo" $year";
   $tier = mysqli_real_escape_string($conn, $_POST['tier']);
+  echo" $tier";
   $seatNo = mysqli_real_escape_string($conn, $_POST['seatNo']);
+  echo" $seatNo";
   $engine = mysqli_real_escape_string($conn, $_POST['engine']);
+  echo" $engine";
   $price = mysqli_real_escape_string($conn, $_POST['price']);
-  $carPic = mysqli_real_escape_string($conn, $_FILES['carPic']);
-  $location = $_FILES['carPic'];
+  echo" $price";
+  $carPic = $_FILES['carPic']['name'];
+  $tmp_name = $_FILES['carPic']['tmp_name'];
+  echo" $carPic";
   $stationName = mysqli_real_escape_string($conn, $_POST['stationName']);
-  $carCords = mysqli_real_escape_string($conn, $_POST['carCords']);
-  $booked = mysqli_real_escape_string($conn, $_POST['booked']);
-  $availability = mysqli_real_escape_string($conn, $_POST['availability']);
-
-  move_uploaded_file($location, "resources/assets/icons/$carPic");
+if($stationName = 'RMIT')
+  {
+	$carCords = '-37.817644, 144.966933';
+  }elseif($stationName = 'Melbourne Airport'){
+	$carCords = '-37.669491, 144.851685';
+  }elseif($stationName ='Chadstone'){
+	$carCords = '-37.885222, 145.086158';
+  }
+  echo" $stationName";
+  echo" $carCords";
+  $booked = 'false';
+  echo" $booked";
+  $availability = 'true'; 
+  echo" $availability";
+  
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($rego)) { array_push($errors, "rego is required"); }
-  if (empty($model)) { array_push($errors, "First name is required"); }
-  if (empty($make)) { array_push($errors, "Last name is required"); }
+  if (empty($model)) { array_push($errors, "car model is required"); }
+  if (empty($make)) { array_push($errors, "car make is required"); }
   if (empty($year)) { array_push($errors, "year number is required"); }
-  if (empty($tier)) { array_push($errors, "Date of birth is required"); }
+  if (empty($tier)) { array_push($errors, "car tier is required"); }
   if (empty($seatNo)) { array_push($errors, "seatNo name is required"); }
   if (empty($engine)) { array_push($errors, "engine is required"); }
   if (empty($price)) { array_push($errors, "price is required"); }
@@ -53,10 +72,9 @@ if (isset($_POST['add_car'])) {
   if (empty($booked)) { array_push($errors, "car booking required"); }
   if (empty($availability)) { array_push($errors, "car availability is required"); }
   echo "done 2";
-  }
 
   // first check the database to make sure
-  // a user does not already exist with the same username and/or rego
+  // a car does not already exist with the same rego
   $car_check_query = "SELECT * FROM cars WHERE  rego='$rego' LIMIT 1";
   $result = mysqli_query($conn, $car_check_query);
   $car = mysqli_fetch_assoc($result);
@@ -67,19 +85,29 @@ echo "done 3";
 	  echo "done 3.2";
     }
   }
-
+echo "something";
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-
+echo "done 4";
   	$query = "INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability)
   			  VALUES ('$rego', '$model', '$make', '$year', '$tier', '$seatNo', '$engine', '$price', '$carPic, '$stationName', '$carCords', '$booked', '$availability')";
-  	mysqli_query($conn, $query);
-	//header('location: addremovecar.php');
-echo "done 4";
+  	if(mysqli_query($conn, $query))
+	{
+		if (isset($rego)) {
+			if (!empty($rego)) {
+				$location = 'resources/assets/icons/';
+			}
+					move_uploaded_file($tmp_name, $loaction.$carPic);
+			echo "car has been added";
+		}
+	}else{
+		echo "Car has not been added";
+	header('location: adminaddcar.php');
+	}
+	
+  }else{
+	  echo "error";
   }
-
-else{
-	  echo"not working";
-  }
-
+  echo "done 5";
+}
   ?>
