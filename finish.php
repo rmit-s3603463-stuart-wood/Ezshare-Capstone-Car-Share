@@ -13,6 +13,6 @@ require 'db_conn.php';?>
     $plocation = $_SESSION['plocation'];
 	$dlocation = $_SESSION['dlocation'];
 
- $query = "INSERT INTO booking (rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation, pickupLocation)
-          VALUES ('$rego', '$email', '$pdate', '$ptime', '$hrs', '$mins', '$gtotal', '$dlocation', '$plocation')";
+ $query = "INSERT INTO booking (rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation, pickupLocation, completed)
+          VALUES ('$rego', '$email', '$pdate', '$ptime', '$hrs', '$mins', '$gtotal', '$dlocation', '$plocation', '1')";
     mysqli_query($conn, $query); ?>

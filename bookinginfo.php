@@ -92,7 +92,7 @@ $(function () {
 
     if ((Date.parse(endDate) < Date.parse(startDate))) {
         alert("Drop off date should be greater than pick up date");
-        document.getElementById("EndDate").value = "";
+        document.getElementById("EndDate").value = "<?php echo date("Y-m-d"); ?>";
     }
 
 });
@@ -104,7 +104,7 @@ $(function () {
 
     if ((Date.parse(startDate) > Date.parse(endDate))) {
         alert("Drop off date should be greater than pick up date");
-        document.getElementById("StartDate").value = "";
+        document.getElementById("StartDate").value = "<?php echo date("Y-m-d"); ?>";
     }
 
 });
@@ -352,14 +352,14 @@ $(function () {
 
      <label for="pdate">Pick Up Date:</label>
       <div>
-        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate" required>
+        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate" required >
       </div>
 
       <br>
 
       <label for="ptime">Pick Up Time:</label>
       <div>
-        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" required>
+        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" onfocus="this.value=''"required>
       </div>
 
 
@@ -399,7 +399,7 @@ $(function () {
 
       <label for="dtime">Drop Off Time:</label>
       <div>
-        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" required>
+        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" onfocus="this.value=''" required>
       </div>
 
 
