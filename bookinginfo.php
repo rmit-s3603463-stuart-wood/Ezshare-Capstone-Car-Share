@@ -58,9 +58,16 @@ if (isset($_POST['bookRego'])){
   
    
   function initialize() {
+    markerData.forEach(function(data) {
+      var czoom = data.zoom;
+      var clat = data.lat;
+      var clong = data.lng;
+      console.log(czoom);
+       
       map = new google.maps.Map(document.getElementById('map1'), {
-        zoom: 6,
-        center: {lat: -37.025097, lng: 144.175104}
+        zoom: czoom,
+        center: {lat: clat, lng: clong}
+      });
       });
       markerData.forEach(function(data) {
         var newmarker= new google.maps.Marker({
