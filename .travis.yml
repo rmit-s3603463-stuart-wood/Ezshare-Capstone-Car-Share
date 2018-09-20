@@ -13,7 +13,6 @@ php:
 # Commands to be run before your environment runs.
  
 before_script:
-  - cp .env.travis .env
   
   - composer self-update
   
