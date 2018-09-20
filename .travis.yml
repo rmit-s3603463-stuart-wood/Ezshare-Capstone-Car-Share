@@ -36,6 +36,14 @@ matrix:
    - php: 7.2
  
    - php: hhvm
- 
- fast_finish: true
+   
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: "Encrypted <AKIAJNDGKARZKLG6VZYQ>="
+  secret_access_key:
+    secure: "Encypted <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>="
+  region: "us-east-2"  
+  app: "EzShare"
+  env: "Ezshare-env"
+  bucket_name: "Ezshare-env.m2ep5wyccr.us-west-2.elasticbeanstalk.com "
  
