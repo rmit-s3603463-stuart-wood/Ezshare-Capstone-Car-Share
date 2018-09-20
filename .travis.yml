@@ -13,6 +13,7 @@ php:
 # Commands to be run before your environment runs.
  
 before_script:
+ - php artisan key:generate
  
  - composer self-update
  
