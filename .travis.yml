@@ -20,7 +20,6 @@ before_script:
  
 # Commands you want to run that will verify your build.
  
-script: php artisan dusk
  
 # allow_failures: Allow this build to fail under the specified environments.
  
