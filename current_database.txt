@@ -57,7 +57,6 @@ create table if not exists cars(
 
 create table if not exists booking(
 
-
 	bookingID int(50) NOT NULL AUTO_INCREMENT,
 
 	rego varchar(35),
@@ -65,6 +64,7 @@ create table if not exists booking(
 	dateBooked varchar(75),
 	timeBooked varchar(75),
 	hoursBooked varchar(75),
+	minutesBooked varchar(75),
 	totalPrice varchar(75),
 	returnLocation varchar(200),
 	pickupLocation varchar(200),
