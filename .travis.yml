@@ -8,8 +8,6 @@ php:
  
  - 7.2
  
- - hhvm
- 
 # Commands to be run before your environment runs.
  
 before_script:
@@ -34,9 +32,8 @@ matrix:
    - php: 7.1
    
    - php: 7.2
- 
-   - php: hhvm
    
+after_success:
 deploy:
   provider: elasticbeanstalk
   access_key_id: "Encrypted <AKIAJNDGKARZKLG6VZYQ>="
