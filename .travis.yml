@@ -2,10 +2,7 @@ language: php
  
 # Versions of PHP you want your project run with.
  
-php:
- 
- - 7.1
- 
+php: 
  - 7.2
  
 # Commands to be run before your environment runs.
@@ -16,9 +13,10 @@ before_script:
   
   - composer self-update
   
-  - composer install --no-interaction
+  - composer install 
 
-script: php /vendor/bin/phpunit
+script:
+  - vendor/bin/phpunit
 
 deploy:
   provider: elasticbeanstalk
