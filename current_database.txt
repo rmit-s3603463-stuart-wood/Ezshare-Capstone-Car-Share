@@ -57,7 +57,9 @@ create table if not exists cars(
 
 create table if not exists booking(
 
+
 	bookingID int(50) NOT NULL AUTO_INCREMENT,
+
 	rego varchar(35),
 	email varchar(200),
 	dateBooked varchar(75),
@@ -177,3 +179,4 @@ INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked,
 INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('9','LUX123','bob@gmail.com','20/08/2018','14:30','2','300','Luna Park','Coburg', true);
 INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('10','XUL123','tim@gmail.com','20/08/2018','14:30','2','300','Melbourne Airport','Epping', true);
 INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('11','SED789','hazmaan@gmail.com','20/08/2018','14:30','2','300','Melbourne Airport','Sunbury', true);
+
