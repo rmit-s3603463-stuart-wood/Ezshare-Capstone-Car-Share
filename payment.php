@@ -44,13 +44,51 @@
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
+<<<<<<< HEAD
+=======
+  if ($plocation == "-37.806989|144.963865|17") {
+    $plocation = "RMIT";
+    $plat = "-37.806989";
+    $plong = "144.963865";
+} elseif ($plocation == "-37.885222|145.086158|17") {
+    $plocation = "Chadstone";
+    $plat = "-37.885222";
+    $plong = "145.086158";
+} else {
+    $plocation = "Melbourne Airport";
+    $plat = "-37.669046";
+    $plong = "144.841049";
+}
+
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
   $ddate1 = $_POST['ddate'];
   $ddate = str_replace('-', '/', $ddate1);
   $dtime = $_POST['dtime'];
   $dlocation = $_POST['dlocation'];
 
+<<<<<<< HEAD
   ?>
 
+=======
+  if ($dlocation == "-37.806989|144.963865|17") {
+    $dlocation = "RMIT";
+    $dlat = "-37.806989";
+    $dlong = "144.963865";
+} elseif ($dlocation == "-37.885222|145.086158|17") {
+    $dlocation = "Chadstone";
+    $dlat = "-37.885222";
+    $dlong = "145.086158";
+} else {
+    $dlocation = "Melbourne Airport";
+    $dlat = "-37.669046";
+    $dlong = "144.841049";
+}
+  ?>
+
+  
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 
     <script>
       function initMap1() {
@@ -91,9 +129,63 @@
       }
     </script>
 
+<<<<<<< HEAD
+=======
+        <script>
+       
+        var pdate = '<?php echo $pdate; ?>';
+        var ptime = '<?php echo $ptime; ?>';
+        var ddate = '<?php echo $ddate; ?>';
+        var dtime = '<?php echo $dtime; ?>';
+
+        console.log(pdate);
+        console.log(ptime);
+        console.log(ddate);
+        console.log(dtime);
+
+        var date1 = new Date(pdate + " " + ptime);
+        date1 = date1.getTime();
+        var date2 = new Date(ddate + " " + dtime);
+        date2 = date2.getTime();
 
 
+        console.log(date1);
+        console.log(date2);
 
+        //difference between two dates in msec(milliseconds)
+        var diff = date2 - date1;
+
+        console.log(diff);
+
+        var mins = Math.floor(diff / 60000);
+        var hrs = Math.floor(mins / 60);
+        var days = Math.floor(hrs / 24);
+        var yrs = Math.floor(days / 365);
+
+        console.log('mins ' + mins);
+
+        console.log('hrs ' + hrs);
+
+        console.log('days ' + days);
+
+        console.log('yrs ' + yrs);
+
+        mins = mins % 60;
+        console.log('For use: ' + hrs + " hours, " + mins + " minutes")
+
+
+        window.onload = function write(){
+        document.getElementById("hours").innerHTML = hrs;
+        document.getElementById("minutes").innerHTML = mins;
+        document.getElementById("timeprice").innerHTML = timeprice;
+        document.getElementById("admin").innerHTML = admin;
+        document.getElementById("rego").innerHTML = rego;
+        document.getElementById("total").innerHTML = total;
+        document.getElementById("gtotal").innerHTML = gtotal;
+
+        };
+      </script>
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 
     <style>
     form {
@@ -119,7 +211,8 @@
 
 
                     <?php
-  $sql = "SELECT * FROM cars WHERE Rego='SED123'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                    $bookRego = $_SESSION['bookRego'];
+  $sql = "SELECT * FROM cars WHERE Rego='".$bookRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
   // output data of each row
@@ -131,6 +224,22 @@
     echo '<h2 class = "text-center"><img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>';
     echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
 
+<<<<<<< HEAD
+=======
+    $price = $row["price"];
+    $rego = $row["rego"];
+    $_SESSION['rego'] = $rego;
+    $email = $_SESSION["email"];
+    $_SESSION['pdate'] = $pdate;
+    $_SESSION['ptime'] = $ptime;
+    $hrs = $_POST['hrs'];
+    $mins = $_POST['mins'];
+    $gtotal = $_POST['gtotal'];
+    
+    $_SESSION['plocation'] = $plocation;
+    $_SESSION['dlocation'] = $dlocation;
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
   }
 } else {
   echo "0 results";
@@ -345,7 +454,19 @@
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
+<<<<<<< HEAD
                   window.alert('Payment Complete!');
+=======
+                  $.ajax({
+    type: 'POST',
+    url: 'finish.php',                
+    data: {hrs:hrs,mins:mins,gtotal:gtotal},
+ success: function(data) {
+
+ }  
+})
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
                 });
               }
 

@@ -51,7 +51,11 @@
       $("#EndDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
     var endDate = document.getElementById("EndDate").value;
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
     if ((Date.parse(endDate) < Date.parse(startDate))) {
         alert("Drop off date should be greater than pick up date");
         document.getElementById("EndDate").value = "";
@@ -62,7 +66,11 @@
       $("#StartDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
     var endDate = document.getElementById("EndDate").value;
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
     if ((Date.parse(startDate) > Date.parse(endDate))) {
         alert("Drop off date should be greater than pick up date");
         document.getElementById("StartDate").value = "";
@@ -80,12 +88,21 @@
 
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
+<<<<<<< HEAD
  
     if ((startTime = endTime) && (start > end)) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("dtime").value = "";
     }
 
+=======
+
+    if ((startTime = endTime) && (start > end)) {
+        alert("Drop off time should be greater than pick up time");
+        document.getElementById("dtime").value = "";
+    }
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 });
 
       $("#ptime").change(function () {
@@ -99,15 +116,24 @@
     end = end.getTime();
 
     console.log("Time1: "+ start + " Time2: " + end);
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
     if ((startTime = endTime) && (start > end)) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("ptime").value = "";
     }
 
 });
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 
     }
   </script>
@@ -128,28 +154,53 @@
             <div class = "centerform">
 
               <?php
-  $sql = "SELECT * FROM customers WHERE email='dan-h1997@hotmail.com'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+
+  $email = $_SESSION["email"];
+  $sql = "SELECT * FROM customers WHERE email= '".$email."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
   // output data of each row
 
-   while($row = $result->fetch_assoc()) {
-    $firstName = $row["firstName"];
+
+                      if (isset($_SESSION["email"])){
+                        $userEmail = $_SESSION['email'];
+
+                        $sql = "SELECT * FROM customers WHERE email='".$userEmail."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                        // output data of each row
+
+                         while($row = $result->fetch_assoc()) {
+                          $firstName = $row["firstName"];
 
 
-    $lastName = $row["lastName"];
+                          $lastName = $row["lastName"];
 
 
-    $email = $row["email"];
+                          $email = $row["email"];
 
 
-    $phone = $row["phone"];
+                          $phone = $row["phone"];
 
 
-  }
-} else {
-  echo "0 results";
+                        }
+                      } else {
+                        echo "0 results";
+                      }
+                      }
+
+
+}else{
+  echo"You must make login first to make a booking!";
+  array_push($errors, "Invalid member access!");
+  $firstName = 'N/A';
+  $lastName = 'N/A';
+  $email = 'N/A';
+  $phone = 'N/A';
 }
+
+
+
 ?>
 
               <form class="form-horizontal" method="POST" action="payment.php" id="form">
@@ -188,7 +239,7 @@
             </div>
 
               <br>
-            
+
 
             <h2>Your Vehicle:</h2>
 
@@ -198,23 +249,33 @@
 
 
             <?php
-  $sql = "SELECT * FROM cars WHERE Rego='SED123'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-  // output data of each row
+                    if (isset($_POST['bookRego'])){
+                      $carRego = $_POST['bookRego'];
+                      $_SESSION['bookRego'] = $carRego;
 
-   while($row = $result->fetch_assoc()) {
-     //cycles through the entire query result, one row at a time
-    echo '<hr>';
-    echo '<h2 class = "text-center"><img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>';
-    echo '<h3 class = "text-center">'.$row["model"].'</h3>';
-    echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
+                      $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                      $result = $conn->query($sql);
+                      if ($result->num_rows > 0) {
+                      // output data of each row
 
-  }
-} else {
-  echo "0 results";
-}
-?>
+                       while($row = $result->fetch_assoc()) {
+                         //cycles through the entire query result, one row at a time
+                        echo '<hr>';
+                        echo '<h2 class = "text-center"><img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>';
+                        echo '<h3 class = "text-center">'.$row["model"].'</h3>';
+                        echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
+
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                    }else{
+                      echo"You must make choose a car via the map!";
+                      array_push($errors, "Invalid page access!");
+                    }
+
+        ?>
+
 
 </div>
 
@@ -244,9 +305,36 @@
       <div>
         <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
           <option selected disabled>Select a Pickup Location</option>
+<<<<<<< HEAD
           <option value="Melbourne Airport">Melbourne Airport</option>
           <option value="Chadstone">Chadstone</option>
           <option value="Melbourne CBD">Melbourne CBD</option>
+=======
+<?php
+
+if (isset($_POST['bookRego'])){
+  $carRego = $_POST['bookRego'];
+
+  $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+
+   while($row = $result->fetch_assoc()) {
+     //cycles through the entire query result, one row at a time
+    echo '<option value="'.$row["stationName"].'">'.$row["stationName"].'</option>';
+  }
+} else {
+  echo "0 results";
+}
+}else{
+  echo '<option value="error">You must choose a car via the map!</option>';
+  array_push($errors, "Invalid page access!");
+}
+
+
+ ?>
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
         </select>
       </div>
 

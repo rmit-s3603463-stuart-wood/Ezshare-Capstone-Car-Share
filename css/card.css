@@ -52,6 +52,7 @@ input[type=text] {
   border-radius: 3px;
 }
 
+<<<<<<< HEAD
 input[type=file] {
   width: 100%;
   margin-bottom: 20px;
@@ -69,9 +70,10 @@ select {
 	
 }
 
+=======
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 label {
   margin-bottom: 10px;
-  margin-top: 10px;
   display: block;
 }
 
@@ -117,6 +119,7 @@ span.price {
   float:left
   
 }
+<<<<<<< HEAD
 
 .right {
   width: 50%;
@@ -127,3 +130,15 @@ span.price {
   width: 80%;
   margin: 0 auto;
 }
+=======
+
+.right {
+  width: 50%;
+  float:right
+}
+
+.centerform {
+  width: 80%;
+  margin: 0 auto;
+}
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
