@@ -1,5 +1,5 @@
 <?php
-	$bookingID = $_GET['bookingID'];
+$bookingID = $_GET['bookingID'];
 
 
 $con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));

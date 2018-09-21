@@ -1,3 +1,4 @@
+
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -27,6 +28,7 @@
   padding: 0 16px;
 }
 
+
 .container {
   background-color: #f2f2f2;
   padding: 30px;
@@ -53,7 +55,12 @@ input[type=text] {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 input[type=file] {
+=======
+
+input[type="number"] {
+>>>>>>> Development
   width: 100%;
   margin-bottom: 20px;
   padding: 12px;
@@ -70,8 +77,12 @@ select {
 	
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
+=======
+
+>>>>>>> Development
 label {
   margin-bottom: 10px;
   display: block;
@@ -93,6 +104,7 @@ label {
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
+  top: 10px;
 }
 
 .btn:hover {

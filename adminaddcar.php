@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <?php include_once('head.php'); ?>
 <?php include('addcar.php'); ?>
+=======
+>>>>>>> Development
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,9 +10,13 @@
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
       
+<<<<<<< HEAD
       <link rel="stylesheet" href="css/card.css">
       <link href="css/card-js.min.css" rel="stylesheet" type="text/css" />
       <script src="css/card-js.min.js"></script>
+=======
+      <!-- <link rel="stylesheet" href="css/card.css"> -->
+>>>>>>> Development
   </head>
   <body>
     <?php  include_once('navbar.php');  ?>

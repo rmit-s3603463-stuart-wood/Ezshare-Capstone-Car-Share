@@ -13,13 +13,17 @@
   <body>
     <?php  include_once('navbar.php');  ?>    
 	<div class="container">
+<<<<<<< HEAD
         <h2>Delete a Car</h2>
 		<input type="text" id="myInput" onkeyup="searchRego()" placeholder="Search for registration.." title="Type in a registration">
+=======
+>>>>>>> Development
         <table id="myTable">
 			<tr class="header">
 				<th style="width:10%;">Registration</th>
 				<th style="width:10%;">Model</th>
 				<th style="width:10%;">Make</th>
+<<<<<<< HEAD
 				<th style="width:10%;">Year</th>
 				<th style="width:10%;">Tier</th>
 				<th style="width:10%;">Seat Number</th>
@@ -30,11 +34,14 @@
             <?php
 			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT rego, model, make, year, tier, seatNo, engine, price FROM cars";
+=======
+>>>>>>> Development
             
 			$results = mysqli_query($con, $sq);
             
 			while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
 			{
+<<<<<<< HEAD
 				print "<tr>\n";
 				print "<td>{$row['rego']}</td>\n";
 				print "<td>{$row['model']}</td>\n";
@@ -46,9 +53,12 @@
 				print "<td>{$row['price']}</td>\n";
 				print "<td><a href=deletecar.php?rego=".$row['rego'].">Delete</a></td>";
 				print "</tr>\n";
+=======
+>>>>>>> Development
 				}
 			?>
         </table>
+<<<<<<< HEAD
     </div>
 				
 	<script>
@@ -65,6 +75,8 @@
 					tr[i].style.display = "";
 				} else {
 					tr[i].style.display = "none";
+=======
+>>>>>>> Development
 				}
 				} 	      
 			}
