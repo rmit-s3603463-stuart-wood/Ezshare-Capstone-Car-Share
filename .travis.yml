@@ -2,29 +2,17 @@ language: php
  
 # Versions of PHP you want your project run with.
  
-php: 
+php:
+ 
+ - 5.5
+ 
+ - 5.6
+ 
+ - 7.0
+ 
+ - 7.1
+ 
  - 7.2
  
-# Commands to be run before your environment runs.
-
-before_script:
-  
-  - composer self-update
-  
-  - composer install 
-  
-
-shareimprove this answer
-script:
-  - vendor/bin/phpunit
-
-deploy:
-  provider: elasticbeanstalk
-  access_key_id: "Encrypted <AKIAJNDGKARZKLG6VZYQ>="
-  secret_access_key:
-    secure: "Encypted <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>="
-  region: "us-east-2"  
-  app: "EzShare"
-  env: "Ezshare-env"
-  bucket_name: "Ezshare-env.m2ep5wyccr.us-west-2.elasticbeanstalk.com "
- 
+after_deploy:
+  - echo "done deploying"

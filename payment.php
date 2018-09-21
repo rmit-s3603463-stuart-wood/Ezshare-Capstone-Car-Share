@@ -49,7 +49,7 @@
     $plat = "-37.806989";
     $plong = "144.963865";
 } elseif ($plocation == "-37.885222|145.086158|17") {
-    $plocation = "Chadstone";
+    $plocation = "Chadstone Shopping Centre";
     $plat = "-37.885222";
     $plong = "145.086158";
 } else {
@@ -69,7 +69,7 @@
     $dlat = "-37.806989";
     $dlong = "144.963865";
 } elseif ($dlocation == "-37.885222|145.086158|17") {
-    $dlocation = "Chadstone";
+    $dlocation = "Chadstone Shopping Centre";
     $dlat = "-37.885222";
     $dlong = "145.086158";
 } else {
@@ -79,7 +79,9 @@
 }
   ?>
 
-  
+  <?php $query = "INSERT INTO booking (rego, email, dateBooked, timeBooked, hoursBooked, returnLocation, pickupLocation)
+          VALUES ('SED123', 'chris@gmail.com', '20/08/2018', '14:30', '2', 'Chadstone', 'RMIT')";
+    mysqli_query($conn, $query); ?>
 
 
     <script>
@@ -188,7 +190,6 @@
         mins = mins % 60;
         console.log('For use: ' + hrs + " hours, " + mins + " minutes")
 
-
         window.onload = function write(){
         document.getElementById("hours").innerHTML = hrs;
         document.getElementById("minutes").innerHTML = mins;
@@ -197,9 +198,11 @@
         document.getElementById("rego").innerHTML = rego;
         document.getElementById("total").innerHTML = total;
         document.getElementById("gtotal").innerHTML = gtotal;
-
         };
       </script>
+
+
+
 
     <style>
     form {
@@ -225,8 +228,7 @@
 
 
                     <?php
-                    $bookRego = $_SESSION['bookRego'];
-  $sql = "SELECT * FROM cars WHERE Rego='".$bookRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $sql = "SELECT * FROM cars WHERE Rego='SED123'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
   // output data of each row
@@ -239,17 +241,6 @@
     echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
 
     $price = $row["price"];
-    $rego = $row["rego"];
-    $_SESSION['rego'] = $rego;
-    $email = $_SESSION["email"];
-    $_SESSION['pdate'] = $pdate;
-    $_SESSION['ptime'] = $ptime;
-    $hrs = $_POST['hrs'];
-    $mins = $_POST['mins'];
-    $gtotal = $_POST['gtotal'];
-    
-    $_SESSION['plocation'] = $plocation;
-    $_SESSION['dlocation'] = $dlocation;
 
   }
 } else {
@@ -474,15 +465,8 @@
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
-                  $.ajax({
-    type: 'POST',
-    url: 'finish.php',                
-    data: {hrs:hrs,mins:mins,gtotal:gtotal},
- success: function(data) {
-
- }  
-})
-
+                  <?php $query = "INSERT INTO booking (bookingID, rego, email, dateBooked, timeBooked, hoursBooked, returnLocation, pickupLocation)
+          VALUES ('plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation')"; ?>
                 });
               }
 

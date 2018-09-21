@@ -67,8 +67,7 @@ if (isset($_POST['reg_user'])) {
 
 
   	$query = "INSERT INTO customers (email, password, firstName, lastName, phone, dateOfBirth, street, suburb, state, postcode, country,isAdmin)
-                VALUES ('$email', '$password', '$firstName', '$lastName', '$phone', '$dateOfBirth', '$street', '$suburb', '$state', '$postcode', '$country','0')";
-
+  			  VALUES ('$email', '$password', '$firstName', '$lastName', '$phone', '$dateOfBirth', '$street', '$suburb', '$state', '$postcode', '$country','0')";
   	mysqli_query($conn, $query);
 
   	$_SESSION['email'] = $_POST['email'];

@@ -6,9 +6,9 @@
 /.idea
 /.vscode
 /.vagrant
-<<<<<<< HEAD
-=======
 Homestead.json
 Homestead.yaml
-
->>>>>>> 86e6826b4b02a2ea0aa4f379c28db8d8e47e6ff1
+npm-debug.log
+yarn-error.log
+.env
+.phpunit.result.cache
