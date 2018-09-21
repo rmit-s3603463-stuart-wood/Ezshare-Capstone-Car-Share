@@ -242,17 +242,19 @@ $(function () {
                         // output data of each row
 
                          while($row = $result->fetch_assoc()) {
+
                           $firstName = $row["firstName"];
+                          $_SESSION['firstName'] = $firstName;
 
 
                           $lastName = $row["lastName"];
-
+                          $_SESSION['lastName'] = $lastName;
 
                           $email = $row["email"];
-
+                          $_SESSION['email'] = $email;
 
                           $phone = $row["phone"];
-
+                          $_SESSION['phone'] = $phone;
 
                         }
                       } else {
@@ -278,24 +280,24 @@ $(function () {
 
                 <label for="fname">First Name:</label>
                 <div>
-                  <input type="text" class="form-control" id="fname" align="middle" placeholder="<?php echo $firstName; ?>" name="fname" disabled>
+                  <input type="text" class="form-control" id="fname" align="middle" value="<?php echo $firstName; ?>" name="fname" disabled>
                 </div>
 
                 <label for="lname">Last Name:</label>
                 <div>
-                  <input type="text" class="form-control" id="lname" placeholder="<?php echo $lastName; ?>" name="lname" disabled>
+                  <input type="text" class="form-control" id="lname" value="<?php echo $lastName; ?>" name="lname" disabled>
                 </div>
 
                 <label for="email">Email:</label>
                 <div>
-                  <input type="email" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email" disabled>
+                  <input type="email" class="form-control" id="email" value="<?php echo $email; ?>" name="email" disabled>
                 </div>
 
                 <br>
 
                 <label for="phone">Phone Number:</label>
                 <div>
-                  <input type="tel" class="form-control" id="phone" placeholder="<?php echo $phone; ?>" name="phone" disabled>
+                  <input type="tel" class="form-control" id="phone" value="<?php echo $phone; ?>" name="phone" disabled>
                 </div>
 
                 <br>
@@ -310,6 +312,18 @@ $(function () {
             </div>
 
               <br>
+
+              <script>
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById('lname').value;
+                var email = document.getElementById('email').value;
+                var phone = document.getElementById('phone').value;
+
+                console.log(fname);
+                console.log(lname);
+                console.log(email);
+                console.log(phone);
+              </script>
 
 
             <h2>Your Vehicle:</h2>

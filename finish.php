@@ -10,6 +10,7 @@ require 'db_conn.php';?>
 	$hrs = $_POST['hrs'];
     $mins = $_POST['mins'];
     $gtotal = $_POST['gtotal'];
+    $_SESSION['price'] = $gtotal;
     $plocation = $_SESSION['plocation'];
 	$dlocation = $_SESSION['dlocation'];
 

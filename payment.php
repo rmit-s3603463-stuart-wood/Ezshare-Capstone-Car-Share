@@ -39,8 +39,14 @@
     <?php  include_once('navbar.php');  ?>
     <?php require 'db_conn.php';?>
     <?php
+
+  $name = $_SESSION['firstName']. " " .$_SESSION['lastName'];
+  $email = $_SESSION['email'];
+  $phone = $_SESSION['phone'];
+
   $pdate1 = $_POST['pdate'];
   $pdate = str_replace('-', '/', $pdate1);
+  $_SESSION['pdate'] = $pdate1;
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
@@ -192,10 +198,10 @@
         window.onload = function write(){
         document.getElementById("hours").innerHTML = hrs;
         document.getElementById("minutes").innerHTML = mins;
-        document.getElementById("timeprice").innerHTML = timeprice;
+        document.getElementById("timeprice2").innerHTML = timeprice2;
         document.getElementById("admin").innerHTML = admin;
         document.getElementById("rego").innerHTML = rego;
-        document.getElementById("total").innerHTML = total;
+        document.getElementById("total2").innerHTML = total2;
         document.getElementById("gtotal").innerHTML = gtotal;
 
         };
@@ -247,7 +253,8 @@
     $hrs = $_POST['hrs'];
     $mins = $_POST['mins'];
     $gtotal = $_POST['gtotal'];
-    
+    $_SESSION['product'] = "Car hire";
+
     $_SESSION['plocation'] = $plocation;
     $_SESSION['dlocation'] = $dlocation;
 
@@ -316,9 +323,12 @@
       var price = '<?php echo $price; ?>';
       var calcmin = mins/60 * price;
       var timeprice = (hrs * price) + calcmin;
+      var timeprice2 = timeprice.toFixed(2);
       var admin = 5.80;
       var rego = 30.00;
       var total = timeprice + admin + rego;
+      var total2 = total.toFixed(2);
+
       var gtotal = total;
       var gtotal = gtotal.toFixed(2);
       
@@ -351,7 +361,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$<span id="timeprice"></span></td>
+              <td>$<span id="timeprice2"></span></td>
             </tr>
             <tr>
               <td>Administration Fee</td>
@@ -381,7 +391,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$<span id="total"></span></td>
+              <td>$<span id="total2"></span></td>
             </tr>
           </tbody>
         </table>
@@ -475,13 +485,20 @@
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
                   $.ajax({
-    type: 'POST',
-    url: 'finish.php',                
-    data: {hrs:hrs,mins:mins,gtotal:gtotal},
- success: function(data) {
+                  type: 'POST',
+                  url: 'finish.php',                
+                  data: {hrs:hrs,mins:mins,gtotal:gtotal},
+                  success: function(data) {
 
- }  
-})
+                  }  
+                  })
+
+                  $.post('create_reciept.php', $('form').serialize(), function () {
+            $('div#wrap div').fadeOut( function () {
+                $(this).empty().html("<h2>Thank you!</h2><p>Thank you for your order. Please <a href='reciept.pdf'>download your reciept</a>. </p>").fadeIn();
+            });
+        });
+                  window.location.replace("create_reciept.php");
 
                 });
               }
