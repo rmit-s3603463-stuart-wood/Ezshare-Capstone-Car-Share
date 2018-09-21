@@ -7,8 +7,6 @@ php:
  
 # Commands to be run before your environment runs.
 
-install: php vendor/vendors.php
- 
 before_script:
   
   - composer self-update
