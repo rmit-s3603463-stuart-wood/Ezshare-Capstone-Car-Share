@@ -1,3 +1,4 @@
+
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -27,6 +28,7 @@
   padding: 0 16px;
 }
 
+
 .container {
   background-color: #f2f2f2;
   padding: 30px;
@@ -43,6 +45,25 @@ input[type=text] {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+
+
+input[type="number"] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+select {
+	  width: 100%;
+	margin-bottom: 20px;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	
+}
+
 
 label {
   margin-bottom: 10px;
@@ -65,6 +86,7 @@ label {
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
+  top: 10px;
 }
 
 .btn:hover {
