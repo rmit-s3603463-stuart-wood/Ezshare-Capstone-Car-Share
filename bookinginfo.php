@@ -11,34 +11,57 @@
   <?php  include_once('navbar.php');  ?>
   <?php require 'db_conn.php';?>
 
+        <?php
 
+if (isset($_POST['bookRego'])){
+  $carRego = $_POST['bookRego'];
+
+  $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+
+   while($row = $result->fetch_assoc()) {
+     //cycles through the entire query result, one row at a time
+    $stationName = $row["stationName"];
+    
+  }
+} else {
+  echo "0 results";
+}
+}
+
+
+ ?>
 
   <script>
-    function initMap1() {
-      var rmitLatLng = {lat: -37.806989, lng: 144.963865};
-      var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
-      gestureHandling: 'greedy'
 
-      var mapProp1= {
-        center:new google.maps.LatLng(-37.806989,144.963865),
-        disableDefaultUI: true,
-        zoom:17,
-      };
 
-      var mapProp2= {
-        center:new google.maps.LatLng(-37.885222,145.086158),
-        disableDefaultUI: true,
-        zoom:17,
-      };
+    var map;
+  var stationName = "<?php echo $stationName; ?>";
 
-      var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
+  if (stationName == "Chadstone") {
+    var markerData = [{lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"}];
+} else if (stationName == "RMIT") {
+    var markerData = [{lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"}];
+} else  {
+    var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"}];
+}
 
-      var map2=new google.maps.Map(document.getElementById("map2"),mapProp2);
 
-      var rmitmarker = new google.maps.Marker({
-        position: rmitLatLng,
-        map: map1,
-        title: 'rmit'
+  
+   
+  function initialize() {
+    markerData.forEach(function(data) {
+      var czoom = data.zoom;
+      var clat = data.lat;
+      var clong = data.lng;
+      console.log(czoom);
+       
+      map = new google.maps.Map(document.getElementById('map1'), {
+        zoom: czoom,
+        center: {lat: clat, lng: clong}
+      });
       });
 
       var chadstonemarker = new google.maps.Marker({
@@ -54,7 +77,7 @@
 
     if ((Date.parse(endDate) < Date.parse(startDate))) {
         alert("Drop off date should be greater than pick up date");
-        document.getElementById("EndDate").value = "";
+        document.getElementById("EndDate").value = "<?php echo date("Y-m-d"); ?>";
     }
 
 });
@@ -65,7 +88,7 @@
 
     if ((Date.parse(startDate) > Date.parse(endDate))) {
         alert("Drop off date should be greater than pick up date");
-        document.getElementById("StartDate").value = "";
+        document.getElementById("StartDate").value = "<?php echo date("Y-m-d"); ?>";
     }
 
 });
@@ -145,17 +168,19 @@
                         // output data of each row
 
                          while($row = $result->fetch_assoc()) {
+
                           $firstName = $row["firstName"];
+                          $_SESSION['firstName'] = $firstName;
 
 
                           $lastName = $row["lastName"];
-
+                          $_SESSION['lastName'] = $lastName;
 
                           $email = $row["email"];
-
+                          $_SESSION['email'] = $email;
 
                           $phone = $row["phone"];
-
+                          $_SESSION['phone'] = $phone;
 
                         }
                       } else {
@@ -181,24 +206,24 @@
 
                 <label for="fname">First Name:</label>
                 <div>
-                  <input type="text" class="form-control" id="fname" align="middle" placeholder="<?php echo $firstName; ?>" name="fname" disabled>
+                  <input type="text" class="form-control" id="fname" align="middle" value="<?php echo $firstName; ?>" name="fname" disabled>
                 </div>
 
                 <label for="lname">Last Name:</label>
                 <div>
-                  <input type="text" class="form-control" id="lname" placeholder="<?php echo $lastName; ?>" name="lname" disabled>
+                  <input type="text" class="form-control" id="lname" value="<?php echo $lastName; ?>" name="lname" disabled>
                 </div>
 
                 <label for="email">Email:</label>
                 <div>
-                  <input type="email" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email" disabled>
+                  <input type="email" class="form-control" id="email" value="<?php echo $email; ?>" name="email" disabled>
                 </div>
 
                 <br>
 
                 <label for="phone">Phone Number:</label>
                 <div>
-                  <input type="tel" class="form-control" id="phone" placeholder="<?php echo $phone; ?>" name="phone" disabled>
+                  <input type="tel" class="form-control" id="phone" value="<?php echo $phone; ?>" name="phone" disabled>
                 </div>
 
                 <br>
@@ -213,6 +238,18 @@
             </div>
 
               <br>
+
+              <script>
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById('lname').value;
+                var email = document.getElementById('email').value;
+                var phone = document.getElementById('phone').value;
+
+                console.log(fname);
+                console.log(lname);
+                console.log(email);
+                console.log(phone);
+              </script>
 
 
             <h2>Your Vehicle:</h2>
@@ -262,14 +299,14 @@
 
      <label for="pdate">Pick Up Date:</label>
       <div>
-        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate" required>
+        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="pdate" required >
       </div>
 
       <br>
 
       <label for="ptime">Pick Up Time:</label>
       <div>
-        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" required>
+        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" onfocus="this.value=''"required>
       </div>
 
 
@@ -277,33 +314,14 @@
 
       <label for="plocation">Pick Up Location</label>
       <div>
-        <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
-          <option selected disabled>Select a Pickup Location</option>
-<?php
-
-if (isset($_POST['bookRego'])){
-  $carRego = $_POST['bookRego'];
-
-  $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-  // output data of each row
-
-   while($row = $result->fetch_assoc()) {
-     //cycles through the entire query result, one row at a time
-    echo '<option value="'.$row["stationName"].'">'.$row["stationName"].'</option>';
-  }
-} else {
-  echo "0 results";
-}
-}else{
-  echo '<option value="error">You must choose a car via the map!</option>';
-  array_push($errors, "Invalid page access!");
-}
 
 
- ?>
+        <select class="custom-select mr-sm-2" id="selectlocation" name="plocation" form="form">
+
+
+
         </select>
+
       </div>
 
       <div id="map1" style="width:100%;height:150px;"></div>
@@ -322,7 +340,7 @@ if (isset($_POST['bookRego'])){
       <br>
 
       <label for="ddate">Drop Off Date:</label>
-      <div>
+ row     <div>
         <input type="date" class="form-control" id="EndDate" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="ddate" required>
       </div>
 
@@ -330,7 +348,7 @@ if (isset($_POST['bookRego'])){
 
       <label for="dtime">Drop Off Time:</label>
       <div>
-        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" required>
+        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" onfocus="this.value=''" required>
       </div>
 
 
