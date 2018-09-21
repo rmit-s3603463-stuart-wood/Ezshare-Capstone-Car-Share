@@ -93,6 +93,7 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinder Petrol Twin Turbo Intercooled 2.6L','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  true, true,'60000','0','john@gmail.com');
 
+<<<<<<< HEAD
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('liam@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Liam', 'Neeson','0534357235','25/8/1975','871 Sydney Avenue', 'Coburg', 'VIC', '3293', 'Australia', true);
@@ -100,10 +101,14 @@ INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, stre
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('john@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'John', 'Wick','0234769345','15/4/1980','4 Swanston Street', 'CBD', 'VIC', '3006', 'Australia', false);
 
 
+=======
+>>>>>>> Development
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('liam@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Liam', 'Neeson','0534357235','25/8/1975','871 Sydney Avenue', 'Coburg', 'VIC', '3293', 'Australia', true);
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('john@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'John', 'Wick','0234769345','15/4/1980','4 Swanston Street', 'CBD', 'VIC', '3006', 'Australia', false);
 
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT');
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT', true);
+
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED123','chris@gmail.com','20/08/2018','16:30','2','300','RMIT','Chadstone', false);
