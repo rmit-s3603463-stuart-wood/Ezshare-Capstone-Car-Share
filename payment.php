@@ -44,63 +44,30 @@
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
-  if ($plocation == "-37.806989|144.963865|17") {
-    $plocation = "RMIT";
-    $plat = "-37.806989";
-    $plong = "144.963865";
-} elseif ($plocation == "-37.885222|145.086158|17") {
-    $plocation = "Chadstone Shopping Centre";
-    $plat = "-37.885222";
-    $plong = "145.086158";
-} else {
-    $plocation = "Melbourne Airport";
-    $plat = "-37.669046";
-    $plong = "144.841049";
-}
-
-
   $ddate1 = $_POST['ddate'];
   $ddate = str_replace('-', '/', $ddate1);
   $dtime = $_POST['dtime'];
   $dlocation = $_POST['dlocation'];
 
-  if ($dlocation == "-37.806989|144.963865|17") {
-    $dlocation = "RMIT";
-    $dlat = "-37.806989";
-    $dlong = "144.963865";
-} elseif ($dlocation == "-37.885222|145.086158|17") {
-    $dlocation = "Chadstone Shopping Centre";
-    $dlat = "-37.885222";
-    $dlong = "145.086158";
-} else {
-    $dlocation = "Melbourne Airport";
-    $dlat = "-37.669046";
-    $dlong = "144.841049";
-}
   ?>
-
-  <?php $query = "INSERT INTO booking (rego, email, dateBooked, timeBooked, hoursBooked, returnLocation, pickupLocation)
-          VALUES ('SED123', 'chris@gmail.com', '20/08/2018', '14:30', '2', 'Chadstone', 'RMIT')";
-    mysqli_query($conn, $query); ?>
 
 
     <script>
       function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
         var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
-        var melbairportLatLng = {lat: -37.669046, lng: 144.841049};
         gestureHandling: 'greedy'
 
         var mapProp1= {
-          center:new google.maps.LatLng(<?php echo $plat; ?>,<?php echo $plong; ?>),
+          center:new google.maps.LatLng(-37.806989,144.963865),
           disableDefaultUI: true,
-          zoom:15,
+          zoom:17,
         };
 
         var mapProp2= {
-          center:new google.maps.LatLng(<?php echo $dlat; ?>,<?php echo $dlong; ?>),
+          center:new google.maps.LatLng(-37.885222,145.086158),
           disableDefaultUI: true,
-          zoom:15,
+          zoom:17,
         };
 
         var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
@@ -115,91 +82,15 @@
 
         var chadstonemarker = new google.maps.Marker({
           position: chadstoneLatLng,
-          map: map1,
-          title: 'chadstone'
-        });
-
-        var melbairportmarker = new google.maps.Marker({
-          position: melbairportLatLng,
-          map: map1,
-          title: 'melbarirport'
-        });
-
-        var rmitmarker = new google.maps.Marker({
-          position: rmitLatLng,
-          map: map2,
-          title: 'rmit'
-        });
-
-        var chadstonemarker = new google.maps.Marker({
-          position: chadstoneLatLng,
           map: map2,
           title: 'chadstone'
         });
 
-        var melbairportmarker = new google.maps.Marker({
-          position: melbairportLatLng,
-          map: map2,
-          title: 'melbarirport'
-        });
+
+
       }
-
-
-
     </script>
 
-        <script>
-       
-        var pdate = '<?php echo $pdate; ?>';
-        var ptime = '<?php echo $ptime; ?>';
-        var ddate = '<?php echo $ddate; ?>';
-        var dtime = '<?php echo $dtime; ?>';
-
-        console.log(pdate);
-        console.log(ptime);
-        console.log(ddate);
-        console.log(dtime);
-
-        var date1 = new Date(pdate + " " + ptime);
-        date1 = date1.getTime();
-        var date2 = new Date(ddate + " " + dtime);
-        date2 = date2.getTime();
-
-
-        console.log(date1);
-        console.log(date2);
-
-        //difference between two dates in msec(milliseconds)
-        var diff = date2 - date1;
-
-        console.log(diff);
-
-        var mins = Math.floor(diff / 60000);
-        var hrs = Math.floor(mins / 60);
-        var days = Math.floor(hrs / 24);
-        var yrs = Math.floor(days / 365);
-
-        console.log('mins ' + mins);
-
-        console.log('hrs ' + hrs);
-
-        console.log('days ' + days);
-
-        console.log('yrs ' + yrs);
-
-        mins = mins % 60;
-        console.log('For use: ' + hrs + " hours, " + mins + " minutes")
-
-        window.onload = function write(){
-        document.getElementById("hours").innerHTML = hrs;
-        document.getElementById("minutes").innerHTML = mins;
-        document.getElementById("timeprice").innerHTML = timeprice;
-        document.getElementById("admin").innerHTML = admin;
-        document.getElementById("rego").innerHTML = rego;
-        document.getElementById("total").innerHTML = total;
-        document.getElementById("gtotal").innerHTML = gtotal;
-        };
-      </script>
 
 
 
@@ -220,7 +111,7 @@
 
   <div class="col-75">
     <div class="container">
-      <h2>Booking Details</h2>
+      <h2>Booking Detailss</h2>
       <br>
       <div class="row">
 
@@ -239,8 +130,6 @@
     echo '<h3 class = "text-center">'.$row["model"].'</h3>';
     echo '<h2 class = "text-center"><img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>';
     echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
-
-    $price = $row["price"];
 
   }
 } else {
@@ -303,18 +192,6 @@
 
     <br>
 
-    <script>
-      var price = '<?php echo $price; ?>';
-      var calcmin = mins/60 * price;
-      var timeprice = (hrs * price) + calcmin;
-      var admin = 5.80;
-      var rego = 30.00;
-      var total = timeprice + admin + rego;
-      var gtotal = total;
-      var gtotal = gtotal.toFixed(2);
-      
-    </script>
-
     <div class="row">
 
       <div class="col-50">
@@ -335,14 +212,14 @@
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>Hiring for: <span id="hours"></span> hours, <span id="minutes"></span> minutes</td>
+              <td>2 hours at $100 an hour</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$<span id="timeprice"></span></td>
+              <td>$200.00</td>
             </tr>
             <tr>
               <td>Administration Fee</td>
@@ -352,7 +229,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$<span id="admin"></span></td>
+              <td>$5.80</td>
             </tr>
             <tr>
               <td>Vehicle Registration Recovery Fee</td>
@@ -362,7 +239,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$<span id="rego"></span></td>
+              <td>$30.00</td>
             </tr>
             <tr>
               <td>Total Price</td>
@@ -372,7 +249,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$<span id="total"></span></td>
+              <td>$235.80</td>
             </tr>
           </tbody>
         </table>
@@ -395,7 +272,7 @@
             <tr>
               <td><h5>Total Rental Cost:</h5></td>
               <td>&nbsp;</td>
-              <td><h5>$<span id="gtotal"></span></h5></td>
+              <td><h5>$235.80</h5></td>
               <td>&nbsp;</td>
             </tr>
           </tbody>
@@ -418,6 +295,8 @@
   </div>
 </div>
 
+<input id="total_amount" type="number">
+
 </body>
 
 
@@ -426,6 +305,7 @@
 
 
 <script>
+
 
   paypal.Button.render({
 
@@ -445,9 +325,9 @@
 
                 // Make a call to the REST api to create the payment
 
-                var x = gtotal;
-                var currentVal = x;
-                console.log(gtotal);
+                var x = document.getElementById("total_amount");
+                var currentVal = x.value;
+                console.log(currentVal);
 
                 return actions.payment.create({
                   payment: {
@@ -465,8 +345,7 @@
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
-                  <?php $query = "INSERT INTO booking (bookingID, rego, email, dateBooked, timeBooked, hoursBooked, returnLocation, pickupLocation)
-          VALUES ('plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation', '$plocation')"; ?>
+                  window.alert('Payment Complete!');
                 });
               }
 
