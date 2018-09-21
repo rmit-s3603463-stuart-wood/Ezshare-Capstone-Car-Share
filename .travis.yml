@@ -13,11 +13,6 @@ before_script:
   
   - composer install 
   
-  - cp -a .env.example .env
-
-  - php artisan key:generate
-
-  - php artisan serve
 
 shareimprove this answer
 script:
