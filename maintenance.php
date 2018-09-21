@@ -1,14 +1,17 @@
 <?php
-	$rego = $_GET['rego'];
+$rego = $_GET['rego'];
+
 
 $con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 
-$sql = "DELETE cars, booking 
-FROM cars, booking
-WHERE cars.rego = '$rego'
-AND cars.rego = booking.rego";
+$sql = "DELETE b
+FROM booking b
+INNER JOIN cars c
+ON b.rego = c.rego
+WHERE c.rego = '$rego'";
 
-$sqlt = "DELETE FROM cars WHERE rego = '$rego'";
+$sqlt = "UPDATE cars SET availability = !availability WHERE rego = '$rego'";
+
 	if(mysqli_query($con,$sql))
 	{
 		if(mysqli_query($con,$sqlt))
@@ -16,7 +19,4 @@ $sqlt = "DELETE FROM cars WHERE rego = '$rego'";
 			header("refresh:1; url=admindeletecar.php");
 		}
 	}
-else{
-	echo "not deleted";
-}
 ?>
