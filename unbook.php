@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 $bookID = $_POST['bookId'];
 $Rego = $_POST['carRego'];
 
+
  $sql = "SELECT * FROM cars WHERE rego ='".$Rego."'";
  $result = $conn->query($sql);
 
@@ -23,6 +24,7 @@ $Rego = $_POST['carRego'];
      }
     }
 
+
 $sql = "UPDATE cars SET totalkm='".$calckm."'WHERE rego ='".$Rego."'";
 
 if ($conn->query($sql) === TRUE) {
@@ -30,6 +32,17 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error updating record: " . $conn->error;
 }
+
+
+$sql = "UPDATE cars SET currDriver='Null' WHERE rego ='".$Rego."'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+
 $sql = "UPDATE cars SET journeykm='0' WHERE rego ='".$Rego."'";
 
 if ($conn->query($sql) === TRUE) {
@@ -37,6 +50,8 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error updating record: " . $conn->error;
 }
+
+
 $sql = "UPDATE cars SET booked='0' WHERE rego ='".$Rego."'";
 
 if ($conn->query($sql) === TRUE) {
@@ -54,4 +69,6 @@ if ($conn->query($sql) === TRUE) {
     echo "Error updating record: " . $conn->error;
 }
 mysqli_close($conn);
+header("location:..//capstone-car-share/myAccount.php");
+
  ?>
