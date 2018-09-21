@@ -2,6 +2,7 @@
 <?php include_once('head.php'); ?>
 <?php include('addcar.php'); ?>
 =======
+<?php include('head.php');
 >>>>>>> Development
 <!doctype html>
 <html lang="en">
