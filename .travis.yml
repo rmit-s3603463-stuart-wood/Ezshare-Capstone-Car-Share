@@ -20,7 +20,6 @@ before_script:
 
 script: php /vendor/bin/phpunit
 
-after_success:
 deploy:
   provider: elasticbeanstalk
   access_key_id: "Encrypted <AKIAJNDGKARZKLG6VZYQ>="
