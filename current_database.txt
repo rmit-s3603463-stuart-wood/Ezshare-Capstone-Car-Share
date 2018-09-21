@@ -58,7 +58,6 @@ create table if not exists cars(
 create table if not exists booking(
 
 	bookingID int(50) NOT NULL,
-
 	rego varchar(35),
 	email varchar(200),
 	dateBooked varchar(75),
@@ -67,6 +66,7 @@ create table if not exists booking(
 	totalPrice varchar(75),
 	returnLocation varchar(200),
 	pickupLocation varchar(200),
+	completed boolean,
 	PRIMARY KEY (bookingID),
 	FOREIGN KEY (email) REFERENCES customers(email),
 	FOREIGN KEY (rego) REFERENCES cars(rego),
@@ -81,11 +81,10 @@ INSERT INTO station (cords, stationName)VALUES('-37.885222, 145.086158','Chadsto
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinder Petrol Aspirated 1.8L','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','0', 'chris@gmail.com');
 
+
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinder Petrol Aspirated 5.6L','50','4wd.jpg','Melbourne Airport','-37.669491, 144.851685',  false, true,'20000','0', 'Null');
 
-
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinder Petrol Twin Turbo Intercooled 3.8L','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true,'30000','0', 'Null');
-
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinder Petrol Aspirated 3.5L','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false,'40000','0', 'Null');
 
