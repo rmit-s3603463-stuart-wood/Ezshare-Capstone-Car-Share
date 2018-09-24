@@ -233,7 +233,9 @@ if($stationName == "RMIT")
 															<option value="Geelong">Geelong</option>
 														  </select>
 
+
 			<label for="totalkm">total km/s</label><input type="number" id="totalkm" name="totalkm" placeholder="Please provide total km/s of car">
+
 
 			<button type="submit" class="btn" name="submit" onclick="return confirm('Are you sure you wish to add this car?')">Add Car</button>
         </form>

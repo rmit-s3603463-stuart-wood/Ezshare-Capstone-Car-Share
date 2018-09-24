@@ -90,8 +90,6 @@
   ?>
 
 
-
-
     <script>
       function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
