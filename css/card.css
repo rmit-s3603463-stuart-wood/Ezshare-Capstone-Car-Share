@@ -38,14 +38,6 @@
   border-radius: 15px;
 }
 
-input [type=number] {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
 input[type=text] {
   width: 100%;
   margin-bottom: 20px;
@@ -54,13 +46,8 @@ input[type=text] {
   border-radius: 3px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-input[type=file] {
-=======
 
 input[type="number"] {
->>>>>>> Development
   width: 100%;
   margin-bottom: 20px;
   padding: 12px;
@@ -77,12 +64,7 @@ select {
 	
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
 
->>>>>>> Development
 label {
   margin-bottom: 10px;
   display: block;
@@ -131,7 +113,6 @@ span.price {
   float:left
   
 }
-<<<<<<< HEAD
 
 .right {
   width: 50%;
@@ -142,15 +123,3 @@ span.price {
   width: 80%;
   margin: 0 auto;
 }
-=======
-
-.right {
-  width: 50%;
-  float:right
-}
-
-.centerform {
-  width: 80%;
-  margin: 0 auto;
-}
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"

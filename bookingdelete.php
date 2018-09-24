@@ -1,7 +1,14 @@
-<?php include_once('head.php');?>
+<?php include_once('head.php');
+if($_SESSION['email'] !== 'admin@ezshare.com.au'){
+		// isn't admin, redirect them to home page
+		header("Location:home.php");
+}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
+	<title>Booking List</title>
 		<link rel="stylesheet" type="text/css" href="cssBookingDelete.css">
 </head>
 <body>
@@ -42,13 +49,13 @@ border-style: solid;
 }
 </style>
 		<?php include_once('navbar.php'); ?>
-		
+
 		<div class="container">
-		
+
 		<h1 class = "text-center">Delete Booking</h1>
 
     <div class="container table-responsive-sm">
-<input type="text" id="myInput" placeholder="Search for a booking.." title="search">	
+<input type="text" id="myInput" placeholder="Search for a booking.." title="search">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#notCompleted">Current Bookings</a>
@@ -59,7 +66,7 @@ border-style: solid;
       </ul>
 	  <div class="tab-content">
 <div id="notCompleted" class="container tab-pane active">
-  
+
 <table id="myTable" action="bookingdeleteprocess.php">
   <tr class="header">
     <th style="width:5%;">Booking ID</th>
@@ -76,11 +83,11 @@ border-style: solid;
   <tr>
         <?php
 
-			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
             $sq = "SELECT * FROM booking";
-            
+
             $results = mysqli_query($con, $sq);
-            
+
             while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
 			{
 				if(($row["completed"]==0))
@@ -104,7 +111,7 @@ border-style: solid;
 </table>
 </div>
 
-<div id="completed" class="container tab-pane fade">	 
+<div id="completed" class="container tab-pane fade">
 <table id="myTable">
   <tr class="header">
     <th style="width:5%;">Booking ID</th>
@@ -123,9 +130,9 @@ border-style: solid;
 
 			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
             $sq2 = "SELECT * FROM booking";
-            
+
             $results = mysqli_query($con, $sq2);
-            
+
             while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
             {
 				if(($row["completed"]==1))
@@ -160,9 +167,8 @@ $(document).ready(function(){
 });
 </script>
 </div>
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
     </div>
 	</div>
 	</body>
+	    <?php include_once('footer.php');?>
 </html>

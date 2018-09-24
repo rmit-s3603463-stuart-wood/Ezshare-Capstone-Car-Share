@@ -36,31 +36,18 @@ border-style: solid;
   margin-bottom: 12px;
   top: 10px;
 }
-<<<<<<< HEAD
-
-#myInput2 {
-=======
 #myInput3 {
->>>>>>> Development
   background-image: url('/css/searchicon.png');
   position: relative;
   float: left;
   background-position: 10px 10px;
   background-repeat: no-repeat;
-<<<<<<< HEAD
-  width: 49%;
-=======
   width: 99%;
->>>>>>> Development
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
-<<<<<<< HEAD
-  margin-left: 11px;
-=======
   margin-right: 11px;
->>>>>>> Development
 }
 
 #myTable {

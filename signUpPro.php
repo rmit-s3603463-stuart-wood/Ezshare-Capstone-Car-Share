@@ -18,7 +18,7 @@ $errors = array();
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
-  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $email = mysqli_real_escape_string($conn, strtolower($_POST['email']));
   $firstName =  mysqli_real_escape_string($conn,$_POST['firstName']);
   $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
   $phone = mysqli_real_escape_string($conn, $_POST['phone']);
@@ -65,10 +65,12 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
+
   	$query = "INSERT INTO customers (email, password, firstName, lastName, phone, dateOfBirth, street, suburb, state, postcode, country,isAdmin)
                 VALUES ('$email', '$password', '$firstName', '$lastName', '$phone', '$dateOfBirth', '$street', '$suburb', '$state', '$postcode', '$country','0')";
 
   	mysqli_query($conn, $query);
+
   	$_SESSION['email'] = $_POST['email'];
   	$_SESSION['success'] = "You are now logged in $firstName !";
   	header('location: index.php');
@@ -77,7 +79,7 @@ if (isset($_POST['reg_user'])) {
 
 // LOGIN USER
 if (isset($_POST['login_user'])) {
-  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $email = mysqli_real_escape_string($conn, strtolower($_POST['email']));
   $password = mysqli_real_escape_string($conn, $_POST['password']);
 
   if (empty($email)) {
@@ -92,7 +94,7 @@ if (isset($_POST['login_user'])) {
   	$query = "SELECT * FROM customers WHERE email='$email' AND password='$password'";
   	$results = mysqli_query($conn, $query);
   	if (mysqli_num_rows($results) == 1) {
-  	  $_SESSION['email'] = $_POST['email'];
+  	  $_SESSION['email'] = strtolower($_POST['email']);
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: myAccount.php');
   	}else {

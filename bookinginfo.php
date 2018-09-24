@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/card.css">
-  <?php  include_once('head.php');  ?>
+  <?php  include_once('head.php');
+  if(!isset($_SESSION['email'])){
+     header("Location:logIn.php");
+  }
+  ?>
   <title>Booking</title>
 
 
@@ -28,7 +32,7 @@ if (isset($_POST['bookRego'])){
    while($row = $result->fetch_assoc()) {
      //cycles through the entire query result, one row at a time
     $stationName = $row["stationName"];
-    
+
   }
 } else {
   echo "0 results";
@@ -46,15 +50,15 @@ if (isset($_POST['bookRego'])){
 } else  {
     var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"}];
 }
-  
-   
+
+
   function initialize() {
     markerData.forEach(function(data) {
       var czoom = data.zoom;
       var clat = data.lat;
       var clong = data.lng;
       console.log(czoom);
-       
+
       map = new google.maps.Map(document.getElementById('map1'), {
         zoom: czoom,
         center: {lat: clat, lng: clong}
@@ -82,14 +86,6 @@ $(function () {
       $("#EndDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
     var endDate = document.getElementById("EndDate").value;
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
->>>>>>> origin/Development
     if ((Date.parse(endDate) < Date.parse(startDate))) {
         alert("Drop off date should be greater than pick up date");
         document.getElementById("EndDate").value = "<?php echo date("Y-m-d"); ?>";
@@ -98,14 +94,6 @@ $(function () {
       $("#StartDate").change(function () {
     var startDate = document.getElementById("StartDate").value;
     var endDate = document.getElementById("EndDate").value;
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
->>>>>>> origin/Development
     if ((Date.parse(startDate) > Date.parse(endDate))) {
         alert("Drop off date should be greater than pick up date");
         document.getElementById("StartDate").value = "<?php echo date("Y-m-d"); ?>";
@@ -120,32 +108,15 @@ $(function () {
     start = start.getTime();
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
     if ((startTime = endTime) && (start > end)) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("dtime").value = "";
     }
-
-=======
-
-=======
->>>>>>> origin/Development
-    if ((startTime = endTime) && (start > end)) {
-        alert("Drop off time should be greater than pick up time");
-        document.getElementById("dtime").value = "";
-    }
-<<<<<<< HEAD
-
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
     if (end - start < 1800000) {
         alert("The minimum time to rent a car is 30 minutes");
         document.getElementById("dtime").value = "";
     }
     console.log(end - start);
->>>>>>> origin/Development
 });
       $("#ptime").change(function () {
     var startDate = document.getElementById("StartDate").value;
@@ -157,36 +128,17 @@ $(function () {
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
     console.log("Time1: "+ start + " Time2: " + end);
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
->>>>>>> origin/Development
     if ((startTime = endTime) && (start > end)) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("ptime").value = "";
     }
 });
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
-
-
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-
-    }
-=======
       });
-      
+
 </script>
 
 
-    
+
 <script>
   var map2;
   var markerData2= [
@@ -194,7 +146,7 @@ $(function () {
     {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
     {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
   ];
-   
+
   function initialize() {
       map2 = new google.maps.Map(document.getElementById('map2'), {
         zoom: 6,
@@ -218,8 +170,7 @@ $(function () {
     map2.setZoom(newzoom);
     map2.setCenter({lat:newlat, lng:newlng});
   });
-  
->>>>>>> origin/Development
+
   </script>
   <div class="row">
     <div class="col-75">
@@ -379,34 +330,10 @@ $(function () {
 
       <label for="plocation">Pick Up Location</label>
       <div>
-<<<<<<< HEAD
-        <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
-          <option selected disabled>Select a Pickup Location</option>
-<<<<<<< HEAD
-          <option value="Melbourne Airport">Melbourne Airport</option>
-          <option value="Chadstone">Chadstone</option>
-          <option value="Melbourne CBD">Melbourne CBD</option>
-=======
-<?php
-
-if (isset($_POST['bookRego'])){
-  $carRego = $_POST['bookRego'];
-
-  $sql = "SELECT * FROM cars WHERE Rego='".$carRego."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-  // output data of each row
-=======
->>>>>>> origin/Development
 
         <select class="custom-select mr-sm-2" id="selectlocation" name="plocation" form="form">
 
 
-<<<<<<< HEAD
- ?>
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
->>>>>>> origin/Development
         </select>
 
       </div>
