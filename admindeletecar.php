@@ -1,15 +1,21 @@
-<?php include_once('head.php'); ?>
+<?php include_once('head.php');
+if($_SESSION['email'] !== 'admin@ezshare.com.au'){
+    // isn't admin, redirect them to home page
+    header("Location:home.php");
+}
+
+ ?>
 <!doctype html>
 <html lang="en">
 <head>
   <title>Car List</title>
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
-      
+
 		<link rel="stylesheet" type="text/css" href="cssBookingDelete.css">
   </head>
   <body>
-    <?php  include_once('navbar.php');  ?>    
+    <?php  include_once('navbar.php');  ?>
 	<div class="container">
 	<style>
 #completed{
@@ -78,9 +84,9 @@ border-style: solid;
             <?php
 			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT * FROM cars";
-            
+
 			$results = mysqli_query($con, $sq);
-            
+
 			while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
 			{
 				if(($row["availability"]==1))
@@ -126,9 +132,9 @@ border-style: solid;
             <?php
 			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 			$sq = "SELECT * FROM cars";
-            
+
 			$results = mysqli_query($con, $sq);
-            
+
 			while($row=mysqli_fetch_array($results, MYSQLI_ASSOC))
 			{
 				if(($row["availability"]==0))
@@ -154,14 +160,14 @@ border-style: solid;
 			?>
         </table>
 </div>
-</div>		
-		
-		
-		
-		
+</div>
+
+
+
+
 	</div>
     </div>
-		
+
 	<script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
@@ -175,3 +181,4 @@ $(document).ready(function(){
 	</body>
 	    <?php include_once('footer.php');?>
 </html>
+
