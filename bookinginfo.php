@@ -82,12 +82,12 @@
       $("#dtime").change(function () {
     var startTime = document.getElementById("ptime").value;
     var endTime = document.getElementById("dtime").value;
-
     var start = new Date("November 13, 2013 " + startTime);
     start = start.getTime();
 
     var end = new Date("November 13, 2013 " + endTime);
     end = end.getTime();
+<<<<<<< HEAD
 <<<<<<< HEAD
  
     if ((startTime = endTime) && (start > end)) {
@@ -97,12 +97,17 @@
 
 =======
 
+=======
+>>>>>>> origin/Development
     if ((startTime = endTime) && (start > end)) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("dtime").value = "";
     }
+<<<<<<< HEAD
 
 >>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
+=======
+>>>>>>> origin/Development
 });
 
       $("#ptime").change(function () {
@@ -117,16 +122,19 @@
 
     console.log("Time1: "+ start + " Time2: " + end);
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 
 >>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
+=======
+>>>>>>> origin/Development
     if ((startTime = endTime) && (start > end)) {
         alert("Drop off time should be greater than pick up time");
         document.getElementById("ptime").value = "";
     }
-
 });
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -137,7 +145,9 @@
 
     }
   </script>
+=======
 
+>>>>>>> origin/Development
   <div class="row">
     <div class="col-75">
       <div class="container">
@@ -303,6 +313,7 @@
 
       <label for="plocation">Pick Up Location</label>
       <div>
+<<<<<<< HEAD
         <select class="custom-select mr-sm-2" id="plocation" name="plocation" form="form">
           <option selected disabled>Select a Pickup Location</option>
 <<<<<<< HEAD
@@ -319,6 +330,8 @@ if (isset($_POST['bookRego'])){
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
   // output data of each row
+=======
+>>>>>>> origin/Development
 
    while($row = $result->fetch_assoc()) {
      //cycles through the entire query result, one row at a time
@@ -333,8 +346,11 @@ if (isset($_POST['bookRego'])){
 }
 
 
+<<<<<<< HEAD
  ?>
 >>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
+=======
+>>>>>>> origin/Development
         </select>
       </div>
 

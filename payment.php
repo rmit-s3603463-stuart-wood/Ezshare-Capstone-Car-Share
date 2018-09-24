@@ -45,8 +45,11 @@
   $plocation = $_POST['plocation'];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   if ($plocation == "-37.806989|144.963865|17") {
+=======
+>>>>>>> origin/Development
     $plocation = "RMIT";
     $plat = "-37.806989";
     $plong = "144.963865";
@@ -301,6 +304,9 @@
 
     <br>
 
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Development
     <div class="row">
 
       <div class="col-50">
@@ -328,7 +334,10 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
+<<<<<<< HEAD
               <td>$200.00</td>
+=======
+>>>>>>> origin/Development
             </tr>
             <tr>
               <td>Administration Fee</td>
@@ -358,7 +367,10 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
+<<<<<<< HEAD
               <td>$235.80</td>
+=======
+>>>>>>> origin/Development
             </tr>
           </tbody>
         </table>
