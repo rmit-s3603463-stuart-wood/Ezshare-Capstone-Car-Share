@@ -56,19 +56,15 @@ create table if not exists cars(
 );
 
 create table if not exists booking(
-<<<<<<< HEAD
-	bookingID int(50) NOT NULL,
-=======
-
 
 	bookingID int(50) NOT NULL AUTO_INCREMENT,
 
->>>>>>> Development
 	rego varchar(35),
 	email varchar(200),
 	dateBooked varchar(75),
 	timeBooked varchar(75),
 	hoursBooked varchar(75),
+	minutesBooked varchar(75),
 	totalPrice varchar(75),
 	returnLocation varchar(200),
 	pickupLocation varchar(200),
@@ -100,14 +96,6 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  false, true,'50000','0','Null');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd3.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','Null');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinder Petrol Aspirated 5.6L','50','4wd.jpg','Melbourne Airport','-37.669491, 144.851685',  false, true,'20000','0', 'Null');
-
-=======
->>>>>>> parent of 8951e82... Merge branch 'Feature-Chris' of https://github.com/rmit-s3603463-stuart-wood/Capstone-Car-Share into Feature-Chris
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinder Petrol Twin Turbo Intercooled 3.8L','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true,'30000','0', 'Null');
-=======
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true,'30000','0', 'Null');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  true, true,'60000','0','jim@gmail.com');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury3.jpg','Sunbury','-37.580294, 144.712699',  true, true,'60000','0','joanne@gmail.com');
@@ -115,7 +103,6 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan4.jpg','Sunbury','-37.580294, 144.712699',  false, false,'40000','0', 'Null');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan5.jpg','Coburg','-37.743839, 144.963922',  false, false,'40000','0', 'Null');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan6.jpg','Epping','-37.637673, 145.009664',  false, false,'40000','0', 'Null');
->>>>>>> Development
 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB123','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd4.jpg','Coburg','-37.743839, 144.963922',  false, true,'50000','0','Null');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd5.jpg','Epping','-37.637673, 145.009664',  false, true,'50000','0','Null');
@@ -128,23 +115,6 @@ INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, 
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan7.jpg','Southern Cross','-37.669491, 144.851685',  false, false,'40000','0', 'Null');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd7.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','Null');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
-
-INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('liam@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Liam', 'Neeson','0534357235','25/8/1975','871 Sydney Avenue', 'Coburg', 'VIC', '3293', 'Australia', true);
-
-INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('john@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'John', 'Wick','0234769345','15/4/1980','4 Swanston Street', 'CBD', 'VIC', '3006', 'Australia', false);
-
-<<<<<<< HEAD
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','300','Chadstone','RMIT');
-=======
-
-=======
->>>>>>> Development
-INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
-=======
->>>>>>> Development
 
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('liam@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Liam', 'Neeson','0534357235','25/8/1975','871 Sydney Avenue', 'Coburg', 'VIC', '3293', 'Australia', true);
@@ -210,8 +180,3 @@ INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked,
 INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('10','XUL123','tim@gmail.com','20/08/2018','14:30','2','300','Melbourne Airport','Epping', true);
 INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('11','SED789','hazmaan@gmail.com','20/08/2018','14:30','2','300','Melbourne Airport','Sunbury', true);
 
-<<<<<<< HEAD
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED123','chris@gmail.com','20/08/2018','16:30','2','300','RMIT','Chadstone', false);
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
-=======
->>>>>>> Development

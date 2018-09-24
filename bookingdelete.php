@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<title>Booking List</title>
 		<link rel="stylesheet" type="text/css" href="cssBookingDelete.css">
 </head>
 <body>
@@ -76,7 +77,7 @@ border-style: solid;
   <tr>
         <?php
 
-			$con = mysqli_connect("localhost","Admin","p@ssword","carshare") or die("Error " . mysqli_error($con));
+			$con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
             $sq = "SELECT * FROM booking";
             
             $results = mysqli_query($con, $sq);
@@ -160,9 +161,8 @@ $(document).ready(function(){
 });
 </script>
 </div>
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      <p>Footer</p>
     </div>
 	</div>
 	</body>
+	    <?php include_once('footer.php');?>
 </html>

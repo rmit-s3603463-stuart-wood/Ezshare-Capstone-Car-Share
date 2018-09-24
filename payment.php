@@ -50,13 +50,7 @@
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  if ($plocation == "-37.806989|144.963865|17") {
-=======
   if ($plocation == "-37.806989|144.963865|17" or $plocation == "RMIT") {
->>>>>>> origin/Development
     $plocation = "RMIT";
     $plat = "-37.806989";
     $plong = "144.963865";
@@ -71,16 +65,11 @@
 }
 
 
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
   $ddate1 = $_POST['ddate'];
   $ddate = str_replace('-', '/', $ddate1);
   $dtime = $_POST['dtime'];
   $dlocation = $_POST['dlocation'];
 
-<<<<<<< HEAD
-  ?>
-
-=======
   if ($dlocation == "-37.806989|144.963865|17") {
     $dlocation = "RMIT";
     $dlat = "-37.806989";
@@ -98,24 +87,24 @@
 
   
 
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 
     <script>
       function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
         var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
+        var melbairportLatLng = {lat: -37.669046, lng: 144.841049};
         gestureHandling: 'greedy'
 
         var mapProp1= {
-          center:new google.maps.LatLng(-37.806989,144.963865),
+          center:new google.maps.LatLng(<?php echo $plat; ?>,<?php echo $plong; ?>),
           disableDefaultUI: true,
-          zoom:17,
+          zoom:15,
         };
 
         var mapProp2= {
-          center:new google.maps.LatLng(-37.885222,145.086158),
+          center:new google.maps.LatLng(<?php echo $dlat; ?>,<?php echo $dlong; ?>),
           disableDefaultUI: true,
-          zoom:17,
+          zoom:15,
         };
 
         var map1=new google.maps.Map(document.getElementById("map1"),mapProp1);
@@ -130,17 +119,39 @@
 
         var chadstonemarker = new google.maps.Marker({
           position: chadstoneLatLng,
+          map: map1,
+          title: 'chadstone'
+        });
+
+        var melbairportmarker = new google.maps.Marker({
+          position: melbairportLatLng,
+          map: map1,
+          title: 'melbarirport'
+        });
+
+        var rmitmarker = new google.maps.Marker({
+          position: rmitLatLng,
+          map: map2,
+          title: 'rmit'
+        });
+
+        var chadstonemarker = new google.maps.Marker({
+          position: chadstoneLatLng,
           map: map2,
           title: 'chadstone'
         });
 
-
-
+        var melbairportmarker = new google.maps.Marker({
+          position: melbairportLatLng,
+          map: map2,
+          title: 'melbarirport'
+        });
       }
+
+
+
     </script>
 
-<<<<<<< HEAD
-=======
         <script>
        
         var pdate = '<?php echo $pdate; ?>';
@@ -195,7 +206,6 @@
 
         };
       </script>
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
 
     <style>
     form {
@@ -213,7 +223,7 @@
 
   <div class="col-75">
     <div class="container">
-      <h2>Booking Detailss</h2>
+      <h2>Booking Details</h2>
       <br>
       <div class="row">
 
@@ -234,8 +244,6 @@
     echo '<h2 class = "text-center"><img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>';
     echo '<h4 class = "text-center"> Cost per hour: $'.$row["price"].'</h4><br>';
 
-<<<<<<< HEAD
-=======
     $price = $row["price"];
     $rego = $row["rego"];
     $_SESSION['rego'] = $rego;
@@ -250,7 +258,6 @@
     $_SESSION['plocation'] = $plocation;
     $_SESSION['dlocation'] = $dlocation;
 
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
   }
 } else {
   echo "0 results";
@@ -312,8 +319,6 @@
 
     <br>
 
-<<<<<<< HEAD
-=======
     <script>
       var price = '<?php echo $price; ?>';
       var calcmin = mins/60 * price;
@@ -329,7 +334,6 @@
       
     </script>
 
->>>>>>> origin/Development
     <div class="row">
 
       <div class="col-50">
@@ -350,18 +354,14 @@
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>2 hours at $100 an hour</td>
+              <td>Hiring for: <span id="hours"></span> hours, <span id="minutes"></span> minutes</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-<<<<<<< HEAD
-              <td>$200.00</td>
-=======
               <td>$<span id="timeprice2"></span></td>
->>>>>>> origin/Development
             </tr>
             <tr>
               <td>Administration Fee</td>
@@ -371,7 +371,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$5.80</td>
+              <td>$<span id="admin"></span></td>
             </tr>
             <tr>
               <td>Vehicle Registration Recovery Fee</td>
@@ -381,7 +381,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-              <td>$30.00</td>
+              <td>$<span id="rego"></span></td>
             </tr>
             <tr>
               <td>Total Price</td>
@@ -391,11 +391,7 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
-<<<<<<< HEAD
-              <td>$235.80</td>
-=======
               <td>$<span id="total2"></span></td>
->>>>>>> origin/Development
             </tr>
           </tbody>
         </table>
@@ -418,7 +414,7 @@
             <tr>
               <td><h5>Total Rental Cost:</h5></td>
               <td>&nbsp;</td>
-              <td><h5>$235.80</h5></td>
+              <td><h5>$<span id="gtotal"></span></h5></td>
               <td>&nbsp;</td>
             </tr>
           </tbody>
@@ -441,8 +437,6 @@
   </div>
 </div>
 
-<input id="total_amount" type="number">
-
 </body>
 
 
@@ -451,7 +445,6 @@
 
 
 <script>
-
 
   paypal.Button.render({
 
@@ -471,9 +464,9 @@
 
                 // Make a call to the REST api to create the payment
 
-                var x = document.getElementById("total_amount");
-                var currentVal = x.value;
-                console.log(currentVal);
+                var x = gtotal;
+                var currentVal = x;
+                console.log(gtotal);
 
                 return actions.payment.create({
                   payment: {
@@ -491,9 +484,6 @@
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
-<<<<<<< HEAD
-                  window.alert('Payment Complete!');
-=======
                   $.ajax({
                   type: 'POST',
                   url: 'finish.php',                
@@ -510,7 +500,6 @@
         });
                   window.location.replace("create_reciept.php");
 
->>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
                 });
               }
 
