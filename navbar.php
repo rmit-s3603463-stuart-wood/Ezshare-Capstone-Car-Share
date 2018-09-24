@@ -1,7 +1,26 @@
 
 <header>
+  <style>
+  .navbar{
+    background-color: #1e3f5a;
+  }
+  .navbar a{
+    color:white;
+  }
+  .dropdown-menu{
+    background-color: #1e3f5a;
+  }
+  .dropdown-menu a:hover{
+    background-color: white;
+  }
+  .dropdown-menu a:active{
+    background-color: white;
+    color:black;
+  }
+
+  </style>
   <!-- Optional JavaScript -->
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark">
     <a class="navbar-brand" href="#">EZshare</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
