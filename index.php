@@ -1,24 +1,20 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <?php include_once('head.php'); ?>
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-    <title>EZshare - Car Hire on the Go</title>
+  <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>-->
+  <title>EZshare - Car Hire on the Go</title>
 
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
         Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/
 
           Always set the map height explicitly to define the size of the div
-           element that contains the map. -->
-	<style>
-	#map {
-           height: 100%;
+          element that contains the map. -->
+          <style>
+          #map {
+           height: 94.5%;
          }
          /* Optional: Makes the sample page fill the window. */
          html, body {
@@ -28,155 +24,547 @@
          }
        </style>
 
-  </head>
-  <body>
-    <!-- Optional JavaScript -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="#">EZshare</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login\SignUp</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Make a Booking</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">FAQS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div id="map"></div>
-       <script>
+     </head>
+     <body>
+      <?php  include_once('navbar.php');?>
+      <div id="map"></div>
 
-         // Note: This example requires that you consent to location sharing when
-         // prompted by your browser. If you see the error "The Geolocation service
-         // failed.", it means you probably did not give permission for the browser to
-         // locate you.
-         var map, infoWindow;
-         function initMap() {
-           map = new google.maps.Map(document.getElementById('map'), {
-             center: {lat: -34.397, lng: 150.644},
-             zoom: 17,
-             gestureHandling: 'greedy'
-           });
-           infoWindow = new google.maps.InfoWindow;
+      <script>
 
-          // Icons
-          var whitecar = 'resources/assets/icons/small-car-icon-top-view-white-car-1.png';
+          /**
+           * The CenterControl adds a control to the map that recenters the map on
+           * Chicago.
+           * This constructor takes the control DIV as an argument.
+           * @constructor
+           */
 
+          //Custom Button
+          window.lat= -34.39;
+          window.lng= 150.644;
+          function getLocation() {
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(updatePosition);
+              }
 
-          //Content
-          var fakecarinfo = 
-            '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Car 1</h1>'+
-            '<div id="bodyContent">'+
-            '<p>2012 Toyota Corolla Sedan <br> Licence Plate: RJ5 631</p>'+
-            '<p>This car is ready to be used</p>'+
-            '<p><a href="link to booking page" class="bookbutton">'+'Book this car</a></p>'+
-            '</div>'+
-            '</div>';
+              return null;
+          };
 
-        var fakecarinfowindow = new google.maps.InfoWindow({
-          content: fakecarinfo
-        });
+          function updatePosition(position) {
+            if (position) {
+              window.lat = position.coords.latitude;
+              window.lng = position.coords.longitude;
+            }
+          }
 
-          // Create markers
-          var fakemarker = new google.maps.Marker({
-          position: {lat: -37.806989, lng: 144.963865},
-          icon: whitecar,
-          map: map
-          });
-          fakemarker.addListener('click', function() {
-            fakecarinfowindow.open(map ,fakemarker);
-          });
+          setInterval(function(){updatePosition(getLocation());}, 500);
 
-         
+          function currentLocation() {
+            return {lat:window.lat, lng:window.lng};
+          };
 
+          var map;
+          var mark;
+          var whitecar = 'resources/assets/icons/white-car.png';
+          var redcar = 'resources/assets/icons/yellow-car.png';
+          var greycar = 'resources/assets/icons/grey-car.png';
+          var contentString;
+          var clusterMarker = [];
+          var x = 0;
 
-        // Attempt at changing icon size depending on zoom
+          var initialize = function() {
+            map  = new google.maps.Map(document.getElementById('map'),
+             {center:{lat:lat,lng:lng},
+             zoom:17,
+             gestureHandling: 'greedy'});
+             var infoWindow = new google.maps.InfoWindow();
 
-        /*
-        google.maps.event.addListener(map, 'zoom_changed', function() {
+             contentString = "You are Here!"
+             var userinfowindow = new google.maps.InfoWindow({
+                content: contentString
+              });
+             infoWindow.setContent('You are here!');
 
-        var pixelSizeAtZoom0 = 8; //the size of the icon at zoom level 0
-        var maxPixelSize = 350; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
+            mark = new google.maps.Marker();
+            usermark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+            usermark.addListener('click', function() {userinfowindow.open(map, usermark);});
+            map.setCenter(currentLocation());
 
-        var zoom = map.getZoom();
-        var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(2,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
+            // Create OverlappingMarkerSpiderfier instsance
+              var oms = new OverlappingMarkerSpiderfier(map,
+               {markersWontMove: true, markersWontHide: true});
 
-        if(relativePixelSize > maxPixelSize) //restrict the maximum size of the icon
-        relativePixelSize = maxPixelSize;
-
-        //change the size of the icon
-        var marker = {
-            url: icons.whitecar, //marker's same icon graphic
-            size: null,//size
-            origin: null,//origin
-            anchor: null, //anchor
-            scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
-              
-        }
-        });
-        */
-
-
-
-
-
-           // Try HTML5 geolocation.
-           if (navigator.geolocation) {
-             navigator.geolocation.getCurrentPosition(function(position) {
-               var pos = {
-                 lat: position.coords.latitude,
-                 lng: position.coords.longitude
-               };
-
-               infoWindow.setPosition(pos);
-               infoWindow.setContent('You are here!');
-               var marker = new google.maps.Marker({position: pos, map: map});
-               infoWindow.open(map);
-               map.setCenter(pos);
-             }, function() {
-               handleLocationError(true, infoWindow, map.getCenter());
+                     // This is necessary to make the Spiderfy work
+                oms.addListener('click', function(mark) {
+               infoWindow.setContent(mark.desc);
+               infoWindow.open(map, mark);
              });
-           } else {
-             // Browser doesn't support Geolocation
-             handleLocationError(false, infoWindow, map.getCenter());
-           }
-         }
 
-         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-           infoWindow.setPosition(pos);
-           infoWindow.setContent(browserHasGeolocation ?
-                                 'Error: The Geolocation service failed.' :
-                                 'Error: Your browser doesn\'t support geolocation.');
-           infoWindow.open(map);
-         }
+             <?php
+                  $sql = "SELECT * FROM cars";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                   $result = $conn->query($sql);
+                   if ($result->num_rows > 0) {
+                   // output data of each row
+                   $x=1;
+                   $firstNum = true;
+                   $row_count = $result->num_rows;
+                   $cartier;
+                   $loc;
+                    while($row = $result->fetch_assoc()) {
+                  list($lat, $long) = explode(", ",$row["carCords"]);
+                  if(($row["booked"]==0) && ($row["availability"]==1)){
+                    if($x==1 || $firstNum == true){
+                    $loc = '[{ lat: '.$lat.', lng: '.$long.'}';
+                    $cartier = '["'.$row["tier"].'"';
+                    $firstNum = false;
+                  //  echo $firstNum;
+                    }else{
 
-         setTimeout(function() {infoWindow.close();}, 10000);
-       </script>
-       <script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap">
-       </script>
+                      if ($x == $row_count) {
+                        $loc.=',{lat: '.$lat.', lng: '.$long.'}];';
+                        $cartier.=',"'.$row["tier"].'"];';
+                     }else{
+                       $loc.=',{lat: '.$lat.', lng: '.$long.'}';
+                       $cartier.=',"'.$row["tier"].'"';
+                     }
+                    }
+
+                  }else if($x == $row_count){
+                    $loc.='];';
+                    $cartier.='];';
+                  }
+                  $x+=1;
+
+                    }
+                    echo "var locations =$loc";
+                    echo "var cartier =$cartier";
+                  }
+                  ?>
+                  <?php
+
+                  $sql = "SELECT * FROM cars";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+          // output data of each row
+                    $x=1;
+                      echo "var markercontent=new Array();";
+                     while($row = $result->fetch_assoc()) {
+                       if(($row["booked"]==0) && ($row["availability"]==1)){
+                       $txt='<div id=\'content\'><div id=\'siteNotice\'></div></div><h1 id=\'firstHeading\' class=\'firstHeading\'>Car '.$x.'</h1><div id=\'bodyContent\'><p>'.$row["make"].' '.$row["model"].'</br> Licence Plate: '.$row["rego"].'</p>';
+                       if($row["booked"]==1){
+                         $txt.='<p>This car is currently booked.</p>';
+                       }elseif($row["availability"]==0){
+                         $txt.='<p>This car is currently under maintenance.</p>';
+                       }else{
+                          $txt.='<p>This car is ready to be used.</p>';
+                       }
+
+<<<<<<< HEAD
+                window.onload = function() {
+                     // cluster marker
+                     var clusterMarker = [];
+
+                     var map = new google.maps.Map(document.getElementById('map'), {
+                       center: {lat: -34.397, lng: 150.644},
+                       zoom: 17,
+                       gestureHandling: 'greedy'
+                     });
+
+                     // Create infowindow
+                     var infoWindow = new google.maps.InfoWindow();
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html>
+
+                            // Icons
+                            var whitecar = 'resources/assets/icons/white-car.png';
+                            var redcar = 'resources/assets/icons/red-car.png';
+                            var greycar = 'resources/assets/icons/grey-car.png';
+
+                                         if (navigator.geolocation) {
+                                           navigator.geolocation.getCurrentPosition(function(position) {
+                                             var pos = {
+                                               lat: position.coords.latitude,
+                                               lng: position.coords.longitude
+                                             };
+
+                                             infoWindow.setPosition(pos);
+                                             infoWindow.setContent('You are here!');
+                                               var marker = new google.maps.Marker({position: pos, map: map});
+                                               userloc = marker;
+                                             infoWindow.open(map);
+                                             map.setCenter(pos);
+                                           }, function() {
+                                             handleLocationError(true, infoWindow, map.getCenter());
+                                           });
+                                         } else {
+                                           // Browser doesn't support Geolocation
+                                           handleLocationError(false, infoWindow, map.getCenter());
+                                         }
+
+                     // Create OverlappingMarkerSpiderfier instsance
+                     var oms = new OverlappingMarkerSpiderfier(map,
+                       {markersWontMove: true, markersWontHide: true});
+
+                     // This is necessary to make the Spiderfy work
+                     oms.addListener('click', function(marker) {
+                       infoWindow.setContent(marker.desc);
+                       infoWindow.open(map, marker);
+                     });
+                               <?php
+                                                   $sql = "SELECT * FROM cars";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                                                    $result = $conn->query($sql);
+                                                    if ($result->num_rows > 0) {
+                                                    // output data of each row
+                                                    $x=1;
+                                                    $row_count = $result->num_rows;
+                                                    $cartier;
+                                                    $loc;
+                                                     while($row = $result->fetch_assoc()) {
+                                                   list($lat, $long) = explode(", ",$row["carCords"]);
+                                                   if(($row["booked"]==0) && ($row["availability"]==1)){
+                                                     if($x==1){
+                                                     $loc = '[{ lat: '.$lat.', lng: '.$long.'}';
+                                                     $cartier = '["'.$row["tier"].'"';
+                                                     }else{
+                                                       if ($x == $row_count) {
+                                                         $loc.=',{lat: '.$lat.', lng: '.$long.'}];';
+                                                         $cartier.=',"'.$row["tier"].'"];';
+                                                      } else {
+                                                        $loc.=',{lat: '.$lat.', lng: '.$long.'}';
+                                                        $cartier.=',"'.$row["tier"].'"';
+                                                      }
+                                                     }
+
+                                                   }else if($x == $row_count){
+                                                     $loc.='];';
+                                                     $cartier.='];';
+                                                   }
+                                                   $x+=1;
+
+                                                     }
+                                                     echo "var locations =$loc";
+                                                     echo "var cartier =$cartier";
+                                                   }
+                                ?>
+
+
+
+
+
+
+                     // Some sample data
+                     //var sampleData = [{lat:50, lng:3}, {lat:50, lng:3}, {lat:50, lng:7}];
+
+                     <?php
+                     $sql = "SELECT * FROM cars";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+                     $result = $conn->query($sql);
+                     if ($result->num_rows > 0) {
+             // output data of each row
+                       $x=1;
+                         echo "var markercontent=new Array();";
+                        while($row = $result->fetch_assoc()) {
+                          if(($row["booked"]==0) && ($row["availability"]==1)){
+                          $txt='<div id=\'content\'><div id=\'siteNotice\'></div></div><h1 id=\'firstHeading\' class=\'firstHeading\'>Car '.$x.'</h1><div id=\'bodyContent\'><p>'.$row["make"].' '.$row["model"].'</br> Licence Plate: '.$row["rego"].'</p>';
+                          if($row["booked"]==1){
+                            $txt.='<p>This car is currently booked.</p>';
+                          }elseif($row["availability"]==0){
+                            $txt.='<p>This car is currently under maintenance.</p>';
+                          }else{
+                             $txt.='<p>This car is ready to be used.</p>';
+                          }
+
+                           $txt.='<form action=\'bookinginfo.php\' method=\'post\'><button name=\'bookRego\' type=\'submit\' value="'.$row["rego"].'">Book this car</button></form></div></div>';
+
+                          $txt=json_encode($txt,JSON_UNESCAPED_SLASHES);
+                          echo "markercontent.push($txt);";
+                          $x+=1;
+
+                        }
+
+                        }
+
+                        }
+                        ?>
+                        var calc;
+                        var lowestcalc;
+                        var closest;
+                        var markArr= new Array();
+                        var prev;
+                     for (var i = 0; i < locations.length; i ++) {
+                       var cartierloc=cartier[i];
+                       var carcol=whitecar;
+                       var point = locations[i];
+                       var markcon= markercontent[i];
+                       var location = new google.maps.LatLng(point.lat, point.lng);
+
+                       switch(cartierloc) {
+                         case "1":
+                         carcol=whitecar;
+                         break;
+                         case "2":
+                         carcol=greycar;
+                         break;
+                         case "3":
+                         carcol=redcar;
+                         break;
+                         default:
+                         carcol="error ";
+                       }
+                       // create marker at location
+                         marker = new google.maps.Marker({
+                         icon: carcol,
+                         position: location,
+                         map: map
+                       });
+                                                                        // text to appear in window
+                                                                       // marker.desc = "Number "+i;
+                                                                        marker.desc = markcon;
+                                                                        // needed to make Spiderfy work
+                                                                        oms.addMarker(marker);
+
+                                                                        // needed to cluster marker
+                                                                        clusterMarker.push(marker);
+
+                                                                        markArr[i]=marker;
+                                                                      }
+                                                                      new MarkerClusterer(map, clusterMarker, {imagePath: 'resources/assets/img/m', maxZoom: 15});
+
+                                                                      if (navigator.geolocation) {
+                                                                        navigator.geolocation.getCurrentPosition(function(position) {
+
+                                                                            userlat= position.coords.latitude;
+                                                                            userlng= position.coords.longitude;
+
+                                                                            google.maps.event.addListener(map, 'click', find_closest_marker(markArr,userlat,userlng ));
+
+
+                                                                        }, function() {
+                                                                          handleLocationError(true, infoWindow, map.getCenter());
+                                                                        });
+                                                                      } else {
+                                                                        // Browser doesn't support Geolocation
+                                                                        handleLocationError(false, infoWindow, map.getCenter());
+                                                                      }
+
+
+                                                                      function showPosition(position) {
+                                                                          if((lowestcalc > calc)||(lowestcalc == null)){
+                                                                            lowestcalc = calc;
+                                                                            closest = marker;
+                                                                            map.setZoom(19);
+                                                                            google.maps.event.addListener(map, 'click', find_closest_marker);
+                                                                           //map.panTo(marker.position);
+                                                                           //google.maps.event.addListener(map, 'click', find_closest_marker);
+                                                                           //alert(map.markers[closest].title);
+                                                                          }
+
+
+                                                                      }
+                                                                    }
+                                                                    function rad(x) {return x*Math.PI/180;}
+                                                                    function find_closest_marker(  markArr,userlat,userlng,map ) {
+                                                                        var lat = userlat;
+                                                                        var lng = userlng;
+                                                                        var R = 6371; // radius of earth in km
+                                                                        var distances = [];
+                                                                        var closest = -1;
+                                                                        for( i=0;i<markArr.length; i++ ) {
+                                                                            var mlat = markArr[i].position.lat();;
+                                                                            var mlng = markArr[i].position.lng();
+                                                                            var dLat  = rad(mlat - lat);
+                                                                            var dLong = rad(mlng - lng);
+                                                                            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                                                                    Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+                                                                            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                                                                            var d = R * c;
+                                                                            distances[i] = d;
+                                                                            if ( closest == -1 || d < distances[closest] ) {
+                                                                                closest = i;
+                                                                            }
+                                                                        }
+                                                                        alert(markArr[closest].position);
+                                                                         map.setZoom(19);
+                                                                        map.panTo(markArr[closest].position);
+                                                                        //document.write("succ");
+                                                                       }
+
+
+
+
+                 </script>
+                 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+                 <script async defer
+                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&libraries=geometry">
+=======
+                        $txt.='<form action=\'bookinginfo.php\' method=\'post\'><button name=\'bookRego\' type=\'submit\' value="'.$row["rego"].'">Book this car</button></form></div></div>';
+
+                       $txt=json_encode($txt,JSON_UNESCAPED_SLASHES);
+                       echo "markercontent.push($txt);";
+                       $x+=1;
+
+                     }
+
+                     }
+
+                     }
+              ?>
+
+              var closest;
+              var markArr= new Array();
+              for (var i = 0; i < locations.length; i ++) {
+                var cartierloc=cartier[i];
+                var carcol=whitecar;
+                var point = locations[i];
+                var markcon= markercontent[i];
+                var location = new google.maps.LatLng(point.lat, point.lng);
+
+                switch(cartierloc) {
+                  case "1":
+                  carcol=whitecar;
+                  break;
+                  case "2":
+                  carcol=greycar;
+                  break;
+                  case "3":
+                  carcol=redcar;
+                  break;
+                  default:
+                  carcol="error ";
+                }
+                // create marker at location
+                  mark = new google.maps.Marker({
+                  icon: carcol,
+                  position: location,
+                  map: map
+                });
+                   // text to appear in window
+                  // marker.desc = "Number "+i;
+                   mark.desc = markcon;
+                   // needed to make Spiderfy work
+                   oms.addMarker(mark);
+
+                   // needed to cluster marker
+                   clusterMarker.push(mark);
+
+                   markArr[i]=mark;
+                 }
+                  new MarkerClusterer(map, clusterMarker, {imagePath: 'resources/assets/img/m', maxZoom: 15});
+
+                 if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(function(position) {
+                       userlat= position.coords.latitude;
+                       userlng= position.coords.longitude;
+                       google.maps.event.addListener(map, 'click', function() {find_closest_marker(markArr,userlat,userlng,map )});
+
+                   }, function() {
+                     handleLocationError(true, infoWindow, map.getCenter());
+                   });
+                 } else {
+                   // Browser doesn't support Geolocation
+                   handleLocationError(false, infoWindow, map.getCenter());
+                 }
+
+          };
+
+          window.initialize = initialize;
+
+          var redraw = function(payload) {
+            lat = payload.message.lat;
+            lng = payload.message.lng;
+            if(x==0){
+              map.setCenter(currentLocation());
+              x=1;
+            }
+
+            usermark.setPosition({lat:lat, lng:lng, alt:0});
+          };
+
+          var pnChannel = "map-channel";
+
+          var pubnub = new PubNub({
+          publishKey:   'pub-c-f7bdfeeb-bfd3-4273-85e8-4f134e51931e',
+          subscribeKey: 'sub-c-d37a4c6e-b71e-11e8-b27d-1678d61e8f93'
+          });
+
+          pubnub.subscribe({channels: [pnChannel]});
+          pubnub.addListener({message:redraw});
+
+          setInterval(function() {
+            pubnub.publish({channel:pnChannel, message:currentLocation()});
+          }, 5000);
+
+          function rad(x) {return x*Math.PI/180;}
+          function find_closest_marker(  markArr,userlat,userlng,map ) {
+              var lat = userlat;
+              var lng = userlng;
+              var R = 6371; // radius of earth in km
+              var distances = [];
+              var closest = -1;
+              for( i=0;i<markArr.length; i++ ) {
+                  var mlat = markArr[i].position.lat();;
+                  var mlng = markArr[i].position.lng();
+                  var dLat  = rad(mlat - lat);
+                  var dLong = rad(mlng - lng);
+                  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                          Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+                  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                  var d = R * c;
+                  distances[i] = d;
+                  if ( closest == -1 || d < distances[closest] ) {
+                      closest = i;
+                  }
+              }
+            //  alert(markArr[closest].position);
+              // map.setZoom(19);
+            //  map.panTo(markArr[closest].position);
+              //document.write("succ");
+              var centerControlDiv = document.createElement('div');
+              var centerControl = new CenterControl(centerControlDiv, map,markArr[closest]);
+
+              centerControlDiv.index = 1;
+              map.controls[google.maps.ControlPosition.RIGHT_TOP].push(centerControlDiv);
+
+             }
+
+             function CenterControl(controlDiv, map,closestMarker) {
+
+                  // Set CSS for the control border.
+                  var controlUI = document.createElement('div');
+                  controlUI.style.backgroundColor = '#fff';
+                  controlUI.style.border = '2px solid #fff';
+                  controlUI.style.borderRadius = '3px';
+                  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+                  controlUI.style.cursor = 'pointer';
+                  controlUI.style.marginBottom = '22px';
+                  controlUI.style.textAlign = 'center';
+                  controlUI.title = 'Click to locate the nearest car';
+                  controlDiv.appendChild(controlUI);
+
+                  // Set CSS for the control interior.
+                  var controlText = document.createElement('div');
+                  controlText.style.color = 'rgb(25,25,25)';
+                  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+                  controlText.style.fontSize = '16px';
+                  controlText.style.lineHeight = '38px';
+                  controlText.style.paddingLeft = '5px';
+                  controlText.style.paddingRight = '5px';
+                  controlText.innerHTML = 'Click to locate the nearest car';
+                  controlUI.appendChild(controlText);
+
+                   // Setup the click event listeners: simply set the map to Chicago.
+                   controlUI.addEventListener('click', function() {
+                     map.setCenter(closestMarker.position);
+                   });
+
+                 }
+
+                 </script>
+                 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+                 <script async defer
+                 src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initialize">
+>>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
+               </script>
+               <script src="oms.min.js"></script>
+               <script src="markerclusterer.min.js"></script>
+             </body>
+           <?php include_once('footer.php');?>
+           </html>
