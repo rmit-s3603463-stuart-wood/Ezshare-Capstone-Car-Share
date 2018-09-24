@@ -39,8 +39,14 @@
     <?php  include_once('navbar.php');  ?>
     <?php require 'db_conn.php';?>
     <?php
+
+  $name = $_SESSION['firstName']. " " .$_SESSION['lastName'];
+  $email = $_SESSION['email'];
+  $phone = $_SESSION['phone'];
+
   $pdate1 = $_POST['pdate'];
   $pdate = str_replace('-', '/', $pdate1);
+  $_SESSION['pdate'] = $pdate1;
   $ptime = $_POST['ptime'];
   $plocation = $_POST['plocation'];
 
@@ -49,11 +55,12 @@
 =======
   if ($plocation == "-37.806989|144.963865|17") {
 =======
+  if ($plocation == "-37.806989|144.963865|17" or $plocation == "RMIT") {
 >>>>>>> origin/Development
     $plocation = "RMIT";
     $plat = "-37.806989";
     $plong = "144.963865";
-} elseif ($plocation == "-37.885222|145.086158|17") {
+} elseif ($plocation == "-37.885222|145.086158|17" or $plocation == "Chadstone") {
     $plocation = "Chadstone";
     $plat = "-37.885222";
     $plong = "145.086158";
@@ -180,10 +187,10 @@
         window.onload = function write(){
         document.getElementById("hours").innerHTML = hrs;
         document.getElementById("minutes").innerHTML = mins;
-        document.getElementById("timeprice").innerHTML = timeprice;
+        document.getElementById("timeprice2").innerHTML = timeprice2;
         document.getElementById("admin").innerHTML = admin;
         document.getElementById("rego").innerHTML = rego;
-        document.getElementById("total").innerHTML = total;
+        document.getElementById("total2").innerHTML = total2;
         document.getElementById("gtotal").innerHTML = gtotal;
 
         };
@@ -238,7 +245,8 @@
     $hrs = $_POST['hrs'];
     $mins = $_POST['mins'];
     $gtotal = $_POST['gtotal'];
-    
+    $_SESSION['product'] = "Car hire";
+
     $_SESSION['plocation'] = $plocation;
     $_SESSION['dlocation'] = $dlocation;
 
@@ -306,6 +314,21 @@
 
 <<<<<<< HEAD
 =======
+    <script>
+      var price = '<?php echo $price; ?>';
+      var calcmin = mins/60 * price;
+      var timeprice = (hrs * price) + calcmin;
+      var timeprice2 = timeprice.toFixed(2);
+      var admin = 5.80;
+      var rego = 30.00;
+      var total = timeprice + admin + rego;
+      var total2 = total.toFixed(2);
+
+      var gtotal = total;
+      var gtotal = gtotal.toFixed(2);
+      
+    </script>
+
 >>>>>>> origin/Development
     <div class="row">
 
@@ -337,6 +360,7 @@
 <<<<<<< HEAD
               <td>$200.00</td>
 =======
+              <td>$<span id="timeprice2"></span></td>
 >>>>>>> origin/Development
             </tr>
             <tr>
@@ -370,6 +394,7 @@
 <<<<<<< HEAD
               <td>$235.80</td>
 =======
+              <td>$<span id="total2"></span></td>
 >>>>>>> origin/Development
             </tr>
           </tbody>
@@ -470,13 +495,20 @@
                   window.alert('Payment Complete!');
 =======
                   $.ajax({
-    type: 'POST',
-    url: 'finish.php',                
-    data: {hrs:hrs,mins:mins,gtotal:gtotal},
- success: function(data) {
+                  type: 'POST',
+                  url: 'finish.php',                
+                  data: {hrs:hrs,mins:mins,gtotal:gtotal},
+                  success: function(data) {
 
- }  
-})
+                  }  
+                  })
+
+                  $.post('create_reciept.php', $('form').serialize(), function () {
+            $('div#wrap div').fadeOut( function () {
+                $(this).empty().html("<h2>Thank you!</h2><p>Thank you for your order. Please <a href='reciept.pdf'>download your reciept</a>. </p>").fadeIn();
+            });
+        });
+                  window.location.replace("create_reciept.php");
 
 >>>>>>> parent of a43c152... Revert "Merge branch 'Development' into Feature-Chris"
                 });
