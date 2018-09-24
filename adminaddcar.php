@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<?php include_once('head.php'); ?>
-<?php include('addcar.php'); ?>
-=======
 <?php include('head.php');
 $rego = "";
 $model = "";
@@ -109,7 +105,6 @@ if($stationName == "RMIT")
 
 		}
   ?>
->>>>>>> Development
 <!doctype html>
 <html lang="en">
 <head>
@@ -117,13 +112,7 @@ if($stationName == "RMIT")
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
       
-<<<<<<< HEAD
-      <link rel="stylesheet" href="css/card.css">
-      <link href="css/card-js.min.css" rel="stylesheet" type="text/css" />
-      <script src="css/card-js.min.js"></script>
-=======
       <!-- <link rel="stylesheet" href="css/card.css"> -->
->>>>>>> Development
   </head>
   <body>
     <?php  include_once('navbar.php');  ?>
@@ -238,7 +227,9 @@ if($stationName == "RMIT")
 															<option value="Geelong">Geelong</option>
 														  </select>
             
-			<button type="submit" class="btn" name="add_car">Add Car</button>
+			<label for="totalkm">total km/s</label><input type="number" id="totalkm" name="totalkm" placeholder="Please provide total km/s of car">
+			
+			<button type="submit" class="btn" name="submit" onclick="return confirm('Are you sure you wish to add this car?')">Add Car</button>
         </form>
 		
 				<style>
