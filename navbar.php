@@ -27,21 +27,24 @@
     <!--    <a class="dropdown-item" href="logIn.php">Login</a>  //-->
       </div>
     </li>
-      <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-      Admin Tools
-    </a>
-      <div class="dropdown-menu">
     <?php    if(isset($_SESSION["email"])){
       if($_SESSION['email'] == 'admin@ezshare.com.au'){
+  echo    "<li class='nav-item dropdown'>";
+  echo  "<a class='nav-link dropdown-toggle' href='#' id='navbardrop' data-toggle='dropdown'>";
+    echo "Admin Tools";
+  echo "</a>";
+  echo  "<div class='dropdown-menu'>";
+
         echo"<a class='dropdown-item'href='adminaddcar.php'>Add a Car</a>";
         echo"<a class='dropdown-item'href='admindeletecar.php'>Remove a Car</a>";
         echo"<a class='dropdown-item'href='bookingdelete.php'>User Bookings</a>";
-      }
-  }
+
+echo  "</div>";
+echo  "</li>";
+
+}
+}
     ?>
-      </div>
-    </li>
     <li class="nav-item">
       <a class="nav-link" href="home.php">Home</a>
     </li>
