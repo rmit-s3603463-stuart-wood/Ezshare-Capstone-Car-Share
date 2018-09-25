@@ -8,7 +8,9 @@
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/ -->
      <!-- Pictures sourced from https://www.carsales.com.au -->
 	<style>
-
+body{
+  color: #1e3f5a;
+}
        </style>
 
   </head>
