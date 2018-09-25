@@ -107,7 +107,7 @@ $results = mysqli_fetch_assoc($query);
 
                 <th>Hours Booked</th>
 
-                <th>Unbook car?</th>
+                <th>Return car?</th>
           </tr>
 
             <?php

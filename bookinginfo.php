@@ -215,7 +215,6 @@ $(function () {
                       }
 }else{
   echo"You must make login first to make a booking!";
-  array_push($errors, "Invalid member access!");
   $firstName = 'N/A';
   $lastName = 'N/A';
   $email = 'N/A';
@@ -299,7 +298,6 @@ $(function () {
                     }
                     }else{
                       echo"You must make choose a car via the map!";
-                      array_push($errors, "Invalid page access!");
                     }
         ?>
 

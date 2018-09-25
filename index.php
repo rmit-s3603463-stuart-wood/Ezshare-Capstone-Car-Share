@@ -82,7 +82,7 @@
           var initialize = function() {
             map  = new google.maps.Map(document.getElementById('map'),
              {center:{lat:lat,lng:lng},
-             zoom:17,
+             zoom:11,
              gestureHandling: 'greedy'});
              var infoWindow = new google.maps.InfoWindow();
 
