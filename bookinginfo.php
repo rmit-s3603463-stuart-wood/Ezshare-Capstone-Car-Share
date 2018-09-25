@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/card.css">
-  <?php  include_once('head.php');  ?>
+  <?php  include_once('head.php');
+  if(!isset($_SESSION['email'])){
+     header("Location:logIn.php");
+  }
+  ?>
   <title>Booking</title>
 
 

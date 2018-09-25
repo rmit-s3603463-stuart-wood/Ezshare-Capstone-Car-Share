@@ -8,7 +8,11 @@
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
 
-      <?php include_once('head.php'); ?>
+      <?php include_once('head.php');
+      if(!isset($_SESSION['email'])){
+         header("Location:logIn.php");
+      }
+      ?>
 
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="timecalc.js"></script>
@@ -27,7 +31,7 @@
         padding: 8px 12px;
       }
     </style>
-    
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
@@ -84,8 +88,6 @@
     $dlong = "144.841049";
 }
   ?>
-
-  
 
 
     <script>
@@ -153,7 +155,7 @@
     </script>
 
         <script>
-       
+
         var pdate = '<?php echo $pdate; ?>';
         var ptime = '<?php echo $ptime; ?>';
         var ddate = '<?php echo $ddate; ?>';
@@ -331,7 +333,7 @@
 
       var gtotal = total;
       var gtotal = gtotal.toFixed(2);
-      
+
     </script>
 
     <div class="row">
@@ -486,11 +488,11 @@
                 return actions.payment.execute().then(function() {
                   $.ajax({
                   type: 'POST',
-                  url: 'finish.php',                
+                  url: 'finish.php',
                   data: {hrs:hrs,mins:mins,gtotal:gtotal},
                   success: function(data) {
 
-                  }  
+                  }
                   })
 
                   $.post('create_reciept.php', $('form').serialize(), function () {
