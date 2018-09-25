@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="cssHome.css">
-		
+
 		<?php include_once('head.php'); ?>
 		<title>Home</title>
 		<!--
@@ -65,23 +65,23 @@
 			  <div class="row">
 			  <div class="column">
 			  <div class="content">
-			  <img src="resources\assets\icons\happy1.jpg" class="rounded img-fluid" alt="happy1">
+			  <img src="resources\assets\icons\happy1.jpg" class="rounded img-fluid border border-dark" alt="happy1">
 			  <div class="centered">Cars ready, nearby, right now! Explore the world with EZshare!</div>
-			  <a href="index.php" class="btn">BOOK NOW</a>
+			  <div class="test"><a href="index.php" class="btn">BOOK NOW</a></div>
 			  </div>
 			</div>
 			 <div class="column">
 			 <div class="content">
-			  <img src="resources\assets\icons\happy2.jpg" class="rounded img-fluid" alt="happy2">
-			  <div class="centered">From sedans to suv's. Travel in your style!</div>
-			  <a href="carInfo.php" class="btn">SEE FLEET</a>
+			  <img src="resources\assets\icons\happy2.jpg" class="rounded img-fluid border border-dark" alt="happy2">
+			  <div class="centered">From Sedans to SUV's. Travel in your style!</div>
+			 <div class="test"> <a href="carInfo.php" class="btn">SEE FLEET</a></div>
 			</div>
 			</div>
 			 <div class="column">
 			 <div class="content">
-			  <img src="resources\assets\icons\happy3.png" class="rounded img-fluid" alt="happy3">
-			  <div class="centered">Fuel, cleaning and rego is all included!</div>
-			  <a href="signUp.php" class="btn">JOIN NOW</a>
+			  <img src="resources\assets\icons\happy3.png" class="rounded img-fluid border border-dark" alt="happy3">
+			  <div class="centered">Fuel, Cleaning and Rego is all included!</div>
+			 <div class="test"><a href="signUp.php" class="btn">JOIN NOW</a></div>
 			</div>
 			</div>
 		</div>

@@ -2,13 +2,47 @@
   box-sizing: border-box;
 }
 
+#completed{
+	margin-top: 10px;
+}
+.container table-responsive-sm{
+border-style: solid;
+
+}
+.nav-tabs{
+  background-color: #f1f1f1;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+
+	position: relative;
+	float: left;
+}
+
+
+
+
 #myInput {
+  background-image: url('/css/searchicon.png');
+  position: relative;
+  float: right;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  right: 15px;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  top: 10px;
+}
+#myInput3 {
   background-image: url('/css/searchicon.png');
   position: relative;
   float: left;
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  width: 49%;
+  width: 99%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
@@ -16,30 +50,17 @@
   margin-right: 11px;
 }
 
-#myInput2 {
-  background-image: url('/css/searchicon.png');
-  position: relative;
-  float: left;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 49%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-  margin-left: 11px;
-}
-
 #myTable {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 16px;
+  top: 10px;
 }
 
 #myTable th, #myTable td {
   text-align: left;
-  padding: 12px;
+  padding: 10px;
 }
 
 #myTable tr {
@@ -49,11 +70,16 @@
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
+.nav-tabs{
+	background-color:#161616;
+	position: relative;
+	top: 10px;	
+}
 
 <a> {
 	background-color: #555;
 	color: white;
-	font-size: 16px;
+	font-size: 12px;
 	padding: 12px 24px;
 	border: none;
 	cursor: pointer;

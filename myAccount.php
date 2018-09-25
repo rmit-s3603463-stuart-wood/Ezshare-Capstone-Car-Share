@@ -1,8 +1,14 @@
 <?php  include_once('head.php');?>
-<?php include('signUpPro.php') ?>
+<?php include('signUpPro.php')
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
+    <?php if(!isset($_SESSION['email'])){
+       header("Location:logIn.php");
+    }
+    ?>
 <title>EZshare - Account  Information</title>
 <link rel="stylesheet" type="text/css" href="cssMyAccount.css">
   </head>
@@ -34,6 +40,7 @@
           <tr>
             <td rowspan="8">  <img src="resources\assets\icons\profile.png"  class="rounded img-fluid"  alt="sedan" width="300" height="500"> </td>
 <?php
+
 $email = $_SESSION["email"];
 $query = mysqli_query($conn,"SELECT * FROM customers where email ='$email'");
 $results = mysqli_fetch_assoc($query);
@@ -75,12 +82,14 @@ $results = mysqli_fetch_assoc($query);
       </table>
     </div>
     <div id="Bookings" class="container tab-pane fade"><br>
-
       <table class="table table-bordered">
         <thead class="thead-dark">
-
+          <tr>
+                <th colspan = '9' >Current Bookings</th>
+          </tr>
         </thead>
         <tbody>
+
           <tr>
                 <th>Booking ID</th>
 
@@ -97,37 +106,53 @@ $results = mysqli_fetch_assoc($query);
                 <th>Time Booked</th>
 
                 <th>Hours Booked</th>
+
+                <th>Return car?</th>
           </tr>
 
             <?php
             $email = $_SESSION["email"];
             $query2 = "SELECT * FROM booking where email ='$email'";
             $results2  = $conn->query($query2);
-
+            $x = 0;
 
             while($row = $results2->fetch_assoc()) {
 
+              if($row['completed'] == 0){
+                $bookingID =  $row['bookingID'];
+                $rego = $row['rego'];
+                $dateBooked = $row['dateBooked'];
+                $timeBooked = $row['timeBooked'];
+                $hoursBooked = $row['hoursBooked'];
+                $totalPrice = $row['totalPrice'];
+                $returnLocation = $row['returnLocation'];
+                $pickupLocation = $row['pickupLocation'];
 
-              $bookingID =  $row['bookingID'];
-              $rego = $row['rego'];
-              $dateBooked = $row['dateBooked'];
-              $timeBooked = $row['timeBooked'];
-              $hoursBooked = $row['hoursBooked'];
-              $totalPrice = $row['totalPrice'];
-              $returnLocation = $row['returnLocation'];
-              $pickupLocation = $row['pickupLocation'];
+                        echo'<tr>
+                        <td>'.$bookingID.'</td>
+                        <td>'.$rego.'</td>
+                        <td>'.$totalPrice.'</td>
+                        <td>'.$pickupLocation.'</td>
+                        <td>'.$returnLocation.'</td>
+                        <td>'.$dateBooked.'</td>
+                        <td>'.$timeBooked.'</td>
+                        <td>'.$hoursBooked.'</td>
+                        <td>
+                        <form action=\'unbook.php\' method=\'post\'>
+                        <input type=\'hidden\' id=\'bookId\' name=\'bookId\' value="'.$bookingID.'">
+                        <input type=\'hidden\' id=\'carRego\' name=\'carRego\' value="'.$rego.'">
+                        <input type=\'submit\'>
+                          </button></form>
+                        </td>
+                        </tr>';
+                        $x=1;
+              }
 
-                      echo"<tr>
-                      <td>$bookingID</td>
-                      <td>$rego</td>
-                      <td> $$totalPrice</td>
-                      <td>$pickupLocation</td>
-                      <td>$returnLocation</td>
-                      <td>$dateBooked</td>
-                      <td>$timeBooked</td>
-                      <td>$hoursBooked</td>
-
-                      </tr>";
+                    }
+                    if($x == 0){
+                      echo'<tr>
+                      <td class=\'text-center\' colspan = \'9\'>You have no current bookings!</td>
+                      </tr>';
                     }
 
               ?>
@@ -135,6 +160,78 @@ $results = mysqli_fetch_assoc($query);
 
         </tbody>
       </table>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+                <th colspan = '8' > Previous Bookings</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+                <th>Booking ID</th>
+
+                <th>Registration Number</th>
+
+                <th>Total Price</th>
+
+                <th>Pick Up location</th>
+
+                <th>Return location</th>
+
+                <th>Date Booked</th>
+
+                <th>Time Booked</th>
+
+                <th>Hours Booked</th>
+
+
+          </tr>
+
+            <?php
+            $email = $_SESSION["email"];
+            $query2 = "SELECT * FROM booking where email ='$email'";
+            $results2  = $conn->query($query2);
+            $x = 0;
+
+            while($row = $results2->fetch_assoc()) {
+
+              if($row['completed'] == 1){
+                $bookingID =  $row['bookingID'];
+                $rego = $row['rego'];
+                $dateBooked = $row['dateBooked'];
+                $timeBooked = $row['timeBooked'];
+                $hoursBooked = $row['hoursBooked'];
+                $totalPrice = $row['totalPrice'];
+                $returnLocation = $row['returnLocation'];
+                $pickupLocation = $row['pickupLocation'];
+
+                        echo"<tr>
+                        <td>$bookingID</td>
+                        <td>$rego</td>
+                        <td>$totalPrice</td>
+                        <td>$pickupLocation</td>
+                        <td>$returnLocation</td>
+                        <td>$dateBooked</td>
+                        <td>$timeBooked</td>
+                        <td>$hoursBooked</td>
+
+                        </tr>";
+                        $x = 1;
+              }
+
+                    }
+                    if($x == 0){
+                      echo'<tr>
+                      <td class=\'text-center\' colspan = \'9\'>You have no previous bookings!</td>
+                      </tr>';
+                    }
+              ?>
+
+
+        </tbody>
+      </table>
+
     </div>
 
     </div>

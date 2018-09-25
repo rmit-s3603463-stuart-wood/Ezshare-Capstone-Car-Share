@@ -1,7 +1,6 @@
 <?php
 	$rego = $_GET['rego'];
 
-
 $con = mysqli_connect("localhost","Admin","password","carshare") or die("Error " . mysqli_error($con));
 
 $sql = "DELETE cars, booking 
