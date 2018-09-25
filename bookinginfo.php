@@ -51,7 +51,6 @@ if (isset($_POST['bookRego'])){
     var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"}];
 }
 
-
   function initialize() {
     markerData.forEach(function(data) {
       var czoom = data.zoom;
@@ -134,11 +133,8 @@ $(function () {
     }
 });
       });
-
+      
 </script>
-
-
-
 <script>
   var map2;
   var markerData2= [
@@ -146,7 +142,6 @@ $(function () {
     {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
     {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
   ];
-
   function initialize() {
       map2 = new google.maps.Map(document.getElementById('map2'), {
         zoom: 6,
