@@ -55,8 +55,18 @@ if($stationName == "RMIT")
 	$carCords = '-37.783315, 144.914923';
   }elseif($stationName =="Geelong"){
 	$carCords = '-38.147274, 144.360866';
-  }
-
+  }elseif($stationName =="Flinders Street"){
+	$carCords = '-37.818237, 144.967073';
+  }elseif($stationName =="Flagstaff Station"){
+	$carCords = '-37.811692, 144.956096';
+  }elseif($stationName =="Parliament Station"){
+	$carCords = '-37.812747, 144.973513';
+  }elseif($stationName =="Melbourne Central"){
+	$carCords = '-37.810202, 144.962765';
+  }elseif($stationName =="Eureka Tower"){
+	$carCords = '-37.821472, 144.964894';
+  }  
+  
   $booked = intval(FALSE);
   $availability = true;
   $totalkm = $_POST['totalkm'];
@@ -231,6 +241,11 @@ if($stationName == "RMIT")
 															<option value="Epping">Epping</option>
 															<option value="Showgrounds">Showgrounds</option>
 															<option value="Geelong">Geelong</option>
+															<option value="Flinders Street">Flinders Street</option>
+															<option value="Flagstaff Station">Flagstaff Station</option>
+															<option value="Parliament Station">Parliament Station</option>
+															<option value="Melbourne Central">Melbourne Central</option>
+															<option value="Eureka Tower">Eureka Tower</option>
 														  </select>
 
 
