@@ -85,7 +85,10 @@ $pdf->Output('reciept.pdf', 'F');?>
 </head>
 <body>
     <h2>Thank you!</h2>
-    <p>Thank you for your order. Please <a href='reciept.pdf'>download your reciept</a>. 
+    
+    <p>Thank you for your order.
+    <a href="myAccount.php" onclick="window.open('reciept.pdf');
+    return true;">Download your reciept and view your bookings</a>
     </p>
 </body>
 
