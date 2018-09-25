@@ -1,7 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <?php include_once('head.php'); ?>
+  <?php include_once('head.php');
+
+  if($_SESSION['email'] !== 'admin@ezshare.com.au'){
+      // isn't admin, redirect them to home page
+      header("Location:home.php");
+  }
+
+  ?>
   <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
   <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
   <link type="text/css" rel="stylesheet" href="http://pubnub.github.io/eon/lib/eon.css" />
@@ -73,7 +80,7 @@
       var initialize = function() {
         map  = new google.maps.Map(document.getElementById('map'),
          {center:{lat:lat,lng:lng},
-         zoom:12,
+         zoom:11,
          gestureHandling: 'greedy'});
          var infoWindow = new google.maps.InfoWindow();
 
@@ -257,12 +264,33 @@
                           xmlhttp.send();
 
                   }
+                  function getDistance() {
 
+                          if (window.XMLHttpRequest) {
+                              // code for IE7+, Firefox, Chrome, Opera, Safari
+                              xmlhttp = new XMLHttpRequest();
+                          } else {
+                              // code for IE6, IE5
+                              xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                          }
+                          xmlhttp.onreadystatechange = function() {
+                              if (this.readyState == 4 && this.status == 200) {
+                                dbCurrKm= JSON.parse(this.responseText);
+                            //    document.write(markLoc[1]);
+                                //document.write(this.responseText);
+
+                              }
+                          };
+                          xmlhttp.open("GET","getDis.php",true);
+                          xmlhttp.send();
+
+                  }
                   getCords();
                   var lineCoordinatesPath= new Array ();
                   var lineCoords = new Array ();
                   var linelatlng=0;
                   var currKm;
+                  var dbCurrKm=[];
 
 
 
@@ -287,13 +315,21 @@
                var templatTEST = parseFloat(temparray[0]);
                var templngTEST = parseFloat(temparray[1]);
 
+            //   document.write("<br>linelatlng: " + linelatlng);
+            //   document.write("<br>templat: " + templat);
+            //   document.write("<br>templng: " + templng);
+
                templat += parseFloat(linelatlng);
                templng += parseFloat(linelatlng);
+              // document.write("<br>templatUPDATE: " + templat);
+            //   document.write("<br>templngUPDATE: " + templng);
+
                linelatlng+=0.001;
               // document.write(templat +" " +templng+ "------ ");
                var templatlng= new google.maps.LatLng(templat, templng);
                var templatlngTEST= new google.maps.LatLng(templatTEST, templngTEST);
-
+               //document.write("<br>templatlng: " + templatlng);
+              //document.write("<br>linelatlng2: " + linelatlng);
                var kmlat = markArr[i].getPosition().lat();
                var kmlng = markArr[i].getPosition().lng();
                var kmlatlng = new google.maps.LatLng(kmlat, kmlng);
@@ -301,17 +337,21 @@
                  currkm = google.maps.geometry.spherical.computeDistanceBetween(templatlngTEST,kmlatlng);
                }else{
                  currkm = google.maps.geometry.spherical.computeDistanceBetween(templatlng,kmlatlng);
+
                }
                if(x!=0){
-                 currkm = currkm/1000;
-               }
-               //document.write(currkm +"--------");
-               setDistance(currkm,carRego[i]);
-               document.getElementById("car"+[i]).innerHTML = carRego[i];
-               document.getElementById("jKm"+[i]).innerHTML = currkm +" km";
-               document.getElementById("tKm"+[i]).innerHTML = totalkm[i] +" km";
-               document.getElementById("email"+[i]).innerHTML = currDriver[i];
-
+                 dbCurrKm[i] += currkm/1000;
+              //document.write("<br>currkm: " + currkm);
+              //document.write("<br>------------");
+               setDistance(dbCurrKm[i],carRego[i]);
+               var totalkmdec = parseFloat(totalkm[i]+dbCurrKm[i]);
+              document.getElementById("car"+[i]).innerHTML = carRego[i];
+              document.getElementById("jKm"+[i]).innerHTML = dbCurrKm[i].toFixed(2) +" km";
+              document.getElementById("tKm"+[i]).innerHTML = totalkmdec.toFixed(2) +" km";
+              document.getElementById("email"+[i]).innerHTML = currDriver[i];
+            }else{
+              dbCurrKm[i]=0;
+            }
                //document.write(currkm);
                if(i==1){
                  markArr[i].setPosition(templatlngTEST);
@@ -354,7 +394,7 @@
 
                   setInterval(function() {
                     pubnub.publish({channel:pnChannel, message:currentLocation()});
-                  }, 10000);
+                  }, 1000);
 
                   function rad(x) {return x*Math.PI/180;}
                   function find_closest_marker(  markArr,userlat,userlng,map ) {
@@ -426,13 +466,22 @@
                  <table class="table">
                    <tbody>
                    <tr><th class="table-active">Car: </th><th class="table-active">Current Journey km: </th><th class="table-active">Total km traveled: </th><th class="table-active">Booked By: </th></tr>
-                   <tr><td id="car0"></td><td id="jKm0"></td><td id="tKm0"></td><td id="email0"></td></tr>
-                   <tr><td id="car1"></td><td id="jKm1"></td><td id="tKm1"></td><td id="email1"></td></tr>
-                   <tr><td id="car2"></td><td id="jKm2"></td><td id="tKm2"></td><td id="email2"></td></tr>
-                   <tr><td id="car3"></td><td id="jKm3"></td><td id="tKm3"></td><td id="email3"></td></tr>
-                   <tr><td id="car4"></td><td id="jKm4"></td><td id="tKm4"></td><td id="email4"></td></tr>
-                   <tr><td id="car5"></td><td id="jKm5"></td><td id="tKm5"></td><td id="email5"></td></tr>
-                   <tr><td id="car6"></td><td id="jKm6"></td><td id="tKm6"></td><td id="email6"></td></tr>
+                   <?php
+                   $sql = "SELECT * FROM cars";
+                   $result = $conn->query($sql);
+
+                     if ($result->num_rows > 0) {
+                       $row_count = $result->num_rows;
+                       $x=0;
+
+                       while($row = $result->fetch_assoc()) {
+                         echo'<tr><td id="car'.$x.'"></td><td id="jKm'.$x.'"></td><td id="tKm'.$x.'"></td><td id="email'.$x.'"></td></tr>';
+                          $x+=1;
+                       }
+
+                      }
+
+                   ?>
                  </tbody>
                  </table>
 

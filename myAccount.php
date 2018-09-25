@@ -1,8 +1,14 @@
 <?php  include_once('head.php');?>
-<?php include('signUpPro.php') ?>
+<?php include('signUpPro.php')
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
+    <?php if(!isset($_SESSION['email'])){
+       header("Location:logIn.php");
+    }
+    ?>
 <title>EZshare - Account  Information</title>
 <link rel="stylesheet" type="text/css" href="cssMyAccount.css">
   </head>
@@ -34,6 +40,7 @@
           <tr>
             <td rowspan="8">  <img src="resources\assets\icons\profile.png"  class="rounded img-fluid"  alt="sedan" width="300" height="500"> </td>
 <?php
+
 $email = $_SESSION["email"];
 $query = mysqli_query($conn,"SELECT * FROM customers where email ='$email'");
 $results = mysqli_fetch_assoc($query);
@@ -100,7 +107,7 @@ $results = mysqli_fetch_assoc($query);
 
                 <th>Hours Booked</th>
 
-                <th>Unbook car?</th>
+                <th>Return car?</th>
           </tr>
 
             <?php
