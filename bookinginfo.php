@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/card.css">
-  <?php  include_once('head.php');  ?>
+  <?php  include_once('head.php');
+  if(!isset($_SESSION['email'])){
+     header("Location:logIn.php");
+  }
+  ?>
   <title>Booking</title>
 
 
@@ -28,7 +32,7 @@ if (isset($_POST['bookRego'])){
    while($row = $result->fetch_assoc()) {
      //cycles through the entire query result, one row at a time
     $stationName = $row["stationName"];
-    
+
   }
 } else {
   echo "0 results";
@@ -46,15 +50,14 @@ if (isset($_POST['bookRego'])){
 } else  {
     var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"}];
 }
-  
-   
+
   function initialize() {
     markerData.forEach(function(data) {
       var czoom = data.zoom;
       var clat = data.lat;
       var clong = data.lng;
       console.log(czoom);
-       
+
       map = new google.maps.Map(document.getElementById('map1'), {
         zoom: czoom,
         center: {lat: clat, lng: clong}
@@ -132,9 +135,6 @@ $(function () {
       });
       
 </script>
-
-
-    
 <script>
   var map2;
   var markerData2= [
@@ -142,7 +142,6 @@ $(function () {
     {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
     {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
   ];
-   
   function initialize() {
       map2 = new google.maps.Map(document.getElementById('map2'), {
         zoom: 6,
@@ -166,7 +165,7 @@ $(function () {
     map2.setZoom(newzoom);
     map2.setCenter({lat:newlat, lng:newlng});
   });
-  
+
   </script>
   <div class="row">
     <div class="col-75">
@@ -211,7 +210,6 @@ $(function () {
                       }
 }else{
   echo"You must make login first to make a booking!";
-  array_push($errors, "Invalid member access!");
   $firstName = 'N/A';
   $lastName = 'N/A';
   $email = 'N/A';
@@ -295,7 +293,6 @@ $(function () {
                     }
                     }else{
                       echo"You must make choose a car via the map!";
-                      array_push($errors, "Invalid page access!");
                     }
         ?>
 

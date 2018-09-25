@@ -1,4 +1,10 @@
 <?php include('head.php');
+if($_SESSION['email'] !== 'admin@ezshare.com.au'){
+    // isn't admin, redirect them to home page
+    header("Location:home.php");
+}
+
+
 $rego = "";
 $model = "";
 $make ="";
@@ -78,7 +84,7 @@ if($stationName == "RMIT")
   if (empty($carPic)) { array_push($errors, "carPic is required"); }
   if (empty($stationName)) { array_push($errors, "stationName is required"); }
   if (empty($totalkm)){ array_push($errors, "total km/s for car is required"); }
-  
+
   // first check the database to make sure
   // a car does not already exist with the same rego
   $car_check_query = "SELECT * FROM cars WHERE  rego='$rego' LIMIT 1";
@@ -89,7 +95,7 @@ if($stationName == "RMIT")
 	array_push($errors, "rego is already being used! Try another");
     }
   }
-  
+
   if (count($errors) == 0) {
 				  echo"";
 				  $fileExt = explode('.', $carPic);
@@ -102,7 +108,7 @@ if($stationName == "RMIT")
 					move_uploaded_file($_FILES['carPic']['tmp_name'], $target);
 					$query = "INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)
 					VALUES ('$rego', '$model', '$make', '$year', '$tier', '$seatNo', '$engine', '$price', '$fileNameNew', '$stationName', '$carCords', '$booked', '$availability', '$totalkm', '$journeykm', '$currDriver')";
-	
+
 					mysqli_query($conn, $query);
 						echo '<script language="javascript">';
 						echo 'alert("car has been added to database")';
@@ -121,7 +127,7 @@ if($stationName == "RMIT")
   <title>CarList</title>
      <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
       Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
-      
+
       <!-- <link rel="stylesheet" href="css/card.css"> -->
   </head>
   <body>
@@ -131,9 +137,9 @@ if($stationName == "RMIT")
         <form method="post" enctype="multipart/form-data" action="adminaddcar.php" name="addcar" role="form">
 			<?php include('errors.php'); ?>
             <label for="rego">Registration</label><input type="text" id="rego" name="rego" placeholder="Please provide registration">
-            
+
 			<label for="model">Car Model</label><input type="text" id="model" name="model" placeholder="Please provide car model">
-                           
+
             <label  for="make">Make</label><select name="make" placeholder="Please select a car tier">
 														<option value="Nissan">Nissan</option>
 														<option value="Ford">Ford</option>
@@ -142,7 +148,7 @@ if($stationName == "RMIT")
 														<option value="Holden">Holden</option>
 														<option value="Honda">Honda</option>
 														<option value="Volkswagen">Volkswagen</option>
-													</select>														
+													</select>
             <label  for="year">Year</label><select name="year" placeholder="Please select number of seats">
 															<option value="2018">2018</option>
 															<option value="2017">2017</option>
@@ -195,13 +201,13 @@ if($stationName == "RMIT")
 															<option value="1970">1970</option>
 															<option value="1969">1969</option>
 															<option value="1968">1968</option>
-														  </select>			
+														  </select>
             <label for="tier">Car Tier</label><select name="tier" placeholder="Please select a car tier">
 															<option value="1">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>
 														  </select>
-                   
+
             <label for="seatNo">Number Of Seats</label><select name="seatNo" placeholder="Please select number of seats">
 															<option value="2">2 seats</option>
 															<option value="3">3 seats</option>
@@ -211,15 +217,15 @@ if($stationName == "RMIT")
 															<option value="7">7 seats</option>
 															<option value="8">8 seats</option>
 														  </select>
-                            
+
             <label for="engine">Engine</label><select name="engine" placeholder="Please select number of seats">
 													<option value="4 Cylinders">4 Cylinders</option>
 													<option value="6 Cylinders">6 Cylinders</option>
 													<option value="8 Cylinders">8 Cylinders</option>
 												</select>
             <label for="price">Price</label><input type="number" id="price" name="price" placeholder="Please provide price of car">
-                        
-			
+
+
 			<label for="carPic">Car Image</label>
 			<label id="carPic">upload a picture
 			<input type="file" id="carPic" name="carPic">
@@ -241,12 +247,14 @@ if($stationName == "RMIT")
 															<option value="Melbourne Central">Melbourne Central</option>
 															<option value="Eureka Tower">Eureka Tower</option>
 														  </select>
-            
+
+
 			<label for="totalkm">total km/s</label><input type="number" id="totalkm" name="totalkm" placeholder="Please provide total km/s of car">
-			
+
+
 			<button type="submit" class="btn" name="submit" onclick="return confirm('Are you sure you wish to add this car?')">Add Car</button>
         </form>
-		
+
 				<style>
 
 input[type="file"] {
@@ -279,14 +287,14 @@ input[type="file"] {
 						font-size: 25px;
 						background-color: #7892c2;
 						display: inline-block;
-						
+
 					}
 
 					custom-file-input:focus + label,
 					.custom-file-input + label:hover {
 						background-color: #476e9e;
 					}
-					
+
 					.custom-file-input + label {
 					cursor: pointer; /* "hand" cursor */
 					}
@@ -321,7 +329,7 @@ input[type="file"] {
 						padding: 12px;
 						border: 1px solid #ccc;
 						border-radius: 3px;
-						
+
 					}
 
 					label {
@@ -362,7 +370,7 @@ input[type="file"] {
 						background: #f2dede;
 						border-radius: 5px;
 						text-align: left;
-					}			
+					}
 			</style>
 	</div>
     </body>

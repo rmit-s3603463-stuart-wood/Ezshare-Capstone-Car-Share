@@ -1,7 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <?php include_once('head.php'); ?>
+  <?php include_once('head.php');
+
+      if(isset($_SESSION["email"])){
+        if($_SESSION['email'] == 'admin@ezshare.com.au'){
+            header("Location:admin.php");
+        }
+}
+
+  ?>
   <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
 
   <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>-->
@@ -74,7 +82,7 @@
           var initialize = function() {
             map  = new google.maps.Map(document.getElementById('map'),
              {center:{lat:lat,lng:lng},
-             zoom:17,
+             zoom:11,
              gestureHandling: 'greedy'});
              var infoWindow = new google.maps.InfoWindow();
 

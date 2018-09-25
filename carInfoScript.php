@@ -26,7 +26,7 @@ echo '<table class="table">';
  if($row["tier"]==$x){
    //checks if the tier matches the table tier
 echo '<tr><th>'.$row["model"].'</th></tr>';
-echo '<tr><td rowspan="7">  <img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid"  alt="sedan" width="600" height="500"> </td><th class="table-active">Registration Number:</th><td>'.$row["rego"].'</td></tr>';
+echo '<tr><td rowspan="7">  <img src="resources\assets\icons\\'.$row["carPic"].'" class="rounded img-fluid border border-dark"  alt="sedan" width="600" height="500"> </td><th class="table-active">Registration Number:</th><td>'.$row["rego"].'</td></tr>';
 echo '<tr><th class="table-active">Make:</th><td>'.$row["make"].'</td></tr>';
 echo '<tr><th class="table-active">Year:</th><td>'.$row["year"].'</td></tr>';
 echo '<tr><th class="table-active">Tier:</th><td>'.$row["tier"].'</td></tr>';
