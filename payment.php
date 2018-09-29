@@ -44,6 +44,14 @@
     <?php require 'db_conn.php';?>
     <?php
 
+    $fdatetime = $_POST['fdatetime'];
+
+    $tdatetime = $_POST['tdatetime'];
+
+    echo $fdatetime;
+
+    echo $tdatetime;
+
   $name = $_SESSION['firstName']. " " .$_SESSION['lastName'];
   $email = $_SESSION['email'];
   $phone = $_SESSION['phone'];
