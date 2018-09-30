@@ -14,14 +14,28 @@
           element that contains the map. -->
     <style>
        /* Set the size of the div element that contains the map */
-      #map {
-		position: absolute;
-        height: 400px;  /* The height is 400 pixels */
-        width: 400px;
-		left: 600px;
-		top: 60px;
-       }
+      #HQ {
+        height: 100%;
+				float:right;
 
+       }
+			 h1{
+ 			  padding: 10px;
+ 			}
+			 .table-borderless td,.table-borderless th {
+			     border: 0;
+			 }
+ .hours{
+float:left;
+
+ }
+ .contact{
+
+	 clear:left	;
+ }
+ .foot{
+	 clear:both;
+ }
 		.container {
 		position: relative;
 		padding-bottom: 20px;
@@ -41,18 +55,41 @@
 		<?php include_once('navbar.php'); ?>
 		<div class="container">
 			<h1 class = "text-center">Contact US</h1>
-			<p>Have a question? Please get in touch by calling the number below.</p>
-			<p>Our dedicated customer care team will get back to you as soon as possible.</p>
-			<p><mark><u>Customer care operating hours</u></mark></p>
-			<p><strong>Monday - Friday:</strong> 9:00 AM - 5:30PM</p>
-			<p><strong>Saturday:</strong> 11:00 AM - 4:30PM</p>
-			<p><strong>Sundays:</strong> Closed</p>
+			<p class = "text-center">Have a question? Please get in touch by calling the number below.</br> Our dedicated customer care team will get back to you as soon as possible.</p>
+
+					<div class ="hours">
+					<table class="table table-borderless">
+	  <thead>
+	    <tr>
+	      <th scope="col" colspan ="2">Customer care operating hours</th>
+
+	    </tr>
+	  </thead>
+	  <tbody>
+
+	    <tr>
+				<td>Monday - Friday:</td>
+	      <td>9:00 AM - 5:30PM</td>
+	    </tr>
+	    <tr>
+				<td>Saturday:</td>
+	      <td>11:00 AM - 4:30PM</td>
+	    </tr>
+	    <tr>
+				<td>Sundays:</td>
+				<td>Closed</td>
+	    </tr>
+
+	  </tbody>
+	</table>
+</div>
+<img id ="HQ" src="resources\assets\img\HQ.jpg" alt="HQ">
+
+<div class="contact">
 			<P><mark><u>Phone:</u></mark> 1800 145 234</P>
-			<p><mark><u>Location</u></mark></p>
-			<p>123EZshareHQ</p>
-			<p>East Coburg VIC 3021</p>
+			<p><mark><u>Location:</u></mark> 123EZshareHQ, East Coburg VIC 3021</p>
+		</div>
 			<!--The div element for the map -->
-			<div id="map"></div>
 				<script>
 					// Initialize and add the map
 					function initMap() {
@@ -75,5 +112,7 @@
 			</script>
 		 </div>
 	</body>
+	<div class="foot">
 		<?php include_once('footer.php'); ?>
+</div>
 </html>
