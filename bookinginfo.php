@@ -149,10 +149,11 @@ $(function () {
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker6').datetimepicker({
-          format: "DD/MM/YY - hh:mm A"
+          format: "DD/MM/YYYY - hh:mm A"
         });
         $('#datetimepicker7').datetimepicker({
-          format: "DD/MM/YY - hh:mm A"
+          format: "DD/MM/YYYY - hh:mm A",
+          useCurrent: false
             
         });
         $("#datetimepicker6").on("dp.change", function (e) {

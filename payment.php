@@ -46,20 +46,29 @@
 
     $fdatetime = $_POST['fdatetime'];
 
-    $tdatetime = $_POST['tdatetime'];
+    list($pdate2, $ptime2) = explode(" - ", $fdatetime);
+    $pdate2 = str_replace('/', '-', $pdate2);
+    $pdate2 = date("Y-m-d", strtotime($pdate2));
+    $pdate = str_replace('-', '/', $pdate2);
 
-    echo $fdatetime;
+    $ptime = date("G:i", strtotime($ptime2));
 
-    echo $tdatetime;
+
+    
+
 
   $name = $_SESSION['firstName']. " " .$_SESSION['lastName'];
   $email = $_SESSION['email'];
   $phone = $_SESSION['phone'];
 
-  $pdate1 = $_POST['pdate'];
-  $pdate = str_replace('-', '/', $pdate1);
-  $_SESSION['pdate'] = $pdate1;
-  $ptime = $_POST['ptime'];
+  //$pdate1 = $_POST['pdate'];
+  //$pdate = str_replace('-', '/', $pdate1);
+
+  
+
+  $_SESSION['pdate'] = $pdate;
+  //$ptime = $_POST['ptime'];
+
   $plocation = $_POST['plocation'];
 
   if ($plocation == "-37.806989|144.963865|17" or $plocation == "RMIT") {
@@ -77,10 +86,22 @@
 }
 
 
-  $ddate1 = $_POST['ddate'];
-  $ddate = str_replace('-', '/', $ddate1);
-  $dtime = $_POST['dtime'];
+  //$ddate1 = $_POST['ddate'];
+  //$ddate = str_replace('-', '/', $ddate1);
+  //$dtime = $_POST['dtime'];
+
+  $tdatetime = $_POST['tdatetime'];
+
+  list($ddate2, $dtime2) = explode(" - ", $tdatetime);
+    $ddate2 = str_replace('/', '-', $ddate2);
+    $ddate2 = date("Y-m-d", strtotime($ddate2));
+    $ddate = str_replace('-', '/', $ddate2);
+
+    $dtime = date("G:i", strtotime($dtime2));
+
+
   $dlocation = $_POST['dlocation'];
+
 
   if ($dlocation == "-37.806989|144.963865|17") {
     $dlocation = "RMIT";
