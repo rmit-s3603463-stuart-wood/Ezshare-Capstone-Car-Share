@@ -85,7 +85,7 @@ $results = mysqli_fetch_assoc($query);
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-                <th colspan = '9' >Current Bookings</th>
+                <th colspan = '10' >Current Bookings</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +107,8 @@ $results = mysqli_fetch_assoc($query);
 
                 <th>Hours Booked</th>
 
+                <th>Minutes Booked</th>
+
                 <th>Return car?</th>
           </tr>
 
@@ -124,7 +126,8 @@ $results = mysqli_fetch_assoc($query);
                 $dateBooked = $row['dateBooked'];
                 $timeBooked = $row['timeBooked'];
                 $hoursBooked = $row['hoursBooked'];
-                $totalPrice = $row['totalPrice'];
+                $minutesBooked = $row['minutesBooked'];
+                $totalPrice =$row['totalPrice'];
                 $returnLocation = $row['returnLocation'];
                 $pickupLocation = $row['pickupLocation'];
 
@@ -137,6 +140,7 @@ $results = mysqli_fetch_assoc($query);
                         <td>'.$dateBooked.'</td>
                         <td>'.$timeBooked.'</td>
                         <td>'.$hoursBooked.'</td>
+                        <td>'.$minutesBooked.'</td>
                         <td>
                         <form action=\'unbook.php\' method=\'post\'>
                         <input type=\'hidden\' id=\'bookId\' name=\'bookId\' value="'.$bookingID.'">
@@ -151,7 +155,7 @@ $results = mysqli_fetch_assoc($query);
                     }
                     if($x == 0){
                       echo'<tr>
-                      <td class=\'text-center\' colspan = \'9\'>You have no current bookings!</td>
+                      <td class=\'text-center\' colspan = \'10\'>You have no current bookings!</td>
                       </tr>';
                     }
 

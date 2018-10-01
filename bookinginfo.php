@@ -342,29 +342,23 @@ $(function () {
 
   <div class = "centerform">
 
-    <div class='input-group date' id='datetimepicker6'>
+    
+
+     <label for="pdate">Pick Up date and time:</label>
+      <div class='input-group date' id='datetimepicker6'>
                 <input type='text' name = "fdatetime" class="form-control" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
 
-     <label for="pdate">Pick Up Date:</label>
-      <div>
-        <input type="date" class="form-control" id="StartDate" min="<?php echo date("Y-m-d"); ?>" value="" name="pdate" >
-      </div>
 
-      <br>
-
-      <label for="ptime">Pick Up Time:</label>
-      <div>
-        <input type="time" class="form-control" id="ptime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="ptime" onfocus="this.value=''">
-      </div>
 
 
       <br>
 
       <label for="plocation">Pick Up Location</label>
+
       <div>
 
         <select class="custom-select mr-sm-2" id="selectlocation" name="plocation" form="form">
@@ -389,6 +383,11 @@ $(function () {
 
   <div class = "centerform">
 
+   
+
+      <br>
+
+      <label for="ddate">Drop Off date and time:</label>
    <div class='input-group date' id='datetimepicker7'>
                 <input type='text' name = "tdatetime" class="form-control" />
                 <span class="input-group-addon">
@@ -396,19 +395,7 @@ $(function () {
                 </span>
             </div>
 
-      <br>
 
-      <label for="ddate">Drop Off Date:</label>
-    <div>
-        <input type="date" class="form-control" id="EndDate" min="<?php echo date("Y-m-d"); ?>" value="" name="ddate">
-      </div>
-
-      <br>
-
-      <label for="dtime">Drop Off Time:</label>
-      <div>
-        <input type="time" class="form-control" id="dtime" value="<?php date_default_timezone_set('Australia/Melbourne'); echo date("H:i"); ?>" name="dtime" onfocus="this.value=''">
-      </div>
 
 
       <br>
