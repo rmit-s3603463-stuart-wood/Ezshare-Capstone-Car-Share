@@ -1,17 +1,22 @@
 
 <header>
   <style>
-  .navbar{
+.navbar{
     background-color: #1e3f5a;
   }
   .navbar a{
-    color:white;
+    color:black;
+
   }
   .dropdown-menu{
-    background-color: #1e3f5a;
+    background-color: white;
+    color:black;
+
   }
   .dropdown-menu a:hover{
     background-color: white;
+    color:black;
+
   }
   .dropdown-menu a:active{
     background-color: white;
