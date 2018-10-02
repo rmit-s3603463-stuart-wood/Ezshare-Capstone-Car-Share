@@ -11,6 +11,9 @@
 body{
   color: #1e3f5a;
 }
+h1{
+  padding: 10px;
+}
        </style>
 
   </head>
