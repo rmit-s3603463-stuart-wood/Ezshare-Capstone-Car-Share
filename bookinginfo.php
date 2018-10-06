@@ -290,12 +290,6 @@ var markerData2= [
                 <br>
 
 
-                <label for="dlicence">Drivers Licence Number:</label>
-                <div>
-                  <input type="number" class="form-control" id="dlicence" name="dlicence" placeholder="Enter Drivers Licence Number" disabled>
-                </div>
-
-
             </div>
 
               <br>
