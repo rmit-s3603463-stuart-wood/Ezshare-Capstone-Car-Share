@@ -149,7 +149,8 @@ $(function () {
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker6').datetimepicker({
-          format: "DD/MM/YYYY - hh:mm A"
+          format: "DD/MM/YYYY - hh:mm A",
+          minDate: new Date()
         });
         $('#datetimepicker7').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
@@ -169,10 +170,20 @@ $(function () {
     
 <script>
   var map2;
-  var markerData2= [
-    {lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"},
-    {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
-    {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
+var markerData2= [
+    <?php
+    $sql = "SELECT * FROM station";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+     while($row = $result->fetch_assoc()) {
+       list($lat, $long) = explode(", ",$row["cords"]);
+       //cycles through the entire query result, one row at a time
+       echo '{lat: '.$lat.' ,  lng: '.$long.' , zoom: 17 , name: "'.$row["stationName"].'"},';
+    }
+  }
+     ?>
+
   ];
    
   function initialize() {
