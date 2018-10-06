@@ -1,7 +1,7 @@
 
 <header>
   <style>
-  .navbar{
+.navbar{
     background-color: #1e3f5a;
   }
   .navbar a{
