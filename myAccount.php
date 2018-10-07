@@ -10,6 +10,15 @@
     }
     ?>
 <title>EZshare - Account  Information</title>
+<style>
+h1{
+  padding: 10px;
+}
+.table{
+     margin-bottom: 100px;
+}
+</style>
+
 <link rel="stylesheet" type="text/css" href="cssMyAccount.css">
   </head>
   <body>

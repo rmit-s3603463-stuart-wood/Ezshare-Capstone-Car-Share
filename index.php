@@ -78,6 +78,7 @@
           var contentString;
           var clusterMarker = [];
           var x = 0;
+          var markArr= new Array();
 
           var initialize = function() {
             map  = new google.maps.Map(document.getElementById('map'),
@@ -180,7 +181,6 @@
               ?>
 
               var closest;
-              var markArr= new Array();
               for (var i = 0; i < locations.length; i ++) {
                 var cartierloc=cartier[i];
                 var carcol=whitecar;
@@ -224,7 +224,7 @@
                       navigator.geolocation.getCurrentPosition(function(position) {
                        userlat= position.coords.latitude;
                        userlng= position.coords.longitude;
-                       google.maps.event.addListener(map, 'click', function() {find_closest_marker(markArr,userlat,userlng,map )});
+                       find_closest_marker(markArr,userlat,userlng,map);
 
                    }, function() {
                      handleLocationError(true, infoWindow, map.getCenter());
@@ -247,10 +247,27 @@
             }
 
             usermark.setPosition({lat:lat, lng:lng, alt:0});
+            map.controls[google.maps.ControlPosition.RIGHT_TOP].clear();
+            find_closest_marker(markArr,lat,lng,map);
           };
+          <?php
 
-          var pnChannel = "map-channel";
+          $sql = "SELECT * FROM customers";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+    // output data of each row
+            $x=0;
+             while($row = $result->fetch_assoc()) {
+               $x+=1;
+               if($_SESSION['email']==$row['email']){
+                 echo 'var UserID ='.$x.';';
+                 break;
+               }
+             }
+           }
+               ?>
 
+          var pnChannel= "map-channel"+UserID;
           var pubnub = new PubNub({
           publishKey:   'pub-c-f7bdfeeb-bfd3-4273-85e8-4f134e51931e',
           subscribeKey: 'sub-c-d37a4c6e-b71e-11e8-b27d-1678d61e8f93'
@@ -295,7 +312,7 @@
               map.controls[google.maps.ControlPosition.RIGHT_TOP].push(centerControlDiv);
 
              }
-
+             var eventExists =false;
              function CenterControl(controlDiv, map,closestMarker) {
 
                   // Set CSS for the control border.
@@ -322,9 +339,21 @@
                   controlUI.appendChild(controlText);
 
                    // Setup the click event listeners: simply set the map to Chicago.
-                   controlUI.addEventListener('click', function() {
-                     map.setCenter(closestMarker.position);
-                   });
+                   if(eventExists==true){
+                     controlUI.removeEventListener('click', function() {
+                       map.setCenter(closestMarker.position);
+                     });
+                     controlUI.addEventListener('click', function() {
+                       map.setCenter(closestMarker.position);
+                     });
+
+                   }else{
+                     controlUI.addEventListener('click', function() {
+                       map.setCenter(closestMarker.position);
+                     });
+                     eventExists=true;
+                   }
+
 
                  }
 
