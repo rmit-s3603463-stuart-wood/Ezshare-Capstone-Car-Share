@@ -147,16 +147,32 @@ $(function () {
 </script>
 
 <script type="text/javascript">
+
+
+  //$('#fdatetime').change(function() {
+
+  //if ($('#fdatetime').val() = '') {
+   // $('#tdatetime').attr('disabled', 'disabled');
+      
+    //} else {
+      //$('#tdatetime').removeAttr('disabled');
+    //}
+//});
+
+
     $(function () {
         $('#datetimepicker6').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
-          minDate: new Date()
+          minDate: new Date().toDateString(),
+          
         });
+
         $('#datetimepicker7').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
           useCurrent: false
             
         });
+
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
         });
@@ -350,6 +366,7 @@ var markerData2= [
     
 
      <label for="pdate">Pick Up date and time:</label>
+
       <div class='input-group date' id='datetimepicker6'>
                 <input type='text' name = "fdatetime" class="form-control" />
                 <span class="input-group-addon">
@@ -394,7 +411,7 @@ var markerData2= [
 
       <label for="ddate">Drop Off date and time:</label>
    <div class='input-group date' id='datetimepicker7'>
-                <input type='text' name = "tdatetime" class="form-control" />
+                <input type='text' name = "tdatetime" class="form-control"/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
