@@ -305,7 +305,6 @@ var markerData2= [
 
                 <br>
 
-
             </div>
 
               <br>
