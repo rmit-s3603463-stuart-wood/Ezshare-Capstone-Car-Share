@@ -149,11 +149,16 @@ $(function () {
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker6').datetimepicker({
-          format: "DD/MM/YYYY - hh:mm A"
+          format: "DD/MM/YYYY - hh:mm A",
+          minDate: new Date()
+
         });
+        var minDropOff = new Date();
+        minDropOff.setMinutes(minDropOff.getMinutes() + 30);
+
         $('#datetimepicker7').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
-          useCurrent: false
+          minDate: minDropOff
 
         });
         $("#datetimepicker6").on("dp.change", function (e) {
