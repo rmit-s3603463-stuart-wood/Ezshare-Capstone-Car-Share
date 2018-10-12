@@ -54,7 +54,7 @@
     $ptime = date("G:i", strtotime($ptime2));
 
 
-    
+
 
 
   $name = $_SESSION['firstName']. " " .$_SESSION['lastName'];
@@ -64,7 +64,7 @@
   //$pdate1 = $_POST['pdate'];
   //$pdate = str_replace('-', '/', $pdate1);
 
-  
+
 
   $_SESSION['pdate'] = $pdate;
   //$ptime = $_POST['ptime'];
@@ -281,9 +281,7 @@
     $email = $_SESSION["email"];
     $_SESSION['pdate'] = $pdate;
     $_SESSION['ptime'] = $ptime;
-    $hrs = $_POST['hrs'];
-    $mins = $_POST['mins'];
-    $gtotal = $_POST['gtotal'];
+
     $_SESSION['product'] = "Car hire";
 
     $_SESSION['plocation'] = $plocation;
