@@ -65,7 +65,7 @@ $pdf->SetX(50);
 $pdf->SetFont('Arial', 'I');
 $pdf->Cell(200, 6, $_SESSION['email'], 0, 2);
 $pdf->Cell(200, 6, $_SESSION['phone'], 0, 2);
-$pdf->Cell(200, 6, $_POST['postal_code'] . ' ' . $_POST['country']);
+//$pdf->Cell(200, 6, $_POST['postal_code'] . ' ' . $_POST['country']);
 $pdf->Ln(20);
 
 $pdf->PriceTable($_SESSION['product'], $_SESSION['price']);
@@ -85,7 +85,7 @@ $pdf->Output('reciept.pdf', 'F');?>
 </head>
 <body>
     <h2>Thank you!</h2>
-    
+
     <p>Thank you for your order.
     <a href="myAccount.php" onclick="window.open('reciept.pdf');
     return true;">Download your reciept and view your bookings</a>
