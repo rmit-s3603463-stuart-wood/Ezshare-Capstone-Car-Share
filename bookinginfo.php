@@ -2,7 +2,20 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/card.css">
-  <?php  include_once('head.php');  ?>
+  <?php  include_once('head.php');
+  $sql = "SELECT * FROM cars WHERE currDriver='".$_SESSION['email']."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+  echo  "<script>";
+  echo  "alert('You cannot book more than one car at a time!');";
+  echo  "window.location.replace('./home.php')";
+  echo  "</script>";
+}
+
+
+
+  ?>
   <title>Booking</title>
 
 
@@ -11,7 +24,7 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/build/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
-  
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -34,7 +47,7 @@ if (isset($_POST['bookRego'])){
    while($row = $result->fetch_assoc()) {
      //cycles through the entire query result, one row at a time
     $stationName = $row["stationName"];
-    
+
   }
 } else {
   echo "0 results";
@@ -52,15 +65,15 @@ if (isset($_POST['bookRego'])){
 } else  {
     var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"}];
 }
-  
-   
+
+
   function initialize() {
     markerData.forEach(function(data) {
       var czoom = data.zoom;
       var clat = data.lat;
       var clong = data.lng;
       console.log(czoom);
-       
+
       map = new google.maps.Map(document.getElementById('map1'), {
         zoom: czoom,
         center: {lat: clat, lng: clong}
@@ -143,7 +156,7 @@ $(function () {
     }
 });
       });
-      
+
 </script>
 
 <script type="text/javascript">
@@ -163,14 +176,17 @@ $(function () {
     $(function () {
         $('#datetimepicker6').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
-          minDate: new Date().toDateString(),
-          
+
+          minDate: new Date()
+
         });
+        var minDropOff = new Date();
+        minDropOff.setMinutes(minDropOff.getMinutes() + 30);
 
         $('#datetimepicker7').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
-          useCurrent: false
-            
+          minDate: minDropOff
+
         });
 
         $("#datetimepicker6").on("dp.change", function (e) {
@@ -183,7 +199,7 @@ $(function () {
 </script>
 
 
-    
+
 <script>
   var map2;
 var markerData2= [
@@ -201,7 +217,7 @@ var markerData2= [
      ?>
 
   ];
-   
+
   function initialize() {
       map2 = new google.maps.Map(document.getElementById('map2'), {
         zoom: 6,
@@ -225,7 +241,7 @@ var markerData2= [
     map2.setZoom(newzoom);
     map2.setCenter({lat:newlat, lng:newlng});
   });
-  
+
   </script>
   <div class="row">
     <div class="col-75">
@@ -362,7 +378,7 @@ var markerData2= [
 
   <div class = "centerform">
 
-    
+
 
      <label for="pdate">Pick Up date and time:</label>
 
@@ -400,11 +416,11 @@ var markerData2= [
 
   <h2>Drop Off Details</h2>
 
-  
+
 
   <div class = "centerform">
 
-   
+
 
       <br>
 
@@ -424,7 +440,6 @@ var markerData2= [
       <label for="dlocation">Drop Off Location</label>
       <div>
         <select class="custom-select mr-sm-2" id="selectlocation2" name="dlocation" form="form">
-          <option value="10|10|3">Please select a Drop Off point</option>
         </select>
       </div>
 
