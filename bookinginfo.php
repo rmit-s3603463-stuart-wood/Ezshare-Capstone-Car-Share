@@ -160,9 +160,23 @@ $(function () {
 </script>
 
 <script type="text/javascript">
+
+
+  //$('#fdatetime').change(function() {
+
+  //if ($('#fdatetime').val() = '') {
+   // $('#tdatetime').attr('disabled', 'disabled');
+      
+    //} else {
+      //$('#tdatetime').removeAttr('disabled');
+    //}
+//});
+
+
     $(function () {
         $('#datetimepicker6').datetimepicker({
           format: "DD/MM/YYYY - hh:mm A",
+
           minDate: new Date()
 
         });
@@ -174,6 +188,7 @@ $(function () {
           minDate: minDropOff
 
         });
+
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
         });
@@ -187,10 +202,20 @@ $(function () {
 
 <script>
   var map2;
-  var markerData2= [
-    {lat: -37.806989 , lng: 144.963865  , zoom: 17 , name: "RMIT"},
-    {lat: -37.885222 , lng: 145.086158  , zoom: 17 , name: "Chadstone Shopping Centre"},
-    {lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbourne Airport"},
+var markerData2= [
+    <?php
+    $sql = "SELECT * FROM station";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+     while($row = $result->fetch_assoc()) {
+       list($lat, $long) = explode(", ",$row["cords"]);
+       //cycles through the entire query result, one row at a time
+       echo '{lat: '.$lat.' ,  lng: '.$long.' , zoom: 17 , name: "'.$row["stationName"].'"},';
+    }
+  }
+     ?>
+
   ];
 
   function initialize() {
@@ -356,6 +381,7 @@ $(function () {
 
 
      <label for="pdate">Pick Up date and time:</label>
+
       <div class='input-group date' id='datetimepicker6'>
                 <input type='text' name = "fdatetime" class="form-control" />
                 <span class="input-group-addon">
@@ -400,7 +426,7 @@ $(function () {
 
       <label for="ddate">Drop Off date and time:</label>
    <div class='input-group date' id='datetimepicker7'>
-                <input type='text' name = "tdatetime" class="form-control" />
+                <input type='text' name = "tdatetime" class="form-control"/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
