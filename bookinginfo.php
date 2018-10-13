@@ -2,7 +2,20 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/card.css">
-  <?php  include_once('head.php');  ?>
+  <?php  include_once('head.php');
+  $sql = "SELECT * FROM cars WHERE currDriver='".$_SESSION['email']."'";// REPLACE SED123 WITH _POST['rego'] whihc is taken from the map button click
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+  echo  "<script>";
+  echo  "alert('You cannot book more than one car at a time!');";
+  echo  "window.location.replace('./home.php')";
+  echo  "</script>";
+}
+
+
+
+  ?>
   <title>Booking</title>
 
 
