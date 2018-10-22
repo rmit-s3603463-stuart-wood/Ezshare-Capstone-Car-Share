@@ -26,7 +26,7 @@
   </style>
   <!-- Optional JavaScript -->
   <nav class="navbar navbar-expand-sm navbar-dark">
-    <a class="navbar-brand" href="index.php">EZshare</a>
+    <a class="navbar-brand" href="/">EZshare</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,13 +39,13 @@
       <div class="dropdown-menu">
     <?php    if(isset($_SESSION["email"]))
     {
-      echo"<a class='dropdown-item' href='myAccount.php'>My Account</a>";
-      echo"<a class='dropdown-item' href='logOut.php'>LogOut</a>";
+      echo"<a class='dropdown-item' href='myAccount'>My Account</a>";
+      echo"<a class='dropdown-item' href='logOut'>LogOut</a>";
 
      }
     else
-    { echo"<a class='dropdown-item' href='logIn.php'>Login</a>";
-      echo"<a class='dropdown-item' href='signUp.php'>Sign Up</a>";
+    { echo"<a class='dropdown-item' href='logIn'>Login</a>";
+      echo"<a class='dropdown-item' href='signUp'>Sign Up</a>";
     }
     ?>
     <!--    <a class="dropdown-item" href="logIn.php">Login</a>  //-->
@@ -59,9 +59,9 @@
   echo "</a>";
   echo  "<div class='dropdown-menu'>";
 
-        echo"<a class='dropdown-item'href='adminaddcar.php'>Add a Car</a>";
-        echo"<a class='dropdown-item'href='admindeletecar.php'>Remove a Car</a>";
-        echo"<a class='dropdown-item'href='bookingdelete.php'>User Bookings</a>";
+        echo"<a class='dropdown-item'href='adminaddcar'>Add a Car</a>";
+        echo"<a class='dropdown-item'href='admindeletecar'>Remove a Car</a>";
+        echo"<a class='dropdown-item'href='bookingdelete'>User Bookings</a>";
 
 echo  "</div>";
 echo  "</li>";
@@ -70,26 +70,26 @@ echo  "</li>";
 }
     ?>
     <li class="nav-item">
-      <a class="nav-link" href="index.php">Home</a>
+      <a class="nav-link" href="/">Home</a>
     </li>
     <li class="nav-item">
 
     <?php
     if(isset($_SESSION["email"])){
-            echo"<a class='nav-link' href='map.php'>Map</a>";
+            echo"<a class='nav-link' href='map'>Map</a>";
 }
 
       ?>
 
     </li>
         <li class="nav-item">
-          <a class="nav-link" href="carFleet.php">Fleet</a>
+          <a class="nav-link" href="carFleet">Fleet</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="faqs.php">FAQS</a>
+          <a class="nav-link" href="faqs">FAQS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contactUs.php">Contact Us</a>
+          <a class="nav-link" href="contactUs">Contact Us</a>
         </li>
       </ul>
     </div>
