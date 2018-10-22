@@ -1,0 +1,214 @@
+select * from booking;
+select * from cars;
+select * from customers;
+select * from station;
+drop database carshare;
+--------------------------------------
+
+
+create database if not exists carshare;
+
+use carshare;
+GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'password';
+
+create table if not exists customers
+(email varchar(40) NOT NULL,
+password varchar(200),
+firstName varchar(25),
+lastName varchar(25),
+phone varchar(20),
+dateOfBirth varchar(20),
+street varchar(50),
+suburb varchar(30),
+state varchar(20),
+postcode varchar(20),
+country varchar(20),
+isAdmin boolean,
+PRIMARY KEY (email)
+);
+
+create table if not exists station(
+	cords varchar(200),
+	stationName varchar(150),
+	PRIMARY KEY (stationName)
+);
+
+create table if not exists cars(
+	rego varchar(35) NOT NULL,
+	model varchar(35),
+	make varchar(35),
+	year varchar(25),
+	tier varchar(25),
+	seatNo varchar(25),
+	engine varchar(50),
+	price varchar(50),
+	carPic  varchar(150),
+	stationName varchar(100),
+	carCords varchar(200),
+	booked boolean,
+	availability boolean,
+	totalkm varchar(30),
+	journeykm varchar(30),
+	currDriver varchar(40),
+	PRIMARY KEY (rego),
+	FOREIGN KEY (stationName) REFERENCES station(stationName),
+	FOREIGN KEY (currDriver) REFERENCES customers(email)
+);
+
+create table if not exists booking(
+
+	bookingID int(50) NOT NULL AUTO_INCREMENT,
+
+	rego varchar(35),
+	email varchar(200),
+	dateBooked varchar(75),
+	timeBooked varchar(75),
+	hoursBooked varchar(75),
+	minutesBooked varchar(75),
+	totalPrice varchar(75),
+	returnLocation varchar(200),
+	pickupLocation varchar(200),
+	completed boolean,
+	PRIMARY KEY (bookingID),
+	FOREIGN KEY (email) REFERENCES customers(email),
+	FOREIGN KEY (rego) REFERENCES cars(rego),
+	FOREIGN KEY (pickupLocation) REFERENCES station(stationName),
+	FOREIGN KEY (returnLocation) REFERENCES station(stationName)
+);
+
+
+INSERT INTO station (cords, stationName)VALUES('-37.817644, 144.966933','RMIT');
+INSERT INTO station (cords, stationName)VALUES('-37.669491, 144.851685','Melbourne Airport');
+INSERT INTO station (cords, stationName)VALUES('-37.885222, 145.086158','Chadstone');
+INSERT INTO station (cords, stationName)VALUES('-37.818380, 144.952464','Southern Cross');
+INSERT INTO station (cords, stationName)VALUES('-37.867493, 144.976888','Luna Park');
+INSERT INTO station (cords, stationName)VALUES('-37.580294, 144.712699','Sunbury');
+INSERT INTO station (cords, stationName)VALUES('-37.743839, 144.963922','Coburg');
+INSERT INTO station (cords, stationName)VALUES('-37.637673, 145.009664','Epping');
+INSERT INTO station (cords, stationName)VALUES('-37.783315, 144.914923','Showgrounds');
+INSERT INTO station (cords, stationName)VALUES('-38.147274, 144.360866','Geelong');
+
+INSERT INTO station (cords, stationName)VALUES('-37.818237, 144.967073','Flinders Street');
+INSERT INTO station (cords, stationName)VALUES('-37.811692, 144.956096','Flagstaff Station');
+INSERT INTO station (cords, stationName)VALUES('-37.812747, 144.973513','Parliament Station');
+INSERT INTO station (cords, stationName)VALUES('-37.810202, 144.962765','Melbourne Central');
+INSERT INTO station (cords, stationName)VALUES('-37.821472, 144.964894','Eureka Tower');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan3.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinders','50','4wd.jpg','Melbourne Airport','-37.818380, 144.952464',  false, true,'20000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  false, false,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd3.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true,'30000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  true, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury3.jpg','Sunbury','-37.580294, 144.712699',  true, true,'60000','0','Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan4.jpg','Sunbury','-37.580294, 144.712699',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan5.jpg','Coburg','-37.743839, 144.963922',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan6.jpg','Epping','-37.637673, 145.009664',  false, true,'40000','0', 'Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB123','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd4.jpg','Coburg','-37.743839, 144.963922',  false, true,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd5.jpg','Epping','-37.637673, 145.009664',  false, true,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd6.jpg','Showgrounds','-37.783315, 144.914923',  false, true,'50000','0','Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL123','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury4.jpg','Showgrounds','-37.783315, 144.914923',  true, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury5.jpg','Geelong','-38.147274, 144.360866',  true, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury6.jpg','Geelong','-38.147274, 144.360866',  true, true,'60000','0','Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan7.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd7.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','Null');
+
+
+
+
+
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan8.jpg','Melbourne Central','-37.810202, 144.962765',  false, true, '10000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan9.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan10.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'40000','0', 'Null');
+
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan11.jpg','Flinders Street','-37.818237, 144.967073',  false, true, '10000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan12.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan13.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'40000','0', 'Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinders','50','4wd8.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'20000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd9.jpg','Melbourne Central','-37.810202, 144.962765',  false, true,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd10.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'50000','0','Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury7.jpg','Flinders Street','-37.818237, 144.967073',  false, true,'30000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury8.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury9.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'60000','0','Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury10.jpg','Melbourne Central','-37.810202, 144.962765',  false, true,'30000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury11.jpg','Flinders Street','-37.818237, 144.967073',  false, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury12.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'60000','0','Null');
+
+//passwords are all abc123
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('admin@ezshare.com.au', 'e99a18c428cb38d5f260853678922e03', 'Admin', 'Man','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', true);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('liam@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Liam', 'Neeson','0534357235','25/8/1975','871 Sydney Avenue', 'Coburg', 'VIC', '3293', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('john@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'John', 'Wick','0234769345','15/4/1980','4 Swanston Street', 'CBD', 'VIC', '3006', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('ben@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Ben', 'Benson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('bob@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Bob', 'Bobson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('jim@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Jim', 'Smith','0435864235','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('jeff@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Jeff', 'Smin','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('tim@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Tim', 'Timmyson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('tom@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Tom', 'Toddler','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('kelly@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Kelly', 'Johnson','043582525','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('kerry@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Kerry', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('lauren@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Lauren', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('laura@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Laura', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('alice@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Alice', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('ashlee@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Ashlee', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('hazmaan@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Hazmaan', 'Johnson','0435555555','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('stuart@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Stuart', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('joanne@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Joanne', 'Neeson','0435867934','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('abdul@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Abdul', 'Mohammad','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('lee@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Lee', 'Chang','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('travis@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Travis', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('dave@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Dave', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('david@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'David', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('daniel@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Daniel', 'Johnson','0437390545','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('jones@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Jones', 'Johnson','0435343245','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('jack@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Jack', 'Jackson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('cat@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Cat', 'KittyKat','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('kate@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Kate', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('charlotte@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Charlotte', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('emily@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Emily', 'Johnson','0435777745','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('harry@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Harry', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('harlod@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Harold', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('haley@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Haley', 'Judge','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('kevin@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Kevin', 'Chandler','0437567945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('keith@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Keith', 'Carl','0433667945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('tommy@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Tommy', 'Robbinson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('tucker@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Tucker', 'Carlson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('benjamin@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Bengjamin', 'Carl','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('mohammad@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Mohammad', 'Mohammad','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('rob@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('robbert@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Robbert', 'Smith','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('felix@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'felix', 'Kgelberg','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('arnold@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Arnold', 'Manning','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('andy@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Andy', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('wendy@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Wendy', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('eric@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'eric', 'Manning','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('elroy@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Elroy', 'Judge','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('alphonse@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Alphonse', 'Elric','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('becky@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Becky', 'chandler','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('sarah@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Sarah', 'smith','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
+
+
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','RMIT', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED456','john@gmail.com','20/08/2018','14:30','2','90','300','Coburg','Sunbury', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('3','BIG123','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Melbourne Airport', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('4','DFE123','chris@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Luna Park', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('5','GIB456','ashlee@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','Showgrounds', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('6','GIB123','ashlee@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Showgrounds', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('7','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','RMIT','Luna Park', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('8','LUX456','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Sunbury', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('9','LUX123','bob@gmail.com','20/08/2018','14:30','2','90','300','Luna Park','Coburg', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('10','XUL123','tim@gmail.com','20/08/2018','14:30','2','90','300','Melbourne Airport','Epping', true);
+INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('11','SED789','hazmaan@gmail.com','20/08/2018','14:30','2','90','300','Melbourne Airport','Sunbury', true);
