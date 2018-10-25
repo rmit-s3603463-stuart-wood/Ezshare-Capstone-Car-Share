@@ -93,7 +93,7 @@ INSERT INTO stations (cords, stationName)VALUES('-37.812747, 144.973513','Parlia
 INSERT INTO stations (cords, stationName)VALUES('-37.810202, 144.962765','Melbourne Central');
 INSERT INTO stations (cords, stationName)VALUES('-37.821472, 144.964894','Eureka Tower');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','0', 'chris@gmail.com');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','5000', 'chris@gmail.com');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false,'40000','0', 'No Driver');
 INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan3.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'No Driver');
 
@@ -199,7 +199,7 @@ INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, stre
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('sarah@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Sarah', 'smith','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
 
 
-INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','RMIT', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','RMIT', false);
 INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED456','john@gmail.com','20/08/2018','14:30','2','90','300','Coburg','Sunbury', true);
 INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('3','BIG123','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Melbourne Airport', true);
 INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('4','DFE123','chris@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Luna Park', true);
