@@ -8,5 +8,5 @@ namespace App;
 class Cars extends Model
 {
   public $primaryKey  = 'rego';
-
+  public $incrementing = false;
 }

@@ -9,5 +9,5 @@ namespace App;
 class Customers extends Model
 {
   public $primaryKey  = 'email';
-
+  public $incrementing = false;
 }
