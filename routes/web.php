@@ -27,6 +27,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/unbook','unbookController@update');
 
 Route::get('about', function(){
 //I used the about page as a testing page for some basic stuff, feel free to overwrite it.
@@ -46,9 +47,7 @@ Route::get('adminMap', function(){
   return view('adminMap');
 });
 
-Route::get('myAccount', function(){
-  return view('myAccount');
-});
+Route::get('/myAccount','myAccountController@index');
 
 Route::get('faqs', function(){
   return view('faqs');

@@ -16,7 +16,7 @@ class CreateBookingTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
 
             $table->increments('bookingID');
             $table->string('rego', 35);
@@ -32,8 +32,8 @@ class CreateBookingTable extends Migration
 
             $table->foreign('email')->references('email')->on('customers');
             $table->foreign('rego')->references('rego')->on('cars');
-            $table->foreign('pickupLocation')->references('stationName')->on('station');
-            $table->foreign('returnLocation')->references('stationName')->on('station');
+            $table->foreign('pickupLocation')->references('stationName')->on('stations');
+            $table->foreign('returnLocation')->references('stationName')->on('stations');
 
         });
     }
@@ -45,6 +45,6 @@ class CreateBookingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking');
+        Schema::dropIfExists('bookings');
     }
 }

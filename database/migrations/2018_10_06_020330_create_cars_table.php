@@ -32,7 +32,7 @@ class CreateCarsTable extends Migration
           $table->string('currDriver', 40);
 
           $table->primary('rego');
-          $table->foreign('stationName')->references('stationName')->on('station');
+          $table->foreign('stationName')->references('stationName')->on('stations');
           $table->foreign('currDriver')->references('email')->on('customers');
         });
     }

@@ -13,7 +13,7 @@ class CreateStationTable extends Migration
      */
     public function up()
     {
-        Schema::create('station', function (Blueprint $table) {
+        Schema::create('stations', function (Blueprint $table) {
           $table->string('cords', 200);
           $table->string('stationName', 150);
           $table->primary('stationName');
@@ -27,6 +27,6 @@ class CreateStationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('station');
+        Schema::dropIfExists('stations');
     }
 }

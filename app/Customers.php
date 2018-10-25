@@ -5,8 +5,9 @@
 // App\Cars::all()
 namespace App;
 
-class Cars extends Model
+
+class Customers extends Model
 {
-  public $primaryKey  = 'rego';
+  public $primaryKey  = 'email';
 
 }

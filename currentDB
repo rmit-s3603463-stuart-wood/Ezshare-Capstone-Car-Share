@@ -1,7 +1,7 @@
-select * from booking;
+select * from bookings;
 select * from cars;
 select * from customers;
-select * from station;
+select * from stations;
 drop database carshare;
 --------------------------------------
 
@@ -12,7 +12,7 @@ use carshare;
 GRANT SELECT, INSERT, DELETE, UPDATE ON carshare .* TO Admin@'localhost' IDENTIFIED BY 'password';
 
 create table if not exists customers
-(email varchar(40) NOT NULL,
+(email varchar(200) NOT NULL,
 password varchar(200),
 firstName varchar(25),
 lastName varchar(25),
@@ -27,7 +27,7 @@ isAdmin boolean,
 PRIMARY KEY (email)
 );
 
-create table if not exists station(
+create table if not exists stations(
 	cords varchar(200),
 	stationName varchar(150),
 	PRIMARY KEY (stationName)
@@ -43,7 +43,7 @@ create table if not exists cars(
 	engine varchar(50),
 	price varchar(50),
 	carPic  varchar(150),
-	stationName varchar(100),
+	stationName varchar(150),
 	carCords varchar(200),
 	booked boolean,
 	availability boolean,
@@ -51,11 +51,11 @@ create table if not exists cars(
 	journeykm varchar(30),
 	currDriver varchar(40),
 	PRIMARY KEY (rego),
-	FOREIGN KEY (stationName) REFERENCES station(stationName),
+	FOREIGN KEY (stationName) REFERENCES stations(stationName),
 	FOREIGN KEY (currDriver) REFERENCES customers(email)
 );
 
-create table if not exists booking(
+create table if not exists bookings(
 
 	bookingID int(50) NOT NULL AUTO_INCREMENT,
 
@@ -66,88 +66,86 @@ create table if not exists booking(
 	hoursBooked varchar(75),
 	minutesBooked varchar(75),
 	totalPrice varchar(75),
-	returnLocation varchar(200),
-	pickupLocation varchar(200),
+	returnLocation varchar(150),
+	pickupLocation varchar(150),
 	completed boolean,
 	PRIMARY KEY (bookingID),
 	FOREIGN KEY (email) REFERENCES customers(email),
 	FOREIGN KEY (rego) REFERENCES cars(rego),
-	FOREIGN KEY (pickupLocation) REFERENCES station(stationName),
-	FOREIGN KEY (returnLocation) REFERENCES station(stationName)
+	FOREIGN KEY (pickupLocation) REFERENCES stations(stationName),
+	FOREIGN KEY (returnLocation) REFERENCES stations(stationName)
 );
 
 
-INSERT INTO station (cords, stationName)VALUES('-37.817644, 144.966933','RMIT');
-INSERT INTO station (cords, stationName)VALUES('-37.669491, 144.851685','Melbourne Airport');
-INSERT INTO station (cords, stationName)VALUES('-37.885222, 145.086158','Chadstone');
-INSERT INTO station (cords, stationName)VALUES('-37.818380, 144.952464','Southern Cross');
-INSERT INTO station (cords, stationName)VALUES('-37.867493, 144.976888','Luna Park');
-INSERT INTO station (cords, stationName)VALUES('-37.580294, 144.712699','Sunbury');
-INSERT INTO station (cords, stationName)VALUES('-37.743839, 144.963922','Coburg');
-INSERT INTO station (cords, stationName)VALUES('-37.637673, 145.009664','Epping');
-INSERT INTO station (cords, stationName)VALUES('-37.783315, 144.914923','Showgrounds');
-INSERT INTO station (cords, stationName)VALUES('-38.147274, 144.360866','Geelong');
+INSERT INTO stations (cords, stationName)VALUES('-37.817644, 144.966933','RMIT');
+INSERT INTO stations (cords, stationName)VALUES('-37.669491, 144.851685','Melbourne Airport');
+INSERT INTO stations (cords, stationName)VALUES('-37.885222, 145.086158','Chadstone');
+INSERT INTO stations (cords, stationName)VALUES('-37.818380, 144.952464','Southern Cross');
+INSERT INTO stations (cords, stationName)VALUES('-37.867493, 144.976888','Luna Park');
+INSERT INTO stations (cords, stationName)VALUES('-37.580294, 144.712699','Sunbury');
+INSERT INTO stations (cords, stationName)VALUES('-37.743839, 144.963922','Coburg');
+INSERT INTO stations (cords, stationName)VALUES('-37.637673, 145.009664','Epping');
+INSERT INTO stations (cords, stationName)VALUES('-37.783315, 144.914923','Showgrounds');
+INSERT INTO stations (cords, stationName)VALUES('-38.147274, 144.360866','Geelong');
+INSERT INTO stations (cords, stationName)VALUES('-37.818237, 144.967073','Flinders Street');
+INSERT INTO stations (cords, stationName)VALUES('-37.811692, 144.956096','Flagstaff Station');
+INSERT INTO stations (cords, stationName)VALUES('-37.812747, 144.973513','Parliament Station');
+INSERT INTO stations (cords, stationName)VALUES('-37.810202, 144.962765','Melbourne Central');
+INSERT INTO stations (cords, stationName)VALUES('-37.821472, 144.964894','Eureka Tower');
 
-INSERT INTO station (cords, stationName)VALUES('-37.818237, 144.967073','Flinders Street');
-INSERT INTO station (cords, stationName)VALUES('-37.811692, 144.956096','Flagstaff Station');
-INSERT INTO station (cords, stationName)VALUES('-37.812747, 144.973513','Parliament Station');
-INSERT INTO station (cords, stationName)VALUES('-37.810202, 144.962765','Melbourne Central');
-INSERT INTO station (cords, stationName)VALUES('-37.821472, 144.964894','Eureka Tower');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','0', 'chris@gmail.com');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false,'40000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan3.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan.jpg','RMIT','-37.817644, 144.966933',  true, true, '10000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan2.jpg','Melbourne Airport','-37.669491, 144.851685',  false, false,'40000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('SED789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan3.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinders','50','4wd.jpg','Melbourne Airport','-37.818380, 144.952464',  false, true,'20000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  false, false,'50000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd3.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinders','50','4wd.jpg','Melbourne Airport','-37.818380, 144.952464',  false, true,'20000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd2.jpg','Chadstone','-37.885222, 145.086158',  false, false,'50000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('BIG789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd3.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true,'30000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  false, true,'60000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury3.jpg','Sunbury','-37.580294, 144.712699',  false, true,'60000','0','No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury.jpg','Chadstone','-37.885222, 145.086158',  false, true,'30000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury2.jpg','RMIT','-37.817644, 144.966933',  true, true,'60000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('LUX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury3.jpg','Sunbury','-37.580294, 144.712699',  true, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan4.jpg','Sunbury','-37.580294, 144.712699',  false, true,'40000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan5.jpg','Coburg','-37.743839, 144.963922',  false, true,'40000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan6.jpg','Epping','-37.637673, 145.009664',  false, true,'40000','0', 'No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan4.jpg','Sunbury','-37.580294, 144.712699',  false, true,'40000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan5.jpg','Coburg','-37.743839, 144.963922',  false, true,'40000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DES789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan6.jpg','Epping','-37.637673, 145.009664',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB123','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd4.jpg','Coburg','-37.743839, 144.963922',  false, true,'50000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd5.jpg','Epping','-37.637673, 145.009664',  false, true,'50000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd6.jpg','Showgrounds','-37.783315, 144.914923',  false, true,'50000','0','No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB123','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd4.jpg','Coburg','-37.743839, 144.963922',  false, true,'50000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd5.jpg','Epping','-37.637673, 145.009664',  false, true,'50000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('GIB789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd6.jpg','Showgrounds','-37.783315, 144.914923',  false, true,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL123','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury4.jpg','Showgrounds','-37.783315, 144.914923',  false, true,'60000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury5.jpg','Geelong','-38.147274, 144.360866',  false, true,'60000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury6.jpg','Geelong','-38.147274, 144.360866',  false, true,'60000','0','No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL123','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury4.jpg','Showgrounds','-37.783315, 144.914923',  true, true,'60000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury5.jpg','Geelong','-38.147274, 144.360866',  true, true,'60000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('XUL789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury6.jpg','Geelong','-38.147274, 144.360866',  true, true,'60000','0','Null');
-
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan7.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd7.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','Null');
-
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF123','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan7.jpg','Southern Cross','-37.669491, 144.851685',  false, true,'40000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('DEF456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd7.jpg','Luna Park','-37.867493, 144.976888',  false, true,'50000','0','No Driver');
 
 
 
 
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan8.jpg','Melbourne Central','-37.810202, 144.962765',  false, true, '10000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan9.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'40000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan10.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'40000','0', 'Null');
+
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan8.jpg','Melbourne Central','-37.810202, 144.962765',  false, true, '10000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan9.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'40000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ESD789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan10.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'40000','0', 'No Driver');
 
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan11.jpg','Flinders Street','-37.818237, 144.967073',  false, true, '10000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan12.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'40000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan13.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'40000','0', 'Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS123','Pulsar ST B17 Series', 'Nissan','2016','1','5','4 cylinders','35','sedan11.jpg','Flinders Street','-37.818237, 144.967073',  false, true, '10000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS456','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan12.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'40000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('EDS789','Nissan Altima Ti-S L33', 'Nissan','2017','1','5','6 cylinders','35','sedan13.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'40000','0', 'No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinders','50','4wd8.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'20000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd9.jpg','Melbourne Central','-37.810202, 144.962765',  false, true,'50000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd10.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'50000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB123','Patrol Ti-L Y62 Series 4', 'Nissan','2018','2','7','8 cylinders','50','4wd8.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'20000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB456','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd9.jpg','Melbourne Central','-37.810202, 144.962765',  false, true,'50000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('IGB789','Navara ST D23 Series 3', 'Nissan','2018','2','5','4 cylinders','50','4wd10.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'50000','0','No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury7.jpg','Flinders Street','-37.818237, 144.967073',  false, true,'30000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury8.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'60000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury9.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury7.jpg','Flinders Street','-37.818237, 144.967073',  false, true,'30000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury8.jpg','Flagstaff Station','-37.811692, 144.956096',  false, true,'60000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('ULX789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury9.jpg','Parliament Station','-37.812747, 144.973513',  false, true,'60000','0','No Driver');
 
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury10.jpg','Melbourne Central','-37.810202, 144.962765',  false, true,'30000','0', 'Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury11.jpg','Flinders Street','-37.818237, 144.967073',  false, true,'60000','0','Null');
-INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury12.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'60000','0','Null');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName, carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL123','GT-R NISMO R35', 'Nissan','2017','3','4','6 cylinders','75','luxury10.jpg','Melbourne Central','-37.810202, 144.962765',  false, true,'30000','0', 'No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL456','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury11.jpg','Flinders Street','-37.818237, 144.967073',  false, true,'60000','0','No Driver');
+INSERT INTO cars (rego, model, make, year, tier, seatNo, engine, price, carPic, stationName,carCords, booked, availability, totalkm, journeykm, currDriver)VALUES('UXL789','Skyline GT-R V-Spec II BNR34', 'Nissan','2001','3','4','6 cylinders','75','luxury12.jpg','Eureka Tower','-37.821472, 144.964894',  false, true,'60000','0','No Driver');
 
-//passwords are all abc123
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('admin@ezshare.com.au', 'e99a18c428cb38d5f260853678922e03', 'Admin', 'Man','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', true);
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('chris@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Chris', 'Johnson','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('liam@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Liam', 'Neeson','0534357235','25/8/1975','871 Sydney Avenue', 'Coburg', 'VIC', '3293', 'Australia', false);
@@ -201,14 +199,14 @@ INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, stre
 INSERT INTO customers(email, password,firstname,lastname,phone,dateOfBirth, street, suburb, state, postcode, country, isAdmin)VALUES('sarah@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Sarah', 'smith','0435867945','05/6/1986','35 Murray Road', 'Preston', 'VIC', '3453', 'Australia', false);
 
 
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','RMIT', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED456','john@gmail.com','20/08/2018','14:30','2','90','300','Coburg','Sunbury', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('3','BIG123','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Melbourne Airport', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('4','DFE123','chris@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Luna Park', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('5','GIB456','ashlee@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','Showgrounds', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('6','GIB123','ashlee@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Showgrounds', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('7','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','RMIT','Luna Park', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('8','LUX456','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Sunbury', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('9','LUX123','bob@gmail.com','20/08/2018','14:30','2','90','300','Luna Park','Coburg', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('10','XUL123','tim@gmail.com','20/08/2018','14:30','2','90','300','Melbourne Airport','Epping', true);
-INSERT INTO booking(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('11','SED789','hazmaan@gmail.com','20/08/2018','14:30','2','90','300','Melbourne Airport','Sunbury', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('1','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','RMIT', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('2','SED456','john@gmail.com','20/08/2018','14:30','2','90','300','Coburg','Sunbury', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('3','BIG123','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Melbourne Airport', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('4','DFE123','chris@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Luna Park', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('5','GIB456','ashlee@gmail.com','20/08/2018','14:30','2','90','300','Chadstone','Showgrounds', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('6','GIB123','ashlee@gmail.com','20/08/2018','14:30','2','90','300','Southern Cross','Showgrounds', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('7','SED123','chris@gmail.com','20/08/2018','14:30','2','90','300','RMIT','Luna Park', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('8','LUX456','john@gmail.com','20/08/2018','14:30','2','90','300','Epping','Sunbury', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('9','LUX123','bob@gmail.com','20/08/2018','14:30','2','90','300','Luna Park','Coburg', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('10','XUL123','tim@gmail.com','20/08/2018','14:30','2','90','300','Melbourne Airport','Epping', true);
+INSERT INTO bookings(bookingID, rego, email, dateBooked, timeBooked, hoursBooked, minutesBooked, totalPrice, returnLocation , pickupLocation, completed)VALUES('11','SED789','hazmaan@gmail.com','20/08/2018','14:30','2','90','300','Melbourne Airport','Sunbury', true);
