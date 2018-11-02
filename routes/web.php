@@ -29,23 +29,22 @@ Route::get('/', function () {
 
 Route::get('/unbook','unbookController@update');
 
+
 Route::get('about', function(){
 //I used the about page as a testing page for some basic stuff, feel free to overwrite it.
-$users = DB::table('customers')->get();
-$users2 = Cars::all();
-  return view('about', compact('users2'));
+
+  return view('about');
   //This code is for testing, you should put this in a controller for this in something like D:\wamp64\www\ezshare\app\Http\Controllers\Auth\....
 });
 
 //This accesses the member map page of the website
-Route::get('map', function(){
-  return view('map');
-});
-
+Route::get('/map','mapController@index');
 //This accesses the Admin map page of the website
-Route::get('adminMap', function(){
-  return view('adminMap');
-});
+Route::get('/adminMap','adminMapController@index');
+Route::GET('/getCords', 'adminMapController@getCoords');
+Route::get('/getDis', 'adminMapController@getDistance');
+
+
 
 Route::get('/myAccount','myAccountController@index');
 
@@ -58,31 +57,41 @@ Route::get('contactUs', function(){
 });
 
 
-Route::get('bookings', function(){
-  return view('bookings');
-});
+Route::post('/bookings','bookingsController@index');
 
-Route::get('payment', function(){
-  return view('payment');
-});
-
-Route::get('login', function(){
-  return view('login');
-});
+Route::post('/payment','paymentController@show');
 
 Route::get('signUp', function(){
   return view('signUp');
 });
+Route::post('/signUpCheck','signUpController@signupCheck');
+
+
+
+Route::get('login', function(){
+  return view('login');
+});
+Route::post('/loginCheck','loginController@index');
+
+Route::get('/logout','loginController@logout');
+
+Route::post('adminAddCarCheck', 'adminController@addCar');
+Route::post('adminDeleteCarCheck', 'adminController@deleteCar');
+Route::post('adminSetCar', 'adminController@setCarAvail');
+Route::post('adminUnSetCar', 'adminController@setCarUnAvail');
+
+Route::post('adminBookingsCheck', 'adminController@deleteBooking');
+
+Route::get('adminDeleteCar', 'adminController@carDeletePage');
+Route::get('adminBookings', 'adminController@bookingDeletePage');
 
 Route::get('adminAddCar', function(){
   return view('adminAddCar');
 });
 
-Route::get('adminDeleteCar', function(){
-  return view('adminDeleteCar');
+Route::get('/receipt', function(){
+  return view('/receipt');
 });
 
-Route::get('adminBookings', function(){
-  return view('adminBookings');
-});
+Route::get('/receipt','receiptController@index');
 ?>

@@ -37,31 +37,31 @@
         My Account
       </a>
       <div class="dropdown-menu">
-    <?php    if(isset($_SESSION["email"]))
+    <?php   if(session()->has('email'))
     {
       echo"<a class='dropdown-item' href='myAccount'>My Account</a>";
-      echo"<a class='dropdown-item' href='logOut'>LogOut</a>";
+      echo"<a class='dropdown-item' href='logout'>LogOut</a>";
 
      }
     else
-    { echo"<a class='dropdown-item' href='logIn'>Login</a>";
+    { echo"<a class='dropdown-item' href='login'>Login</a>";
       echo"<a class='dropdown-item' href='signUp'>Sign Up</a>";
     }
     ?>
     <!--    <a class="dropdown-item" href="logIn.php">Login</a>  //-->
       </div>
     </li>
-    <?php    if(isset($_SESSION["email"])){
-      if($_SESSION['email'] == 'admin@ezshare.com.au'){
+    <?php    if(session()->has('email')){
+      if(session()->get('email') == 'admin@ezshare.com.au'){
   echo    "<li class='nav-item dropdown'>";
   echo  "<a class='nav-link dropdown-toggle' href='#' id='navbardrop' data-toggle='dropdown'>";
     echo "Admin Tools";
   echo "</a>";
   echo  "<div class='dropdown-menu'>";
 
-        echo"<a class='dropdown-item'href='adminaddcar'>Add a Car</a>";
-        echo"<a class='dropdown-item'href='admindeletecar'>Remove a Car</a>";
-        echo"<a class='dropdown-item'href='bookingdelete'>User Bookings</a>";
+        echo"<a class='dropdown-item'href='adminAddCar'>Add a Car</a>";
+        echo"<a class='dropdown-item'href='adminDeleteCar'>Remove a Car</a>";
+        echo"<a class='dropdown-item'href='adminbooking'>User Bookings</a>";
 
 echo  "</div>";
 echo  "</li>";
@@ -75,8 +75,12 @@ echo  "</li>";
     <li class="nav-item">
 
     <?php
-    if(isset($_SESSION["email"])){
+    if(session()->has('email')){
+          if(session()->get('email')=='admin@ezshare.com.au'){
+            echo"<a class='nav-link' href='adminMap'>Admin Map</a>";
+          }else{
             echo"<a class='nav-link' href='map'>Map</a>";
+          }
 }
 
       ?>

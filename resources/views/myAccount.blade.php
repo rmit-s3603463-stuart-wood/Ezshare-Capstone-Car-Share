@@ -14,6 +14,13 @@ border-style: solid;
 }
 </style>
 <!--@include('backend.signUpPro')-->
+<?php
+if(session()->has('email')){
+}else{
+  header('Location: /');
+  exit;
+}
+?>
 @endsection
 @section('content')
 <div class="container table-responsive-sm">
@@ -44,13 +51,7 @@ border-style: solid;
 
 
 
-@php
-$email = "chris@gmail.com";
-$users = $customers->where('email', $email);
-@endphp
-@isset($users)
-
-@foreach($users as $user)
+@foreach($currentCustomer as $user)
     <th>Name:</th>
       <td>{{$user->firstName}} {{$user->lastName}} </td>
     </tr>
@@ -69,7 +70,6 @@ $users = $customers->where('email', $email);
 @endforeach
 
 
-@endisset
 
 
 
@@ -110,10 +110,7 @@ $users = $customers->where('email', $email);
       </tr>
 
       @php
-        $email = "chris@gmail.com";
-        $user = $customers->where('email', $email);
-        $userBookings = $bookings->where('email', $email);
-        $ongoingBooking = $userBookings->where('completed', 0);
+        $ongoingBooking = $bookings->where('completed', 0);
       @endphp
 
       @if($ongoingBooking->isNotEmpty())
@@ -183,10 +180,7 @@ $users = $customers->where('email', $email);
 
       </tr>
       @php
-          $email = "chris@gmail.com";
-          $user = $customers->where('email', $email);
-          $userBookings = $bookings->where('email', $email);
-          $completedBooking = $userBookings->where('completed', 1);
+          $completedBooking = $bookings->where('completed', 1);
       @endphp
 
           @if($completedBooking->isNotEmpty())
