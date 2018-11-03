@@ -11,9 +11,7 @@ use Illuminate\Http\Request;
 
 class signUpController extends Controller
 {
-    public function index(Request $request){
 
-    }
 
     public function signupCheck(Request $request){
       /*

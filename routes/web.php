@@ -84,10 +84,9 @@ Route::post('adminBookingsCheck', 'adminController@deleteBooking');
 
 Route::get('adminDeleteCar', 'adminController@carDeletePage');
 Route::get('adminBookings', 'adminController@bookingDeletePage');
+Route::get('adminAddCar', 'adminController@addCarPage');
 
-Route::get('adminAddCar', function(){
-  return view('adminAddCar');
-});
+
 
 Route::get('/receipt', function(){
   return view('/receipt');

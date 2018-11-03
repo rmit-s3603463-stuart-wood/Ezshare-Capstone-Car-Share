@@ -251,21 +251,13 @@ if(session()->has('email')){
   <input type="file" id="carPic" name="carPic">
   </label>
         <label  for="stationName">Station Name</label><select name="stationName" placeholder="Please select stationName">
-                          <option value="RMIT">RMIT</option>
-                          <option value="Melbourne Airport">Melbourne Airport</option>
-                          <option value="Chadstone">Chadstone</option>
-                          <option value="Southern Cross">Southern Cross</option>
-                          <option value="Luna Park">Luna Park</option>
-                          <option value="Sunbury">Sunbury</option>
-                          <option value="Coburg">Coburg</option>
-                          <option value="Epping">Epping</option>
-                          <option value="Showgrounds">Showgrounds</option>
-                          <option value="Geelong">Geelong</option>
-                          <option value="Flinders Street">Flinders Street</option>
-                          <option value="Flagstaff Station">Flagstaff Station</option>
-                          <option value="Parliament Station">Parliament Station</option>
-                          <option value="Melbourne Central">Melbourne Central</option>
-                          <option value="Eureka Tower">Eureka Tower</option>
+                          @php
+                          foreach($stations as $station){
+                            echo "<option value='".$station->stationName."'>".$station->stationName."</option>";
+                          }
+                          @endphp
+
+
                           </select>
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cars;
 use App\Bookings;
 use App\Customers;
+use App\Stations;
 Use Redirect;
 
 
@@ -12,6 +13,14 @@ use Illuminate\Http\Request;
 
 class adminController extends Controller
 {
+  public function addCarPage(){
+
+          $stations = Stations::all();
+          return view('adminAddCar', compact('stations'));
+
+}
+
+
   public function carDeletePage(){
 
           $cars = Cars::all();
@@ -84,38 +93,9 @@ public function bookingDeletePage(){
               $engine = request('engine');
               $stationName = request('stationName');
             }
-      if($stationName == "RMIT")
-        {
-      	$carCords = '-37.817644, 144.966933';
-        }elseif($stationName == "Melbourne Airport"){
-      	$carCords = '-37.669491, 144.851685';
-        }elseif($stationName =="Chadstone"){
-      	$carCords = '-37.885222, 145.086158';
-        }elseif($stationName =="Southern Cross"){
-      	$carCords = '-37.818380, 144.952464';
-        }elseif($stationName =="Luna Park"){
-      	$carCords = '-37.867493, 144.976888';
-        }elseif($stationName =="Sunbury"){
-      	$carCords = '-37.580294, 144.712699';
-        }elseif($stationName =="Coburg"){
-      	$carCords = '-37.743839, 144.963922';
-        }elseif($stationName =="Epping"){
-      	$carCords = '-37.637673, 145.009664';
-        }elseif($stationName =="Showgrounds"){
-      	$carCords = '-37.783315, 144.914923';
-        }elseif($stationName =="Geelong"){
-      	$carCords = '-38.147274, 144.360866';
-        }elseif($stationName =="Flinders Street"){
-      	$carCords = '-37.818237, 144.967073';
-        }elseif($stationName =="Flagstaff Station"){
-      	$carCords = '-37.811692, 144.956096';
-        }elseif($stationName =="Parliament Station"){
-      	$carCords = '-37.812747, 144.973513';
-        }elseif($stationName =="Melbourne Central"){
-      	$carCords = '-37.810202, 144.962765';
-        }elseif($stationName =="Eureka Tower"){
-      	$carCords = '-37.821472, 144.964894';
-        }
+            $currStation=Stations::where('stationName', '=', $stationName)->first();
+            $carCords=$currStation->cords;
+
 
         $booked = intval(FALSE);
         $availability = true;
