@@ -5,6 +5,8 @@
     @endsection
     @section('content')
 	<body>
+		<!--Displays home page-->
+
 		<div class="container">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->

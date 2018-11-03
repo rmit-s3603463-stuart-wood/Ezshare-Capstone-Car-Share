@@ -1,16 +1,8 @@
 @extends ('layout')
 
-<!--
-Make sure the sections are mentioned and placed in the layout page
--->
+
 @section('pageHead')
-@php
-//SESSION STUFF HERE!!!
 
-
-
-
-@endphp
 <title>Car List</title>
    <!--  Bootstrap Code utilized is provided by w3schools at: https://www.w3schools.com/bootstrap4/
     Google Map code is provided by google developer documentation at: https://developers.google.com/maps/documentation/javascript/geolocation*/ -->
@@ -52,6 +44,8 @@ border-style: solid;
   top: 10px;
 }
 </style>
+<!--Only admin can access this page-->
+
 <?php
 if(session()->has('email')){
     if(session()->get('email')!='admin@ezshare.com.au'){
@@ -67,6 +61,7 @@ if(session()->has('email')){
 ?>
 @endsection
 @section('content')
+<!--Displays booking data and shows button to delete the booking-->
 
 		<div class="container">
 
@@ -160,6 +155,7 @@ if(session()->has('email')){
 
 </table>
 </div>
+<!--Allows searching for specific cars-->
 
 <script>
 $(document).ready(function(){

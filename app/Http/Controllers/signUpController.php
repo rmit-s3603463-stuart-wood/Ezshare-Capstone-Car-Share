@@ -12,31 +12,14 @@ use Illuminate\Http\Request;
 class signUpController extends Controller
 {
     public function index(Request $request){
-/*
--Grabs all the records from the car table and stores it into $Cars
--You must connect to a model to access the Database, Look at the above use App\Cars;
--make a model under app, try to name it after the table in the database - customer.php is a good example
-*/
-      $cars = Cars::all();
-      $currentCar = Cars::where('rego', '=', 'SED123')->get();
 
-      $customers = Customers::all();
-      $currentCustomer = Customers::where('email', '=', 'chris@gmail.com')->get();
-
-      $stations = Stations::all();
-      $currentStation = Stations::where('stationName', '=', 'RMIT')->get();
-      //return the view to the page that it's going to access and send back the variables without the $ like below.
-
-      $OK = $request->session()->get('OK');
-
-
-
-
-      return view('signUp', compact('cars','stations','currentCar','customers','currentCustomer','currentStation'));
     }
 
     public function signupCheck(Request $request){
-
+      /*
+      -Variables are grabbed from the form and validated, if a validation fails then an error is added to an error array.
+      -If no errors exist then the user is created and redirected to the myAccount page otherwise they're sent back to the signUp page and show the error messages.
+      */
       $customers = Customers::all();
       $email = "";
       $password = "";

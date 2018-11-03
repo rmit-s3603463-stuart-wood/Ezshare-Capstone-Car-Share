@@ -11,26 +11,22 @@ use Illuminate\Http\Request;
 class paymentController extends Controller
 {
     public function index(){
-/*
--Grabs all the records from the car table and stores it into $Cars
--You must connect to a model to access the Database, Look at the above use App\Cars;
--make a model under app, try to name it after the table in the database - customer.php is a good example
-*/
 
 
     }
 
     public function show(Request $request){
-
+      // Gets all cars from Database and sets current car based on the rego stored in session
       $cars = Cars::all();
       $currentCar = Cars::where('rego', '=', session()->get('rego'))->get();
-
+      // Gets all cars from Database and sets currentCustomer based on email set in session
       $customers = Customers::all();
       $currentCustomer = Customers::where('email', '=', session()->get('email'))->get();
-
+      // Gets all cars from Database and sets stationName based on the stationName set in session
       $stations = Stations::all();
       $currentStation = Stations::where('stationName', '=', session()->get('stationName'))->get();
 
+      // Setting the session of all form elements form payment page
       $request->session()->put('plocation', $request->input('plocation'));
 
       $request->session()->put('dlocation', $request->input('dlocation'));

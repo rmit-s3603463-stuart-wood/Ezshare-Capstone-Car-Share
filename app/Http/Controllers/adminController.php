@@ -25,12 +25,10 @@ public function bookingDeletePage(){
 
 }
     public function addCar(Request $request){
-/*
--Grabs all the records from the car table and stores it into $Cars
--You must connect to a model to access the Database, Look at the above use App\Cars;
--make a model under app, try to name it after the table in the database - customer.php is a good example
-*/
-
+      /*
+      -Variables are grabbed from the form and validated, if a validation fails then an error is added to an error array.
+      -If no errors exist then the admin successfully adds a car otherwise they're sent back to the adminAddCar page and shown the error messages.
+      */
       $errors = array();
 
       // Add Car
@@ -140,13 +138,11 @@ public function bookingDeletePage(){
       				  if(in_array($fileActualExt, $allowed))
       				  {
       					  $fileNameNew = uniqid(true).".".$fileName.".".$fileActualExt;
-                  //$target = base_path() . '/public/img';
-                  //move(public_path('avatars'), $photoName);
+
 
 
                   $request->carPic->move(public_path('img'), $fileNameNew);
 
-      					//move_uploaded_file($_FILES['carPic']['tmp_name'], $target);
                 Cars::Create([
 
                   'rego' => $rego,
@@ -189,6 +185,7 @@ public function bookingDeletePage(){
     }
     public function deleteBooking(Request $request){
       $Bookings = Bookings::where('bookingID', '=', request('userBooking'))->get();
+      //unbooks the car by setting the car to an 'empty' state and deletes the booking.
 
       foreach ($Bookings as $Booking) {
         $setCar = Cars::where('rego', '=', $Booking->rego)->get();
@@ -206,6 +203,7 @@ public function bookingDeletePage(){
 
 }
 public function setCarAvail(Request $request){
+  //sets the car to available
 
   $setCar = Cars::where('rego', '=', request('carRego'))->get();
   $setCar[0]->availability = 1;
@@ -215,6 +213,7 @@ public function setCarAvail(Request $request){
 
 }
 public function setCarUnAvail(Request $request){
+  //unbooks the car by setting the car to an 'empty' state and sets the car to unavailable
 
   $Bookings = Bookings::where('rego', '=', request('carRego'))->get();
   $setCar = Cars::where('rego', '=', request('carRego'))->get();
@@ -235,6 +234,8 @@ public function setCarUnAvail(Request $request){
 
 }
 public function deleteCar(Request $request){
+  //deletes the car and any bookings associated with it
+
   $Bookings = Bookings::where('rego', '=', request('carRego'))->get();
   $setCar = Cars::where('rego', '=', request('carRego'))->get();
 

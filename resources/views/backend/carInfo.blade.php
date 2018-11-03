@@ -1,3 +1,5 @@
+<!--Display cars in tiered section for carFleet page-->
+
      <tr><th>{{$car->model}}</th></tr>
      <tr><td rowspan="7">  <img src="{{ asset('/img') }}/{{$car->carPic}}" class="rounded img-fluid border border-dark"  alt="sedan" width="600" height="500"> </td><th class="table-active">Registration Number:</th><td>{{$car->rego}}</td></tr>
      <tr><th class="table-active">Make:</th><td>{{$car->make}}</td></tr>

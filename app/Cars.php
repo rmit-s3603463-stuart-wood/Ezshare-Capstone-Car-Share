@@ -7,6 +7,7 @@ namespace App;
 
 class Cars extends Model
 {
+  protected $guarded=[];
   public $primaryKey  = 'rego';
   public $incrementing = false;
 }

@@ -119,7 +119,7 @@
     }
     </style>
 </head>
-
+<!-- Receipt template based on template from https://github.com/sparksuite/simple-html-invoice-template -->
 <body>
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
@@ -132,7 +132,7 @@
                             </td>
 
                             <td>
-                                Invoice #: 123<br>
+                                EZshare Invoice:<br>
                                 Created: {{session()->get('fdatetime')}}<br>
                                 Due: {{session()->get('fdatetime')}}
                             </td>
@@ -214,10 +214,12 @@
     </div>
     <script>
 function printpage() {
+    //Prints the receipt
     window.print();
 }
 
 function bookings() {
+  //Redirects the user to my account page
   window.location.replace("/myAccount");
 
 }

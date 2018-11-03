@@ -10,12 +10,6 @@
     padding: 10px;
     }
 
-    /*
- * Specific styles of signin component
- */
-/*
- * General styles
- */
 body, html {
     height: 100%;
     background-repeat: no-repeat;
@@ -155,11 +149,14 @@ h3, .p{
 
 
 @section('content')
+<!--Displays login form and allows user to login-->
 
 <div class="container">
            <div class="card card-container">
                <p id="profile-name" class="profile-name-card"></p>
                <form class="form-signin" method="post" action="/loginCheck">
+                 <!--Errors are displayed if form fails validation check in login controller page-->
+
                  @php
                    if (count($errors) > 0){
                     echo'<div class="error">';
@@ -180,9 +177,6 @@ h3, .p{
                        </label>
                    </div>
                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="login_user">Sign in</button>
-               </form><!-- /form -->
-       <!--        <a href="#" class="forgot-password">
-                   Forgot the password?
-               </a> -->
-           </div><!-- /card-container -->
+               </form>
+           </div>
 @endsection

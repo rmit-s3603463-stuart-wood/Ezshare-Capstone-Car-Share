@@ -13,7 +13,8 @@ border-style: solid;
 
 }
 </style>
-<!--@include('backend.signUpPro')-->
+<!--Only logged in user can access this page-->
+
 <?php
 if(session()->has('email')){
 }else{
@@ -23,6 +24,8 @@ if(session()->has('email')){
 ?>
 @endsection
 @section('content')
+<!--Displays user data and stheir current and previous bookings, users can also unbook a car once they've finished their booking-->
+
 <div class="container table-responsive-sm">
   <h1 class = "text-center">My Account</h1>
 
@@ -47,7 +50,6 @@ if(session()->has('email')){
     <tbody>
       <tr>
         <td rowspan="8">  <img src="{{ asset('/icons/profile.png') }}" class="rounded img-fluid"  alt="sedan" width="300" height="500"> </td>
-        <!--$email = $_SESSION["email"];-->
 
 
 

@@ -70,8 +70,7 @@ class unbookController extends Controller
      */
     public function update()
     {
-        //$BookedCar = Cars::find(request('carRego'));
-        //$Booking = Bookings::find(request('bookID'));
+    //unbooks the car by setting the car to an 'empty' state and setting the booking to completed
 
         $BookedCar = Cars::where('rego', '=', request('carRego'))->get();
         $Booking = Bookings::where('bookingID', '=', request('bookId'))->get();

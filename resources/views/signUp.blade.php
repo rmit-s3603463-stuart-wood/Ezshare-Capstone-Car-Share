@@ -56,17 +56,7 @@ font-size: 20px;
 }
 }
 </style>
-
-
-@php
-
-
-// LOGIN USER
-
-
-
-
-@endphp
+<!--Displays signup form and allows user to signup-->
 
 <div class="container">
         <div class="col-md-6 mx-auto text-center">
@@ -83,6 +73,8 @@ font-size: 20px;
            <div class="col-md-4 mx-auto">
               <div class="myform form ">
                  <form action="signUpCheck" method="post" name="signUp" role="form">
+                   <!--Errors are displayed if form fails validation check in signUpController page-->
+
                    @php
                    if (count($errors) > 0){
                     echo'<div class="error">';

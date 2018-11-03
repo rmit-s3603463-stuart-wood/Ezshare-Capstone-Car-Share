@@ -61,7 +61,7 @@
 
         echo"<a class='dropdown-item'href='adminAddCar'>Add a Car</a>";
         echo"<a class='dropdown-item'href='adminDeleteCar'>Remove a Car</a>";
-        echo"<a class='dropdown-item'href='adminbooking'>User Bookings</a>";
+        echo"<a class='dropdown-item'href='adminBookings'>User Bookings</a>";
 
 echo  "</div>";
 echo  "</li>";

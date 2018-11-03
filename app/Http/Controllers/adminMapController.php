@@ -11,7 +11,9 @@ use App\Customers;
 class adminMapController extends Controller
 {
   public function index(){
-
+    /*
+    Grabs data relevant for the adminMap page and returns it
+    */
   $cars = Cars::all();
   $customers = Customers::all();
 

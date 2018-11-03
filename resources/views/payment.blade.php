@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-<!–– PayPal sandbox provided by PayPal ––>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
 
@@ -145,10 +145,12 @@ span.price {
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- PayPal sandbox provided by PayPal -->
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
+    <!-- Initial map code -->
     <script>
-      function initMap1() {
+  /*    function initMap1() {
         var rmitLatLng = {lat: -37.806989, lng: 144.963865};
         var chadstoneLatLng = {lat: -37.885222, lng: 145.086158};
         var melbairportLatLng = {lat: -37.669046, lng: 144.841049};
@@ -206,7 +208,7 @@ span.price {
           title: 'melbarirport'
         });
       }
-
+*/
 
 
     </script>
@@ -255,6 +257,8 @@ span.price {
       $phone = $_POST['phone'];
 
       @endphp
+
+      <!-- Calculation of time -->
         <script>
 
         var pdate = '@php echo $pdate; @endphp';
@@ -262,10 +266,10 @@ span.price {
         var ddate = '@php echo $ddate; @endphp';
         var dtime = '@php echo $dtime; @endphp';
 
-        console.log(pdate);
-        console.log(ptime);
-        console.log(ddate);
-        console.log(dtime);
+        //console.log(pdate);
+      //  console.log(ptime);
+      //  console.log(ddate);
+      //  console.log(dtime);
 
         var date1 = new Date(pdate + " " + ptime);
         date1 = date1.getTime();
@@ -273,29 +277,29 @@ span.price {
         date2 = date2.getTime();
 
 
-        console.log(date1);
-        console.log(date2);
+        //console.log(date1);
+        //console.log(date2);
 
         //difference between two dates in msec(milliseconds)
         var diff = date2 - date1;
 
-        console.log(diff);
+        //console.log(diff);
 
         var mins = Math.floor(diff / 60000);
         var hrs = Math.floor(mins / 60);
         var days = Math.floor(hrs / 24);
         var yrs = Math.floor(days / 365);
 
-        console.log('mins ' + mins);
+        //console.log('mins ' + mins);
 
-        console.log('hrs ' + hrs);
+        //console.log('hrs ' + hrs);
 
-        console.log('days ' + days);
+        //console.log('days ' + days);
 
-        console.log('yrs ' + yrs);
+        //console.log('yrs ' + yrs);
 
         mins = mins % 60;
-        console.log('For use: ' + hrs + " hours, " + mins + " minutes")
+        //console.log('For use: ' + hrs + " hours, " + mins + " minutes")
 
 
         window.onload = function write(){
@@ -332,6 +336,7 @@ span.price {
 
         <div class="col-50">
 
+          <!-- Showing the selected car -->
           @foreach($currentCar as $car)
      <hr>
                          <h2 class = "text-center"><img src="{{ asset('/img') }}/{{$car->carPic}}" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>'
@@ -369,19 +374,7 @@ span.price {
 
          </div>
 
-         <div class="right">
-          <div id="map1" style="width:100%;height:150px;"></div>
 
-          <br>
-
-
-          <div id="map2" style="width:100%;height:150px;"></div>
-
-
-
-
-
-        </div>
 
 
 
@@ -398,7 +391,7 @@ span.price {
     @foreach($currentCar as $car)
         @php $price = $car->price; @endphp
     @endforeach
-
+    <!-- Calculation of total price -->
     <script>
       var price = @php echo $price; @endphp;
       var price =  parseInt(price);
@@ -412,8 +405,8 @@ span.price {
 
       var gtotal = total;
       var gtotal = gtotal.toFixed(2);
-      console.log(price);
-      console.log(typeof price);
+      //console.log(price);
+      //console.log(typeof price);
     </script>
 
     <div class="row">
@@ -502,6 +495,7 @@ span.price {
           </tbody>
         </table>
 
+        <!-- PayPal button -->
         <div id="paypal-button-container"></div>
 
 
@@ -518,7 +512,7 @@ span.price {
 
   </div>
 </div>
-
+  <!-- PayPal sandbox code -->
 <script>
 
   paypal.Button.render({
@@ -541,7 +535,7 @@ span.price {
 
                 var x = gtotal;
                 var currentVal = x;
-                console.log(gtotal);
+                //console.log(gtotal);
 
                 return actions.payment.create({
                   payment: {
@@ -579,8 +573,8 @@ span.price {
 
           </script>
 
-          <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>
+        <!--  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_73tP_C7flbCk3IJKMclKYVWzz2HsVfE&callback=initMap1"></script>-->
 
 
 @endsection

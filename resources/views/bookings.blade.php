@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section('pageHead')
-<!–– bootstrap-datetimepicker code obtained from 'Eonasdan', https://github.com/Eonasdan/bootstrap-datetimepicker ––>
+<!-- bootstrap-datetimepicker code obtained from 'Eonasdan', https://github.com/Eonasdan/bootstrap-datetimepicker -->
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
@@ -148,6 +148,7 @@
 @endsection
 
 @section('content')
+<!-- Logic to check if the user already has a booking active -->
 <?php
 if(session()->has('email')){
   $user=session()->get('email');
@@ -164,7 +165,7 @@ if(session()->has('email')){
 }
 ?>
 
-
+<!-- Inital map code for booking page -->
 <script>
 var map;
 var stationName = "";
@@ -177,7 +178,7 @@ var markerData = [{lat: -37.669046 , lng: 144.841049  , zoom: 12 , name: "Melbou
 }
 
 
-function initialize() {
+/*function initialize() {
 markerData.forEach(function(data) {
 var czoom = data.zoom;
 var clat = data.lat;
@@ -199,6 +200,7 @@ jQuery("#selectlocation").append('<option value="'+[data.lat, data.lng,data.zoom
 });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+*/
 jQuery(document).on('change','#selectlocation',function() {
 var latlngzoom = jQuery(this).val().split('|');
 var newzoom = 1*latlngzoom[2],
@@ -286,7 +288,7 @@ $(document).ready(function() {
   });
 
 
-  //POST required database data and then use payment controler@show to set the session
+//Date time picker logic from 'Eonasdan', https://github.com/Eonasdan/bootstrap-datetimepicker
 $(function () {
 $('#datetimepicker6').datetimepicker({
   format: "DD/MM/YYYY - hh:mm A",
@@ -328,7 +330,7 @@ $("#datetimepicker7").on("dp.change", function (e) {
 
     <div class = "centerform">
 
-
+      <!-- Form for bookings -->
       <form class="form-horizontal" method="POST" action="{{ asset('/payment') }}" id="form">
 
         {{ csrf_field() }}
@@ -373,6 +375,7 @@ $("#datetimepicker7").on("dp.change", function (e) {
 
       <br>
 
+      <!-- Logic to get the total price based on the start and end time-->
       <script>
 
       function set() {
@@ -515,6 +518,7 @@ document.getElementById('gtotal').value = gtotal;
     <h2>Your Vehicle:</h2>
 
     <br>
+    <!-- Showing the Selected car information, including image -->
     @foreach($currentCar as $car)
      <hr>
                          <h2 class = "text-center"><img src="{{ asset('/img') }}/{{$car->carPic}}" class="rounded img-fluid"  alt="sedan" width="300" height="250"></h2><hr>'
@@ -524,7 +528,7 @@ document.getElementById('gtotal').value = gtotal;
 </div>
 
 <div class="col-50">
-<h2>Pick Up Details</h2>
+<h2>Pick Up Details:</h2>
 
 <br>
 
@@ -565,9 +569,10 @@ document.getElementById('gtotal').value = gtotal;
 
 <br>
 <br>
+<br>
 
 
-<h2>Drop Off Details</h2>
+<h2>Drop Off Details:</h2>
 
 
 

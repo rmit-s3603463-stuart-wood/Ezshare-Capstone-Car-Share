@@ -6,28 +6,35 @@
 #map {
  height: 94.5%;
 }
-/* Optional: Makes the sample page fill the window. */
+
 html, body {
  height: 100%;
  margin: 0;
  padding: 0;
 }
 </style>
+<?php
+if(session()->has('email')){
+    if(session()->get('email')=='admin@ezshare.com.au'){
+      header('Location: /adminMap');
+      exit;
 
+    }
+
+}else{
+  header('Location: /');
+  exit;
+}
+?>
 @endsection
 @section('content')
 <div id="map"></div>
 
 <script>
 
-    /**
-     * The CenterControl adds a control to the map that recenters the map on
-     * Chicago.
-     * This constructor takes the control DIV as an argument.
-     * @constructor
-     */
 
-    //Custom Button
+
+    //get's user location and zooms in on it
     window.lat= -34.39;
     window.lng= 150.644;
     function getLocation() {
@@ -37,16 +44,16 @@ html, body {
 
         return null;
     };
-
+    //stores user location with geolocation into variables
     function updatePosition(position) {
       if (position) {
         window.lat = position.coords.latitude;
         window.lng = position.coords.longitude;
       }
     }
-
+    //update user location every 500 ms
     setInterval(function(){updatePosition(getLocation());}, 500);
-
+    //returns user location in array
     function currentLocation() {
       return {lat:window.lat, lng:window.lng};
     };
@@ -94,7 +101,7 @@ html, body {
          $cartier=0;
          $loc='empty';
        @endphp
-
+       //create locations array for car markers
        @foreach($cars as $car)
        @php
         list($lat, $long) = explode(", ",$car->carCords);
@@ -136,7 +143,7 @@ html, body {
        $x=1;
        echo "var markercontent=new Array();";
        @endphp
-
+       //create marker popups with relevant car information
        @foreach($cars as $car)
        @php
        list($lat, $long) = explode(", ",$car->carCords);
@@ -152,7 +159,7 @@ html, body {
           @endphp
         @endif
        @endforeach
-
+       //Create each car marker and put them into clusters
         var closest;
         for (var i = 0; i < locations.length; i ++) {
           var cartierloc=cartier[i];
@@ -180,8 +187,8 @@ html, body {
             position: location,
             map: map
           });
-             // text to appear in window
-            // marker.desc = "Number "+i;
+
+
              mark.desc = markcon;
              // needed to make Spiderfy work
              oms.addMarker(mark);
@@ -192,7 +199,7 @@ html, body {
              markArr[i]=mark;
            }
             new MarkerClusterer(map, clusterMarker, {imagePath: '/icons/m', maxZoom: 15});
-
+            //creates button to find closes car to users location
            if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                  userlat= position.coords.latitude;
@@ -210,7 +217,7 @@ html, body {
     };
 
     window.initialize = initialize;
-
+//refresh the nearest location of the "find closest car" button
     var redraw = function(payload) {
       lat = payload.message.lat;
       lng = payload.message.lng;
@@ -223,38 +230,29 @@ html, body {
       map.controls[google.maps.ControlPosition.RIGHT_TOP].clear();
       find_closest_marker(markArr,lat,lng,map);
     };
+//generates unique channel so that each user has a seperate map instance
+    <?php
+        if(session()->has('email'))
+        {
+               $x = rand();
+               $x = md5(session()->get('email').$x);
+               echo 'var UserID ="'.$x.'" ;';
 
-    @php
-      $email = "chris@gmail.com";
-      $x=0;
-    @endphp
-    @foreach($customers as $user)
-      @if(($user->email)==$email)
-      @php
-           $x += rand();
-           $x = md5($x);
-           echo 'var UserID ="'.$x.'" ;';
-           break;
-      @endphp
-      @endif
-      @php
-      $x+=1;
-      @endphp
-    @endforeach
-
+        }
+    ?>
     var pnChannel= "map-channel"+UserID;
     var pubnub = new PubNub({
     publishKey:   'pub-c-f7bdfeeb-bfd3-4273-85e8-4f134e51931e',
     subscribeKey: 'sub-c-d37a4c6e-b71e-11e8-b27d-1678d61e8f93'
     });
-
+//redraws the map
     pubnub.subscribe({channels: [pnChannel]});
     pubnub.addListener({message:redraw});
-
+//refreshes map every 5000 ms
     setInterval(function() {
       pubnub.publish({channel:pnChannel, message:currentLocation()});
     }, 5000);
-
+//calculates closest car to user
     function rad(x) {return x*Math.PI/180;}
     function find_closest_marker(  markArr,userlat,userlng,map ) {
         var lat = userlat;
@@ -276,10 +274,7 @@ html, body {
                 closest = i;
             }
         }
-      //  alert(markArr[closest].position);
-        // map.setZoom(19);
-      //  map.panTo(markArr[closest].position);
-        //document.write("succ");
+
         var centerControlDiv = document.createElement('div');
         var centerControl = new CenterControl(centerControlDiv, map,markArr[closest]);
 

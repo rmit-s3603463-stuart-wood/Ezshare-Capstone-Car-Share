@@ -22,6 +22,7 @@
          padding: 0;
        }
      </style>
+     <!--Only admin can access tis page-->
      <?php
      if(session()->has('email')){
          if(session()->get('email')!='admin@ezshare.com.au'){
@@ -93,8 +94,7 @@ var initialize = function() {
    infoWindow.setContent('You are here!');
 
   mark = new google.maps.Marker();
-//  usermark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
-//  usermark.addListener('click', function() {userinfowindow.open(map, usermark);});
+
   map.setCenter(currentLocation());
 
   // Create OverlappingMarkerSpiderfier instsance
@@ -112,7 +112,7 @@ var initialize = function() {
      $cartier=0;
      $loc='empty';
    @endphp
-
+   //create locations array for car markers
    @foreach($cars as $car)
    @php
     list($lat, $long) = explode(", ",$car->carCords);
@@ -148,7 +148,7 @@ var initialize = function() {
 
 
 
-
+//create marker popups with relevant car information
    @php
    echo "var locations =".$loc;
    echo "var cartier =".$cartier;
@@ -244,7 +244,7 @@ var initialize = function() {
 
             };
             window.initialize = initialize;
-
+            //get the coords for all the cars - USED FOR FAKE CAR MOVEMENT - Not needed with an actual sensor
             function getCords() {
               $.ajax({
                              type:'GET',
@@ -259,11 +259,6 @@ var initialize = function() {
             }
 
 
-            function setDistance(currkm,carRego) {
-
-
-
-            }
 
             getCords();
 
@@ -274,7 +269,7 @@ var initialize = function() {
             var dbCurrKm=[];
 
 
-
+            //refresh the nearest location of the "find closest car" button
             var redraw = function(payload) {
               lat = payload.message.lat;
               lng = payload.message.lng;
@@ -282,35 +277,26 @@ var initialize = function() {
                 map.setCenter(currentLocation());
 
               }
-              //clusterMap.setMap(null);
+
               clusterMap.removeMarkers(markArr);
               getCords();
-
-
-            //  document.write(markLoc[0]);
-
+//this simulates car movement on the map - in an actual website with sensor data to get car locations, the car cords would be updated via a database query
               for (var i = 0; i < markArr.length; i ++) {
-         var temparray = markLoc[i].split(",");
-         var templat = parseFloat(temparray[0]);
-         var templng = parseFloat(temparray[1]);
-         var templatTEST = parseFloat(temparray[0]);
-         var templngTEST = parseFloat(temparray[1]);
+                 var temparray = markLoc[i].split(",");
+                 var templat = parseFloat(temparray[0]);
+                 var templng = parseFloat(temparray[1]);
+                 var templatTEST = parseFloat(temparray[0]);
+                 var templngTEST = parseFloat(temparray[1]);
 
-      //   document.write("<br>linelatlng: " + linelatlng);
-      //   document.write("<br>templat: " + templat);
-      //   document.write("<br>templng: " + templng);
+
 
          templat += parseFloat(linelatlng);
          templng += parseFloat(linelatlng);
-        // document.write("<br>templatUPDATE: " + templat);
-      //   document.write("<br>templngUPDATE: " + templng);
 
          linelatlng+=0.001;
-        // document.write(templat +" " +templng+ "------ ");
          var templatlng= new google.maps.LatLng(templat, templng);
          var templatlngTEST= new google.maps.LatLng(templatTEST, templngTEST);
-         //document.write("<br>templatlng: " + templatlng);
-        //document.write("<br>linelatlng2: " + linelatlng);
+
          var kmlat = markArr[i].getPosition().lat();
          var kmlng = markArr[i].getPosition().lng();
          var kmlatlng = new google.maps.LatLng(kmlat, kmlng);
@@ -322,9 +308,7 @@ var initialize = function() {
          }
          if(x!=0){
            dbCurrKm[i] += currkm/1000;
-        //document.write("<br>currkm: " + currkm);
-        //document.write("<br>------------");
-         //setDistance(dbCurrKm[i],carRego[i]);
+
          var totalkmdec = parseFloat(totalkm[i]+dbCurrKm[i]);
         document.getElementById("car"+[i]).innerHTML = carRego[i];
         document.getElementById("jKm"+[i]).innerHTML = dbCurrKm[i].toFixed(2) +" km";
@@ -333,34 +317,22 @@ var initialize = function() {
       }else{
         dbCurrKm[i]=0;
       }
-         //document.write(currkm);
          if(i==1){
            markArr[i].setPosition(templatlngTEST);
 
          }else{
            markArr[i].setPosition(templatlng);
          }
-          //  document.write(templat +" " +templng+ "------ ");
             if(x==0){
               lineCoords[i]=new Array(templatlng);
             }else{
               lineCoords[i][x]=templatlng;
             }
-
-        //    lineCoordinatesPath[i] = new google.maps.Polyline({
-          //   path: lineCoords[i],
-        //     geodesic: true,
-        //     strokeColor: '#2E10FF'
-        //   });
-        //   lineCoordinatesPath[i].setMap(map);
-
               }
 
                 clusterMap.addMarkers(markArr);
                 x+=1;
-                //markArr[i].setMap(null);
-                //markArr[i]=null;
-            //  usermark.setPosition({lat:lat, lng:lng, alt:0});
+
             };
 
             var pnChannel = "map-channel";
@@ -398,10 +370,7 @@ var initialize = function() {
                         closest = i;
                     }
                 }
-              //  alert(markArr[closest].position);
-                // map.setZoom(19);
-              //  map.panTo(markArr[closest].position);
-                //document.write("succ");
+
                 var centerControlDiv = document.createElement('div');
                 var centerControl = new CenterControl(centerControlDiv, map,markArr[closest]);
 
@@ -443,7 +412,7 @@ var initialize = function() {
                    }
 
            </script>
-
+<!--The table displays the car coords and data, this is refreshed every 2500 ms-->
            <table class="table">
              <tbody>
              <tr><th class="table-active">Car: </th><th class="table-active">Current Journey km: </th><th class="table-active">Total km traveled: </th><th class="table-active">Booked By: </th></tr>

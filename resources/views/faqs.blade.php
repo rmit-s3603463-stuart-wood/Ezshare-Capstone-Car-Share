@@ -32,6 +32,7 @@
 
     @section('content')
 	<body>
+		<!--Displays faqs page-->
 
 		<div class="container">
 

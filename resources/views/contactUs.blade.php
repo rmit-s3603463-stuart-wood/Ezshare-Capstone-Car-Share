@@ -37,6 +37,8 @@ float:left;
 }
     </style>
   @section('content')
+  <!--Displays contact us page-->
+
 	<body>
 		<div class="container">
 			<h1 class = "text-center">Contact US</h1>

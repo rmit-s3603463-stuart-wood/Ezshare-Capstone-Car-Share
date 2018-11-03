@@ -3,9 +3,8 @@ The layout page should be called at the top of every page.
 -->
 @extends ('layout')
 
-<!--
-Make sure the sections are mentioned and placed in the layout page
--->
+<!--Displays all relevant car data in database for users-->
+
 @section('pageHead')
 <title>EZshare - Car  Information</title>
 <style>
@@ -47,9 +46,7 @@ Make sure the sections are mentioned and placed in the layout page
              </tr>
               </thead>
                <tbody>
-<!--
-The foreach loop goes through each record sent in tier1 cars and stores it in $car, use $car in the included page (backend.carInfo) if you want to access the record.
--->
+<!--The foreach loops goes through each record sent in tier1,2,3 cars and stores it in $car, we use $car in the included page.-->
       @foreach($tier1Cars as $car)
       @include('backend.carInfo')
       @endforeach

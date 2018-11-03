@@ -12,11 +12,11 @@ Use Redirect;
 class loginController extends Controller
 {
     public function index(Request $request){
-/*
--Grabs all the records from the car table and stores it into $Cars
--You must connect to a model to access the Database, Look at the above use App\Cars;
--make a model under app, try to name it after the table in the database - customer.php is a good example
-*/
+      /*
+      -Variables are grabbed from the form and validated, if a validation fails then an error is added to an error array.
+      -If no errors exist then the user is logged in and redirected to the myAccount page otherwise they're sent back to the signUp page and show the error messages.
+      */
+
 
   unset($errors);
 

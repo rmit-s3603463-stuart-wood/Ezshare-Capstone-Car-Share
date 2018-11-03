@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--Displays base layout used in each pag of the websitee-->
+
 <html>
 
   <head>

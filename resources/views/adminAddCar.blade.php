@@ -1,16 +1,6 @@
 @extends ('layout')
-
-<!--
-Make sure the sections are mentioned and placed in the layout page
--->
 @section('pageHead')
-@php
-//SESSION STUFF HERE!!!
 
-
-
-
-@endphp
 <title>CarList</title>
 <style>
 
@@ -129,6 +119,8 @@ display: none;
     text-align: left;
   }
 </style>
+<!--Only admin can access this page-->
+
 <?php
 if(session()->has('email')){
     if(session()->get('email')!='admin@ezshare.com.au'){
@@ -145,6 +137,8 @@ if(session()->has('email')){
 @endsection
 
 @section('content')
+<!--Errors are displayed if form fails validation check in adminController page-->
+
 @php
   if (count($errors) > 0){
    echo'<div class="error">';
@@ -154,6 +148,8 @@ if(session()->has('email')){
    echo'</div>';
  }
  @endphp
+ <!--Displays car entry form and allows admin to add a car-->
+
 <div class="container">
 
     <h2>Add a Car</h2>
